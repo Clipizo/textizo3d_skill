@@ -4284,6 +4284,77 @@
    "default": ""
   }
  },
+ "viewer_keys": {
+  "input": "ViewerKeys",
+  "what": "Textizo3D's own keyframes of the text's transform (Position, Size, Rotation): the viewer's timeline",
+  "line": "frame|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ|ease",
+  "custom_line": "frame|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ|-2|x1|y1|x2|y2",
+  "base_line": "base|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ",
+  "frames": "counted from the clip's first frame (0); one key a frame; the lines joined with \\n in the node's text",
+  "values": "the text's transform at the key, in the units of the inputs PositionX ... RotationZ (Size a factor of the text's own size, rotations in degrees)",
+  "ease": "the curve of the way from this key to the next one (the last key's is not used)",
+  "eases": {
+   "-1": "hold",
+   "0": "linear",
+   "1": "in_quad",
+   "2": "out_quad",
+   "3": "in_out_quad",
+   "4": "in_cubic",
+   "5": "out_cubic",
+   "6": "in_out_cubic",
+   "7": "in_quart",
+   "8": "out_quart",
+   "9": "in_out_quart",
+   "10": "in_quint",
+   "11": "out_quint",
+   "12": "in_out_quint",
+   "13": "in_sine",
+   "14": "out_sine",
+   "15": "in_out_sine",
+   "16": "in_expo",
+   "17": "out_expo",
+   "18": "in_out_expo",
+   "19": "in_circ",
+   "20": "out_circ",
+   "21": "in_out_circ",
+   "22": "in_back",
+   "23": "out_back",
+   "24": "in_out_back",
+   "25": "in_elastic",
+   "26": "out_elastic",
+   "27": "in_out_elastic",
+   "28": "in_bounce",
+   "29": "out_bounce",
+   "30": "in_out_bounce",
+   "-2": "custom (four more numbers: see custom)"
+  },
+  "ease_aliases": {
+   "ease_in": 4,
+   "ease_out": 5,
+   "ease_in_out": 6,
+   "back": 23,
+   "elastic": 26,
+   "bounce": 29
+  },
+  "custom": {
+   "code": -2,
+   "means": "CSS cubic-bezier(x1, y1, x2, y2): time across, the way up; x1 and x2 from 0 to 1, y1 and y2 may overshoot (the viewer's curve editor: -0.6 to 1.6)"
+  },
+  "viewer_picker": {
+   "Linear": 0,
+   "Ease In": 4,
+   "Ease Out": 5,
+   "Ease In Out": 6,
+   "Back": 23,
+   "Elastic": 26,
+   "Bounce": 29,
+   "Hold": -1,
+   "Custom": -2
+  },
+  "base": "an optional last line the viewer writes: the transform inputs' values when the keys took over. With it, those inputs move, size (by ratio) and turn the whole animation by their distance from it; without it (a node an AI writes) they leave the keys be",
+  "spec": "a kit spec's \"keys\": [{\"frame\": 0, \"position\": [x, y, z], \"size\": s, \"rotation\": [x, y, z], \"ease\": \"out_back\" or \"cubic-bezier(x1, y1, x2, y2)\"}, ...] (and \"keys_base\"); fields left out are the node's; tools/textizo3d_preset.py keys <file.setting> reads a node's keys as that list",
+  "example": "0|-3|0|0|1|0|0|0|-2|0.1|1|0.35|1\n18|0|0|0|1|0|0|0|6"
+ },
  "looks": [
   {
    "index": 1,

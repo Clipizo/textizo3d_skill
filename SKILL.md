@@ -106,6 +106,7 @@ For a chat answer (no files), `build --compact` writes only what differs from Te
 - `text`, `font`, `style`: as in guide section 3. `\n` makes a new line.
 - `inputs`: any input of guide section 14 by its ID: numbers, `true`/`false` for checkboxes, a dropdown's number or its option's name (`"Shadow Only"`, `"Out Back"`), text in quotes. A colour is its ID without Red/Green/Blue (`"FaceColor"`) with `"#RRGGBB"` or `[r, g, b]` from 0 to 1; the single channels (`"FaceColorRed"`) work too. Only IDs whose `role` is `public` in `reference/inputs.json`.
 - `in`, `out`: the animation rows (below).
+- `keys`: the viewer's keyframes of the whole text (guide section 6, "Viewer keyframes"): a list like `[{"frame": 0, "position": [-3, 0, 0], "ease": "out_back"}, {"frame": 18, "position": [0, 0, 0]}]`, each with `frame` (from the clip's first frame) and any of `position` (`[x, y, z]`), `size`, `rotation` (`[x, y, z]` degrees) and `ease` (a row ease's name, `hold`, or `"cubic-bezier(x1, y1, x2, y2)"` for a curve of your own); fields left out keep the node's values. `keys_base` is rarely needed (the guide says when).
 - `frames`: the clip length, used by the check (the same as `--frames`). `aspect`: the frame's width / height for the fit estimate (0.5625 for 9:16). `notes`: ignored; use it for your own comments.
 
 **Rows** (the keys of `in` and `out`): `opacity`, `blur`, `position`, `size`, `tracking`, `rotation`, `explosion`. Each row you list is turned on (write `"on": false` to turn off a row a look has). Fields:
@@ -125,6 +126,7 @@ Fields you leave out keep the look's (or the default) value.
 python tools/textizo3d_preset.py build "<spec.json>" ["<out.setting>"] [--frames N] [--compact] [--overwrite]
 python tools/textizo3d_preset.py check "<file.setting>" [--frames N] [--aspect 0.5625]
 python tools/textizo3d_preset.py to-spec "<file.setting>" [out.json]
+python tools/textizo3d_preset.py keys "<file.setting>"
 python tools/textizo3d_preset.py looks
 python tools/textizo3d_preset.py textures
 python tools/textizo3d_preset.py where

@@ -65,7 +65,7 @@ Its Inspector has eight pages: **Text, In, Out, Effects, Material, Camera, Light
 
 On the viewer, Textizo3D draws the text's box with a small bar of four modes above it: **Move** (the default: drag the text), **Size** (drag away from or towards its middle), **Rotate** (drag round its middle) and **Turn** (drag to turn it in 3D). A drag sets Position, Size or Rotation, and keyframes them at the frame when they already have keys. On the Edit page, the viewer's overlay menu (lower left) must be on **Open FX Overlay**; on the Fusion page the selected node shows it.
 
-Under the picture the viewer also shows a **timeline** of the clip: its diamond button adds a keyframe of the whole transform (Position, Size, Rotation) at the current frame, or takes it away; while there are keyframes, every drag on the viewer keys the frame it is on; a key can be dragged along the strip to another frame, and the curve between two keys picks its easing (Linear, Ease In, Ease Out, Ease In Out, Back, Elastic, Bounce, Hold). These keyframes are Textizo3D's own and live in the input `ViewerKeys`; while it has any, the seven Position, Size and Rotation inputs stay live and move, size and turn the whole animation (by how far they are from their values when the keys took over, kept in a last line `base|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ` that the viewer writes; without that line, as in a node you write, those inputs leave the keys be). A node you write can animate the text with it: one line per key, `frame|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ|ease`, frames counted from the clip's first, the lines joined with `\n` in the node's text; `ease` is the curve of the way to the next key (0 Linear, 4 Ease In, 5 Ease Out, 6 Ease In Out, 23 Back, 26 Elastic, 29 Bounce, -1 Hold; any of the rows' 31 eases works). For example `0|-3|0|0|1|0|0|0|26\n18|0|0|0|1|0|0|0|6` slides the text in from the left and lets it settle with a wobble.
+Under the picture the viewer also shows a **timeline** of the clip: its diamond button adds a keyframe of the whole transform (Position, Size, Rotation) at the current frame, or takes it away; while there are keyframes, every drag on the viewer keys the frame it is on; a key can be dragged along the strip to another frame, and the curve between two keys picks its easing (Linear, Ease In, Ease Out, Ease In Out, Back, Elastic, Bounce, Hold, or Custom: the user's own curve, shaped by dragging its two handles). These keyframes are Textizo3D's own and live in the input `ViewerKeys`; section 6 gives its format, so a node you write can animate the text with it. While it has keys, the seven Position, Size and Rotation inputs stay live and move, size and turn the whole animation.
 
 The **Look** menu on the Text page applies a ready look (section 13) and keeps the text. A node you write carries every value itself, so it never uses that menu.
 
@@ -205,6 +205,33 @@ The text holds still between the In rows' last frame and the Out rows' first fra
 `Ease` takes a number: 0 Linear; 1 In Quad, 2 Out Quad, 3 In Out Quad; 4 In Cubic, 5 Out Cubic, 6 In Out Cubic; 7 In Quart, 8 Out Quart, 9 In Out Quart; 10 In Quint, 11 Out Quint, 12 In Out Quint; 13 In Sine, 14 Out Sine, 15 In Out Sine; 16 In Expo, 17 Out Expo, 18 In Out Expo; 19 In Circ, 20 Out Circ, 21 In Out Circ; 22 In Back, 23 Out Back, 24 In Out Back; 25 In Elastic, 26 Out Elastic, 27 In Out Elastic; 28 In Bounce, 29 Out Bounce, 30 In Out Bounce.
 
 Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) suit exits. Out Back (23) overshoots a little: good for pops. Out Elastic (26) and Out Bounce (29) wobble: sticker style.
+
+### Viewer keyframes (`ViewerKeys`)
+
+The viewer's keyframes move the whole text (not piece by piece, as the rows do). `ViewerKeys` holds them as text, a key a line, the lines joined with `\n`:
+
+```
+frame|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ|ease
+```
+
+- `frame`: counted from the clip's first frame (0). One key a frame; the text holds the first key's transform before it and the last one's after it.
+- The seven numbers: the text's transform at that frame, in the units of the inputs of the same names (section 3): Size is a factor of the text's own size, rotations are degrees.
+- `ease`: the curve of the way from this key to the next one (the last key's is not used): 0 Linear, 1 to 30 as the rows' eases above, -1 Hold (it stays, then jumps at the next key), or -2 the user's own curve, written as four more numbers on the line: `...|-2|x1|y1|x2|y2`, CSS's `cubic-bezier(x1, y1, x2, y2)` (time across with x1 and x2 from 0 to 1, the way up: y1 and y2 may go below 0 or above 1 to anticipate or overshoot; the viewer's editor shows -0.6 to 1.6). The viewer's picker offers Linear 0, Ease In 4, Ease Out 5, Ease In Out 6, Back 23, Elastic 26, Bounce 29, Hold -1 and Custom -2.
+- A last line `base|PositionX|...|RotationZ` (the viewer writes it): the transform inputs' values when the keys took over. With it, those inputs move, size (by their ratio) and turn the whole animation by their distance from it. Leave it out in a node you write: then the inputs leave the keys be.
+
+Example: `0|-3|0|0|1|0|0|0|-2|0.1|1|0.35|1\n18|0|0|0|1|0|0|0|6` slides the text in from the left on a fast-then-gentle curve of its own, then holds it.
+
+With the kit's tool, write keys in the spec as a list (fields left out keep the node's values, so a look's rotation stays):
+
+```json
+"keys": [
+  {"frame": 0, "position": [-3, 0, 0], "ease": "cubic-bezier(0.1, 1, 0.35, 1)"},
+  {"frame": 18, "position": [0, 0, 0], "ease": "out_back"},
+  {"frame": 40, "position": [0, 0.3, 0], "size": 1.2, "ease": "hold"}
+]
+```
+
+`ease` takes the rows' names (`linear`, `in_quad` ... `in_out_bounce`), `hold`, the picker's `ease_in`, `ease_out`, `ease_in_out`, `back`, `elastic`, `bounce`, a code, or `cubic-bezier(x1, y1, x2, y2)`. `python tools/textizo3d_preset.py keys "<file.setting>"` reads a node's keys back as that list, and `to-spec` writes them so. `reference/inputs.json` (`viewer_keys`) says all of this as data.
 
 ## 7. Shape (the Text page's Shape section)
 

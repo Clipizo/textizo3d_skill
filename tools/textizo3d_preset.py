@@ -5,6 +5,7 @@ Commands:
   build     <spec.json> [<out.setting>] [--frames N] [--compact] [--overwrite]   write a preset node from a JSON spec, then check it
   check     <file.setting>... [--frames N]                                       check presets: inputs, values, timing, layout
   to-spec   <file.setting> [<out.json>]                                          turn a preset (or a node saved from Resolve) into a spec
+  keys      <file.setting | ViewerKeys text>                                     a node's viewer keyframes as JSON (frames, transform, easing)
   looks                                                                          list the ready looks in presets/
   textures                                                                       list the textures Textizo3D carries
   where                                                                          print the folders presets can go to
@@ -578,7 +579,205 @@ def apply_row(values, ref, side, name, row, where, notes):
                 raise ValueError("%s: %s is for the explosion row only" % (where, extra))
 
 
-SPEC_KEYS = {"name", "look", "text", "font", "style", "inputs", "in", "out", "frames", "notes", "aspect"}
+# --------------------------------------------------------------------------- the viewer's keyframes (ViewerKeys)
+# Textizo3D's own keyframes of the text's transform (the viewer's timeline under the picture) live in the input ViewerKeys,
+# a key a line:
+#   frame|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ|ease[|x1|y1|x2|y2]
+# frames counted from the clip's first; ease is the curve of the way to the next key: 0 linear, 1-30 the eases below,
+# -1 hold, -2 the user's own curve, CSS's cubic-bezier(x1, y1, x2, y2) in four more numbers. An optional last line
+# base|PositionX|...|RotationZ holds the transform inputs' values when the keys took over (the viewer writes it): those
+# inputs then move, size (by ratio) and turn the whole animation by their distance from it; without it they leave the keys
+# be. reference/inputs.json "viewer_keys" says the same as data. In a spec, "keys" is the list of keys (and "keys_base"
+# the base): [{"frame": 0, "position": [x, y, z], "size": s, "rotation": [x, y, z], "ease": "out_back"}, ...].
+
+EASE_FAMILIES = ("quad", "cubic", "quart", "quint", "sine", "expo", "circ", "back", "elastic", "bounce")
+EASE_CODES = {0: "linear", -1: "hold"}
+for _i, _family in enumerate(EASE_FAMILIES):
+    for _j, _way in enumerate(("in", "out", "in_out")):
+        EASE_CODES[1 + 3 * _i + _j] = _way + "_" + _family
+# The viewer's easing picker: Linear, Ease In, Ease Out, Ease In Out, Back, Elastic, Bounce, Hold (and Custom).
+EASE_ALIASES = {"ease_in": 4, "ease_out": 5, "ease_in_out": 6, "back": 23, "elastic": 26, "bounce": 29}
+CUSTOM_EASE = -2
+DEFAULT_EASE = 6
+BEZIER_Y = (-0.6, 1.6)   # how far the viewer's curve editor lets y1 and y2 go
+TRANSFORM = ("PositionX", "PositionY", "PositionZ", "Size", "RotationX", "RotationY", "RotationZ")
+KEY_FIELDS = ("frame", "position", "size", "rotation", "ease")
+
+
+def key_cells(line, most):
+    """The numbers of "a|b|c...", up to `most`, to the first cell that isn't one (as the plugin reads them)."""
+    out = []
+    for cell in line.split("|")[:most]:
+        try:
+            value = float(cell)
+        except ValueError:
+            break
+        if not math.isfinite(value) or not cell.strip():
+            break
+        out.append(value)
+    return out
+
+
+def parse_viewer_keys(text):
+    """(keys, base, problems) from ViewerKeys' text, as Textizo3D reads it: keys sorted by frame, one a frame (the last
+    given), each {"frame", "values": the seven, "ease": code, "bezier": [x1, y1, x2, y2] or None}."""
+    keys, base, problems = [], None, []
+    for n, line in enumerate(str(text or "").replace("\r\n", "\n").split("\n"), 1):
+        if not line.strip():
+            continue
+        if line.startswith("base|"):
+            cells = key_cells(line[5:], 7)
+            if len(cells) == 7:
+                base = cells
+            else:
+                problems.append("line %d: base needs 7 numbers (PositionX|...|RotationZ)" % n)
+            continue
+        cells = key_cells(line, 13)
+        if len(cells) < 9:
+            problems.append("line %d: a key needs 9 numbers, frame|PositionX|...|RotationZ|ease (%r)" % (n, line[:60]))
+            continue
+        ease = int(round(cells[8]))
+        key = {"frame": cells[0], "values": cells[1:8], "ease": ease, "bezier": None}
+        if ease == CUSTOM_EASE:
+            if len(cells) >= 13:
+                key["bezier"] = [min(max(cells[9], 0.0), 1.0), cells[10], min(max(cells[11], 0.0), 1.0), cells[12]]
+            else:
+                problems.append("line %d: ease -2 (a custom curve) needs four more numbers, x1|y1|x2|y2" % n)
+                key["bezier"] = [0.65, 0.0, 0.35, 1.0]
+        elif ease not in EASE_CODES:
+            problems.append("line %d: no ease %d (0-30, -1 hold, -2 custom): Textizo3D takes %d" % (n, ease, DEFAULT_EASE))
+            key["ease"] = DEFAULT_EASE
+        keys.append(key)
+    keys.sort(key=lambda k: k["frame"])
+    out = []
+    for key in keys:
+        if out and abs(out[-1]["frame"] - key["frame"]) < 0.5:
+            problems.append("two keys at frame %s: the last one counts" % fmt_num(key["frame"]))
+            out[-1] = key
+        else:
+            out.append(key)
+    return out, base, problems
+
+
+def format_viewer_keys(keys, base=None):
+    """ViewerKeys' text for keys as parse_viewer_keys gives them (and the base, if any), as Textizo3D writes it."""
+    lines = []
+    for key in sorted(keys, key=lambda k: k["frame"]):
+        cells = ["%.6g" % key["frame"]] + ["%.9g" % v for v in key["values"]] + ["%d" % key["ease"]]
+        if key["ease"] == CUSTOM_EASE:
+            cells += ["%.4g" % v for v in key["bezier"]]
+        lines.append("|".join(cells))
+    if base is not None and keys:
+        lines.append("base|" + "|".join("%.9g" % v for v in base))
+    return "".join(line + "\n" for line in lines)
+
+
+def ease_name(key):
+    if key["ease"] == CUSTOM_EASE:
+        return "cubic-bezier(%s)" % ", ".join(fmt_num(round(v, 4)) for v in key["bezier"])
+    return EASE_CODES.get(key["ease"], EASE_CODES[DEFAULT_EASE])
+
+
+def bezier_numbers(parts, where):
+    try:
+        b = [float(x) for x in parts]
+    except (TypeError, ValueError):
+        b = []
+    if len(b) != 4 or not all(math.isfinite(v) for v in b):
+        raise ValueError("%s: cubic-bezier takes four numbers, x1, y1, x2, y2" % where)
+    if not (0 <= b[0] <= 1 and 0 <= b[2] <= 1):
+        raise ValueError("%s: cubic-bezier's x1 and x2 are times, from 0 to 1" % where)
+    return b
+
+
+def ease_from(value, where):
+    """(code, bezier) from a spec's ease: a name ("out_back", "ease_in_out", "hold"), a code (0-30, -1),
+    "cubic-bezier(x1, y1, x2, y2)" or {"cubic-bezier": [x1, y1, x2, y2]}."""
+    if is_number(value):
+        code = int(round(float(value)))
+        if code in EASE_CODES:
+            return code, None
+        raise ValueError("%s: no ease %s (0-30, -1 hold; a custom curve is \"cubic-bezier(x1, y1, x2, y2)\")" % (where, value))
+    if isinstance(value, dict):
+        return CUSTOM_EASE, bezier_numbers(value.get("cubic-bezier", value.get("bezier")), where)
+    if isinstance(value, (list, tuple)):
+        return CUSTOM_EASE, bezier_numbers(value, where)
+    text = str(value).strip().lower()
+    m = re.match(r"^cubic-bezier\s*\(([^)]*)\)$", text)
+    if m:
+        return CUSTOM_EASE, bezier_numbers(m.group(1).split(","), where)
+    word = re.sub(r"[\s\-]+", "_", text)
+    if word in EASE_ALIASES:
+        return EASE_ALIASES[word], None
+    for code, name in EASE_CODES.items():
+        if name == word:
+            return code, None
+    close = difflib.get_close_matches(word, list(EASE_ALIASES) + list(EASE_CODES.values()), n=1)
+    raise ValueError("%s: no ease %r%s" % (where, value, " (did you mean %s?)" % close[0] if close else ""))
+
+
+def transform_json(cells):
+    return {"position": [cells[0], cells[1], cells[2]], "size": cells[3], "rotation": [cells[4], cells[5], cells[6]]}
+
+
+def keys_to_json(keys, base):
+    """The keys as a spec's "keys" (and "keys_base"): what an AI reads."""
+    out = {"keys": []}
+    for key in keys:
+        item = {"frame": int(key["frame"]) if float(key["frame"]).is_integer() else key["frame"]}
+        item.update(transform_json(key["values"]))
+        item["ease"] = ease_name(key)
+        out["keys"].append(item)
+    if base is not None:
+        out["keys_base"] = transform_json(base)
+    return out
+
+
+def transform_cells(item, where, values):
+    """The seven numbers of a key (or a base) from {"position", "size", "rotation"}; missing ones are the node's."""
+    cells = [float(values.get(k, 0.0)) for k in TRANSFORM]
+    for field, at, n in (("position", 0, 3), ("rotation", 4, 3)):
+        if field in item:
+            v = item[field]
+            if not isinstance(v, (list, tuple)) or len(v) != n or not all(is_number(x) for x in v):
+                raise ValueError("%s.%s: [x, y, z], three numbers" % (where, field))
+            cells[at:at + n] = [float(x) for x in v]
+    if "size" in item:
+        if not is_number(item["size"]):
+            raise ValueError("%s.size: a number (1 is the text's own size)" % where)
+        cells[3] = float(item["size"])
+    return cells
+
+
+def keys_from_json(items, base, values, where="keys"):
+    """ViewerKeys' text from a spec's "keys" (and "keys_base")."""
+    if not isinstance(items, list):
+        raise ValueError('%s: a list of keys like {"frame": 0, "position": [-3, 0, 0], "ease": "out_back"}' % where)
+    keys = []
+    for i, item in enumerate(items):
+        at = "%s[%d]" % (where, i)
+        if not isinstance(item, dict):
+            raise ValueError('%s: a key like {"frame": 0, "position": [-3, 0, 0], "ease": "out_back"}' % at)
+        unknown = set(item) - set(KEY_FIELDS)
+        if unknown:
+            raise ValueError("%s: no field %s (fields: %s)" % (at, ", ".join(sorted(unknown)), ", ".join(KEY_FIELDS)))
+        if not is_number(item.get("frame")):
+            raise ValueError("%s.frame: the key's frame, counted from the clip's first frame (0)" % at)
+        code, bez = ease_from(item.get("ease", EASE_CODES[DEFAULT_EASE]), at + ".ease")
+        keys.append({"frame": float(item["frame"]), "values": transform_cells(item, at, values), "ease": code, "bezier": bez})
+    rounded = [round(k["frame"]) for k in keys]
+    if len(set(rounded)) != len(rounded):
+        raise ValueError("%s: one key a frame" % where)
+    base_cells = None
+    if base is not None:
+        if not isinstance(base, dict) or set(base) - {"position", "size", "rotation"}:
+            raise ValueError('keys_base: {"position": [x, y, z], "size": s, "rotation": [x, y, z]}')
+        base_cells = transform_cells(base, "keys_base", values)
+    return format_viewer_keys(keys, base_cells)
+
+
+SPEC_KEYS = {"name", "look", "text", "font", "style", "inputs", "in", "out", "frames", "notes", "aspect", "keys",
+             "keys_base"}
 
 
 def spec_values(spec, ref, notes):
@@ -626,6 +825,12 @@ def spec_values(spec, ref, notes):
             raise ValueError("%s: an object of rows, like {\"blur\": {...}}" % side)
         for name, row in rows.items():
             apply_row(values, ref, side, name, row, "%s.%s" % (side, name), notes)
+    if "keys" in spec:
+        if "ViewerKeys" in raw:
+            raise ValueError("keys and inputs.ViewerKeys: give the keys once")
+        values["ViewerKeys"] = keys_from_json(spec["keys"], spec.get("keys_base"), values)
+    elif "keys_base" in spec:
+        raise ValueError("keys_base without keys")
     return values
 
 
@@ -693,6 +898,12 @@ def values_to_spec(values, ref, name=None):
             rows[key] = row
         if rows:
             spec[side] = rows
+    keys_text = values.get("ViewerKeys") or ""
+    if keys_text:   # the viewer's keyframes as a list (kept as text when it isn't what Textizo3D writes)
+        keys, keys_base, problems = parse_viewer_keys(keys_text)
+        if keys and not problems:
+            spec.update(keys_to_json(keys, keys_base))
+            row_inputs.add("ViewerKeys")
     inputs = {}
     for key, entry in public_inputs(ref):
         if key in ("Text", "Font", "Style") or key in row_inputs:
@@ -858,6 +1069,16 @@ def check_values(values, ref, report, frames=None, aspect=16 / 9.0, written=None
             if span > 0 and (value < lo - span or value > hi + span):
                 report.note("%s = %s is far outside its slider (%s to %s): allowed, but check it" % (
                     key, fmt_num(value), fmt_num(lo), fmt_num(hi)))
+    keys_text = values.get("ViewerKeys") or ""
+    if keys_text:
+        keys, _, problems = parse_viewer_keys(keys_text)
+        for problem in problems:
+            report.warn("ViewerKeys: " + problem)
+        if not keys:
+            report.warn("ViewerKeys has no key Textizo3D can read: the text doesn't move")
+        else:
+            report.info.append(("keys", "%d viewer keyframe%s, frames %s" % (
+                len(keys), "" if len(keys) == 1 else "s", ", ".join(fmt_num(k["frame"]) for k in keys))))
     text = values.get("Text", "")
     if written is not None and "Text" not in written:
         report.warn('no Text: the node shows "%s", the default text' % inputs["Text"]["default"])
@@ -1229,6 +1450,28 @@ def cmd_to_spec(args):
     return 0
 
 
+def cmd_keys(args):
+    """A node's viewer keyframes as JSON (a preset, a node saved from Resolve, or ViewerKeys' text itself)."""
+    source = args.source
+    if os.path.isfile(source):
+        ref = load_reference()
+        with open(source, "r", encoding="utf-8-sig", errors="replace") as handle:
+            tools, _, _ = find_tools(read_setting_text(handle.read()))
+        if not tools:
+            print("error: no %s node in %s" % (TOOL_TYPE, source))
+            return 1
+        values, _ = tool_values(tools[0][1], ref)
+        text = values.get("ViewerKeys") or ""
+    else:
+        text = source.replace("\\n", "\n")
+    keys, base, problems = parse_viewer_keys(text)
+    out = keys_to_json(keys, base)
+    if problems:
+        out["problems"] = problems
+    sys.stdout.write(spec_json(out))
+    return 1 if problems else 0
+
+
 def cmd_looks(_args):
     ref = load_reference()
     looks = ref.get("looks", [])
@@ -1293,7 +1536,7 @@ def cmd_install(args):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Textizo3D preset helper: build, check, to-spec, looks, textures, where, next-name, install.")
+    parser = argparse.ArgumentParser(description="Textizo3D preset helper: build, check, to-spec, keys, looks, textures, where, next-name, install.")
     sub = parser.add_subparsers(dest="command")
     p = sub.add_parser("build", help="write a preset from a JSON spec, then check it")
     p.add_argument("spec")
@@ -1312,6 +1555,9 @@ def main(argv=None):
     p.add_argument("out", nargs="?")
     p.add_argument("--overwrite", action="store_true")
     p.set_defaults(func=cmd_to_spec)
+    p = sub.add_parser("keys", help="a node's viewer keyframes as JSON (frames, position, size, rotation, easing)")
+    p.add_argument("source", help="a .setting file, or ViewerKeys' text (lines joined with \\n)")
+    p.set_defaults(func=cmd_keys)
     p = sub.add_parser("looks", help="list the ready looks")
     p.set_defaults(func=cmd_looks)
     p = sub.add_parser("textures", help="list the textures Textizo3D carries")
