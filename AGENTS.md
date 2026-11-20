@@ -1,8 +1,8 @@
-# Textizo3DFX look kit
+# Textizo3D look kit
 
-This folder lets an AI agent make looks for **Textizo3DFX**, a 3D text plugin for DaVinci Resolve. A look is one Textizo3DFX node for the Fusion page.
+This folder lets an AI agent make looks for **Textizo3D**, a 3D text plugin for DaVinci Resolve. A look is one Textizo3D node for the Fusion page.
 
-When the user asks for a Textizo3DFX (or Textizo3D) look, a 3D title, 3D text animation or changes to one, **read `SKILL.md` and follow it**. It points you to `Textizo3DFX AI Guide.md`, the full reference.
+When the user asks for a Textizo3D look, a 3D title, 3D text animation or changes to one, **read `SKILL.md` and follow it**. It points you to `Textizo3D AI Guide.md`, the full reference.
 
 Ground rules:
 

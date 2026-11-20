@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
-"""Textizo3DFX preset helper (Python 3, standard library only).
+"""Textizo3D preset helper (Python 3, standard library only).
 
 Commands:
   build     <spec.json> [<out.setting>] [--frames N] [--compact] [--overwrite]   write a preset node from a JSON spec, then check it
   check     <file.setting>... [--frames N]                                       check presets: inputs, values, timing, layout
   to-spec   <file.setting> [<out.json>]                                          turn a preset (or a node saved from Resolve) into a spec
   looks                                                                          list the ready looks in presets/
-  textures                                                                       list the textures Textizo3DFX carries
+  textures                                                                       list the textures Textizo3D carries
   where                                                                          print the folders presets can go to
   next-name [--to resolve|downloads|<folder>] [--variant N]                      the next free short name, like Textizo3D-07A
   install   <file.setting>... --to resolve|downloads|<folder> [--overwrite]
 
-A preset is one Textizo3DFX node (Fusion's settings text) to paste on the Fusion page.
-The rules this tool applies are written out in "Textizo3DFX AI Guide.md".
+A preset is one Textizo3D node (Fusion's settings text) to paste on the Fusion page.
+The rules this tool applies are written out in "Textizo3D AI Guide.md".
 """
 import argparse
 import difflib
@@ -30,7 +30,7 @@ LAYOUT_PATH = os.path.join(KIT, "reference", "fusion-layout.setting")
 PRESETS = os.path.join(KIT, "presets")
 MY_PRESETS = os.path.join(KIT, "my-presets")
 TOOL_TYPE = "ofx.com.clipizo.textizo3dfx"
-NODE_NAME = "Textizo3DFX1"
+NODE_NAME = "Textizo3D1"
 PREFIX = "Textizo3D"
 COLOR_PARTS = ("Red", "Green", "Blue")
 
@@ -49,12 +49,12 @@ ROW_NEUTRAL = {"opacity": 1.0, "blur": 0.0, "position": 0.0, "size": 1.0, "track
                "explosion": 0.0}
 
 # Fonts found on both Windows and macOS. Others must be installed on the computer that renders,
-# unless Textizo3DFX carries them (reference/inputs.json, "fonts").
+# unless Textizo3D carries them (reference/inputs.json, "fonts").
 SYSTEM_FONTS = {"arial", "arial black", "impact", "georgia", "times new roman", "verdana", "trebuchet ms",
                 "courier new", "tahoma", "comic sans ms"}
 
 # Average width of a capital and of a small letter, in units at Size 1 and Tracking 1 (one unit is the font's
-# ascent + descent), measured on Textizo3DFX's renders of "HAMBURGERS" and "hamburgers" (heaviest style).
+# ascent + descent), measured on Textizo3D's renders of "HAMBURGERS" and "hamburgers" (heaviest style).
 FONT_WIDTH = {"arial black": (0.56, 0.45), "arial": (0.63, 0.47), "impact": (0.44, 0.41), "anton": (0.33, 0.32),
               "bebas neue": (0.34, 0.34), "oswald": (0.38, 0.33), "archivo black": (0.72, 0.59),
               "luckiest guy": (0.61, 0.63), "bangers": (0.43, 0.43), "montserrat": (0.63, 0.54),
@@ -251,7 +251,7 @@ def read_setting_text(text):
 
 
 def find_tools(root):
-    """[(name, Textizo3DFX table)], {spline name: table}, [(other name, kind)]."""
+    """[(name, Textizo3D table)], {spline name: table}, [(other name, kind)]."""
     tools = root.get("Tools")
     if not isinstance(tools, Table):
         raise ValueError("no Tools = ordered() { ... } block")
@@ -401,7 +401,7 @@ def same_value(a, b):
 
 
 def tool_values(tool, ref, report=None):
-    """{input key: value} of a Textizo3DFX node's Inputs (colours gathered as [r, g, b])."""
+    """{input key: value} of a Textizo3D node's Inputs (colours gathered as [r, g, b])."""
     inputs = tool.get("Inputs")
     values, partial, animated = {}, {}, []
     if not isinstance(inputs, Table):
@@ -437,7 +437,7 @@ def tool_values(tool, ref, report=None):
 
 
 def layout_block():
-    """The UserControls block of Textizo3DFX's Fusion page layout (the Clipizo logo, the page tabs, a divider),
+    """The UserControls block of Textizo3D's Fusion page layout (the Clipizo logo, the page tabs, a divider),
     as Fusion's Add Tool gives a new node; "" when the kit has no layout file."""
     try:
         with open(LAYOUT_PATH, "r", encoding="utf-8-sig") as handle:
@@ -479,7 +479,7 @@ def layout_block():
 
 
 def write_setting(values, ref, compact=False, with_layout=None):
-    """Settings text for one Textizo3DFX node. Full: every input the kit knows (so Settings > Load onto a node
+    """Settings text for one Textizo3D node. Full: every input the kit knows (so Settings > Load onto a node
     gives exactly this); compact: only what differs from the defaults (for a pasted new node)."""
     base = defaults(ref)
     lines = []
@@ -592,7 +592,7 @@ def spec_values(spec, ref, notes):
     if spec.get("look"):
         path = look_preset_path(spec["look"])
         if not path:
-            raise ValueError("no ready look %r in presets/ (python tools/textizo3dfx_preset.py looks)" % spec["look"])
+            raise ValueError("no ready look %r in presets/ (python tools/textizo3d_preset.py looks)" % spec["look"])
         with open(path, "r", encoding="utf-8-sig") as handle:
             tools, _, _ = find_tools(read_setting_text(handle.read()))
         look_values, _ = tool_values(tools[0][1], ref)
@@ -616,7 +616,7 @@ def spec_values(spec, ref, notes):
         if entry is None:
             close = suggest(rid, ref)
             hint = " (did you mean %s?)" % close if close else ""
-            raise ValueError("inputs.%s: Textizo3DFX has no such input%s" % (rid, hint))
+            raise ValueError("inputs.%s: Textizo3D has no such input%s" % (rid, hint))
         if entry.get("role") != "public":
             raise ValueError("inputs.%s: not an input a preset sets (%s)" % (rid, entry.get("why", "internal")))
         values[rid] = coerce(rid, entry, value, "inputs.%s" % rid, notes)
@@ -641,7 +641,7 @@ def look_preset_path(name):
 # --------------------------------------------------------------------------- values -> spec
 
 def values_to_spec(values, ref, name=None):
-    """A spec (as build takes it) with what differs from Textizo3DFX's defaults."""
+    """A spec (as build takes it) with what differs from Textizo3D's defaults."""
     base = defaults(ref)
     spec = {}
     if name:
@@ -770,7 +770,7 @@ def check_value(key, entry, value):
 
 
 def text_pieces(text):
-    """Letters, words and lines as Textizo3DFX counts them: every non-blank character is a letter."""
+    """Letters, words and lines as Textizo3D counts them: every non-blank character is a letter."""
     letters = words = lines = 0
     in_word = in_line = False
     for ch in text:
@@ -870,10 +870,10 @@ def check_values(values, ref, report, frames=None, aspect=16 / 9.0, written=None
     bundled = {(f["family"].lower(), f["style"].lower()) for f in ref.get("fonts", [])}
     families = {f["family"].lower() for f in ref.get("fonts", [])}
     if font and font.lower() not in families and font.lower() not in SYSTEM_FONTS:
-        report.note("the font %r is neither carried by Textizo3DFX nor on every computer: it must be installed "
+        report.note("the font %r is neither carried by Textizo3D nor on every computer: it must be installed "
                     "where the video renders, or the text falls back to another font" % font)
     elif font.lower() in families and (font.lower(), style.lower()) not in bundled:
-        report.note("Textizo3DFX carries %s, but not as %r: the nearest weight it has is used" % (font, style))
+        report.note("Textizo3D carries %s, but not as %r: the nearest weight it has is used" % (font, style))
 
     # Material summary.
     face, side = values.get("FaceColor"), values.get("SideColor")
@@ -899,7 +899,7 @@ def check_values(values, ref, report, frames=None, aspect=16 / 9.0, written=None
             continue
         if is_relative(path):
             if norm_path(path) not in {norm_path(t) for t in textures}:
-                report.warn("%s %r: Textizo3DFX carries no such texture (python tools/textizo3dfx_preset.py textures)" % (key, path))
+                report.warn("%s %r: Textizo3D carries no such texture (python tools/textizo3d_preset.py textures)" % (key, path))
         else:
             report.note("%s is the user's own file %r: it must exist at that path on the computer that renders" % (key, path))
     for key in ("FaceShader", "SideShader", "EnvShader"):
@@ -939,7 +939,7 @@ def check_values(values, ref, report, frames=None, aspect=16 / 9.0, written=None
             if clip and end > clip - 1:
                 report.warn("%s %s ends on frame %d, after the clip's last frame %d" % (side, key, end, clip - 1))
             if side == "in" and end - start > 45:
-                report.note("in %s takes %d frames: Textizo3DFX looks best with fast reveals (8 to 24 frames)" % (key, end - start))
+                report.note("in %s takes %d frames: Textizo3D looks best with fast reveals (8 to 24 frames)" % (key, end - start))
             if key == "position" and side == "in":
                 dist = math.sqrt(sum((float(values.get(rid + "From" + a, 0)) - float(values.get(rid + "To" + a, 0))) ** 2 for a in "XYZ"))
                 if dist > 0.35:
@@ -1005,7 +1005,7 @@ def check_text(text, ref, frames=None, aspect=16 / 9.0):
     report = Report()
     name, tool = tools[0]
     if len(tools) > 1:
-        report.note("the file has %d Textizo3DFX nodes; only %s was checked" % (len(tools), name))
+        report.note("the file has %d Textizo3D nodes; only %s was checked" % (len(tools), name))
     inputs = tool.get("Inputs")
     if not isinstance(inputs, Table):
         raise ValueError("%s has no Inputs = { ... }" % name)
@@ -1024,7 +1024,7 @@ def check_text(text, ref, frames=None, aspect=16 / 9.0):
             report.error("%s is not an input a preset sets: leave it out" % fid)
         else:
             close = suggest(fid, ref, fusion=True)
-            report.error("%s is not a Textizo3DFX input%s: Resolve ignores it" % (
+            report.error("%s is not a Textizo3D input%s: Resolve ignores it" % (
                 fid, " (did you mean %s?)" % close if close else ""))
     if "Look" in inputs.fields:
         report.warn("Look is written: loaded onto a node it applies that ready look over these values. Leave it out "
@@ -1039,7 +1039,7 @@ def check_text(text, ref, frames=None, aspect=16 / 9.0):
 
 
 def print_report(path, report, tool_name=None, count=None, others=None):
-    print("Textizo3DFX preset check: %s" % os.path.basename(path))
+    print("Textizo3D preset check: %s" % os.path.basename(path))
     if tool_name:
         print("  node: %s, %d inputs" % (tool_name, count))
     for name, kind in others or []:
@@ -1095,7 +1095,7 @@ def resolve_settings_dir():
 
 
 def downloads_dir():
-    return os.path.join(os.path.expanduser("~"), "Downloads", "Textizo3DFX Presets")
+    return os.path.join(os.path.expanduser("~"), "Downloads", "Textizo3D Presets")
 
 
 def target_folder(target):
@@ -1104,15 +1104,15 @@ def target_folder(target):
 
 
 def bundle_resources():
-    """Textizo3DFX's installed Resources folder on this computer, or None."""
+    """Textizo3D's installed Resources folder on this computer, or None."""
     candidates = []
     if sys.platform.startswith("win"):
         common = os.environ.get("CommonProgramFiles") or r"C:\Program Files\Common Files"
-        candidates.append(os.path.join(common, "OFX", "Plugins", "Textizo3DFX.ofx.bundle", "Contents", "Resources"))
+        candidates.append(os.path.join(common, "OFX", "Plugins", "Textizo3D.ofx.bundle", "Contents", "Resources"))
     elif sys.platform == "darwin":
-        candidates.append("/Library/OFX/Plugins/Textizo3DFX.ofx.bundle/Contents/Resources")
+        candidates.append("/Library/OFX/Plugins/Textizo3D.ofx.bundle/Contents/Resources")
     else:
-        candidates.append("/usr/OFX/Plugins/Textizo3DFX.ofx.bundle/Contents/Resources")
+        candidates.append("/usr/OFX/Plugins/Textizo3D.ofx.bundle/Contents/Resources")
     for path in candidates:
         if os.path.isdir(path):
             return path
@@ -1173,7 +1173,7 @@ def cmd_build(args):
         report.note(note)
     if not SHORT_FILE_RE.match(os.path.basename(out_path)) and not args.out:
         report.note("presets get short names: Textizo3D-<number><letter>, for example Textizo3D-07A "
-                    "(python tools/textizo3dfx_preset.py next-name --to <folder>)")
+                    "(python tools/textizo3d_preset.py next-name --to <folder>)")
     ok = print_report(out_path, report, name, count, others)
     return 0 if ok else 1
 
@@ -1186,7 +1186,7 @@ def cmd_check(args):
             with open(path, "r", encoding="utf-8-sig", errors="replace") as handle:
                 report, name, count, others = check_text(handle.read(), ref, args.frames, args.aspect)
         except (OSError, ValueError) as exc:
-            print("Textizo3DFX preset check: %s\nERRORS (1):\n  - %s\nResult: FAILED\n" % (os.path.basename(path), exc))
+            print("Textizo3D preset check: %s\nERRORS (1):\n  - %s\nResult: FAILED\n" % (os.path.basename(path), exc))
             all_ok = False
             continue
         all_ok = print_report(path, report, name, count, others) and all_ok
@@ -1249,7 +1249,7 @@ def cmd_textures(_args):
     textures = ref.get("textures", [])
     where = bundle_resources()
     if not textures:
-        print("this version of Textizo3DFX carries no textures (use the user's own images by their full path)")
+        print("this version of Textizo3D carries no textures (use the user's own images by their full path)")
     for item in textures:
         print(item)
     if textures and where:
@@ -1261,7 +1261,7 @@ def cmd_where(_args):
     for label, path in (("resolve", resolve_settings_dir()), ("downloads", downloads_dir())):
         print("%-9s %s  (%s)" % (label, path, "exists" if os.path.isdir(path) else "will be created"))
     where = bundle_resources()
-    print("%-9s %s" % ("plugin", where or "Textizo3DFX is not installed in the usual place on this computer"))
+    print("%-9s %s" % ("plugin", where or "Textizo3D is not installed in the usual place on this computer"))
     return 0
 
 
@@ -1293,7 +1293,7 @@ def cmd_install(args):
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Textizo3DFX preset helper: build, check, to-spec, looks, textures, where, next-name, install.")
+    parser = argparse.ArgumentParser(description="Textizo3D preset helper: build, check, to-spec, looks, textures, where, next-name, install.")
     sub = parser.add_subparsers(dest="command")
     p = sub.add_parser("build", help="write a preset from a JSON spec, then check it")
     p.add_argument("spec")
@@ -1314,7 +1314,7 @@ def main(argv=None):
     p.set_defaults(func=cmd_to_spec)
     p = sub.add_parser("looks", help="list the ready looks")
     p.set_defaults(func=cmd_looks)
-    p = sub.add_parser("textures", help="list the textures Textizo3DFX carries")
+    p = sub.add_parser("textures", help="list the textures Textizo3D carries")
     p.set_defaults(func=cmd_textures)
     p = sub.add_parser("where", help="print the folders presets can go to")
     p.set_defaults(func=cmd_where)

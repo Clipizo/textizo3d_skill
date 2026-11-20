@@ -1,29 +1,29 @@
-# Textizo3DFX AI Guide
+# Textizo3D AI Guide
 
-For **Textizo3DFX** (Clipizo), the 3D text plugin for DaVinci Resolve: extruded, bevelled letters with real materials, lights, shadows, reflections, glows, textures and shaders, and per-letter animation. Give this file to any AI chat, such as ChatGPT, Claude, Gemini or Copilot, and it can write a ready-to-paste Textizo3DFX node for Resolve's Fusion page. Textizo3DFX is available at clipizo.com.
+For **Textizo3D** (Clipizo), the 3D text plugin for DaVinci Resolve: extruded, bevelled letters with real materials, lights, shadows, reflections, glows, textures and shaders, and per-letter animation. Give this file to any AI chat, such as ChatGPT, Claude, Gemini or Copilot, and it can write a ready-to-paste Textizo3D node for Resolve's Fusion page. Textizo3D is available at clipizo.com.
 
 ---
 
 ## Quick start (for you)
 
-1. **Give this file to your AI.** Open the chat and attach this file (or paste all of its text). Then say what you want. For example: *"Make a Textizo3DFX title: 'GAME OVER' in shiny gold, letters blurring in one by one, for a 5-second clip at 24 fps."*
+1. **Give this file to your AI.** Open the chat and attach this file (or paste all of its text). Then say what you want. For example: *"Make a Textizo3D title: 'GAME OVER' in shiny gold, letters blurring in one by one, for a 5-second clip at 24 fps."*
 2. **Copy the code.** The AI answers with one block of code. Copy all of it; most chats have a Copy button on the block.
-3. **Paste it into Resolve.** On the **Fusion** page, click an empty spot in the **Nodes** area and press **Ctrl+V** (Mac: **Cmd+V**). A new Textizo3DFX node appears with your 3D text.
+3. **Paste it into Resolve.** On the **Fusion** page, click an empty spot in the **Nodes** area and press **Ctrl+V** (Mac: **Cmd+V**). A new Textizo3D node appears with your 3D text.
 4. **Connect it.**
-   - For the text on its own, connect the Textizo3DFX node to **MediaOut1**.
-   - For the text over a video clip, add a **Merge** node: connect MediaIn1 to the Merge's yellow background input, Textizo3DFX to its green foreground input, and the Merge to MediaOut1.
+   - For the text on its own, connect the Textizo3D node to **MediaOut1**.
+   - For the text over a video clip, add a **Merge** node: connect MediaIn1 to the Merge's yellow background input, Textizo3D to its green foreground input, and the Merge to MediaOut1.
 
 You can change the text, font and everything else in the Inspector at any time.
 
 **To keep a look for later**, ask the AI for a `.setting` file, or save the code in a plain text file with the short name the AI gave it, for example `Textizo3D-07A.setting`. Drag that file onto the Nodes area to add it again, or put it in Resolve's Settings folder (section 17).
 
-Textizo3DFX must be installed (version 1.0 or later). On the Edit page, Textizo3DFX also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3DFX) with its **Look** menu; this guide is for the Fusion page node.
+Textizo3D must be installed (version 1.0 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
 
 ---
 
 ## Instructions for the AI
 
-You are making a **Textizo3DFX node**: plain text in Fusion's settings format that the user pastes into Resolve's Fusion page or saves as a `.setting` file. Everything you need is in this guide. **Only use input names (IDs) that appear in this guide (section 14), and do not guess others.** A misspelled ID, or an ID in the wrong capitals, is silently ignored by Resolve.
+You are making a **Textizo3D node**: plain text in Fusion's settings format that the user pastes into Resolve's Fusion page or saves as a `.setting` file. Everything you need is in this guide. **Only use input names (IDs) that appear in this guide (section 14), and do not guess others.** A misspelled ID, or an ID in the wrong capitals, is silently ignored by Resolve.
 
 **How to answer:**
 
@@ -34,7 +34,7 @@ You are making a **Textizo3DFX node**: plain text in Fusion's settings format th
    - the whole node in **one** code block marked `lua`, with nothing else in it;
    - the usage steps from section 17 (paste, connect, type your own text), in 3 or 4 short lines.
 4. **Give every look a short name:** `Textizo3D-` followed by a two-digit number and a capital letter, for example `Textizo3D-07A`.
-   - The ready looks in Textizo3DFX's Look menu use the first numbers (section 13). Start new looks after them.
+   - The ready looks in Textizo3D's Look menu use the first numbers (section 13). Start new looks after them.
    - A variation of a look keeps its number and takes the next letter (`Textizo3D-07B`, `Textizo3D-07C`).
    - Use no spaces and no descriptive words in the name; describe the look in your reply instead.
    - If the user mentions looks they already have, continue after their highest number.
@@ -45,27 +45,27 @@ You are making a **Textizo3DFX node**: plain text in Fusion's settings format th
 
 **Checklist (check every item before you answer):**
 
-- [ ] **One node, written exactly like the examples.** The text is `{ Tools = ordered() { Textizo3DFX1 = ofx.com.clipizo.textizo3dfx { Inputs = { ... }, ViewInfo = OperatorInfo { Pos = { 0, 0 } }, }, }, ActiveTool = "Textizo3DFX1" }` with exactly one node. No comments.
+- [ ] **One node, written exactly like the examples.** The text is `{ Tools = ordered() { Textizo3D1 = ofx.com.clipizo.textizo3dfx { Inputs = { ... }, ViewInfo = OperatorInfo { Pos = { 0, 0 } }, }, }, ActiveTool = "Textizo3D1" }` with exactly one node. No comments.
 - [ ] **Always write `Text`, `Font` and `Style`.** `Font` and `Style` are the font's family and style names (section 3). Never write `FontMenu`, `StyleMenu` or `Look`.
 - [ ] **Colours are three inputs**, each from 0 to 1: `FaceColorRed`, `FaceColorGreen`, `FaceColorBlue` (and the same for every colour in section 14).
 - [ ] **Animation rows:** a row moves only with its `...On` input at 1. For every row you turn on, write its frames, values, `Pieces`, `Order` and `Ease` wherever they differ from the row's defaults (section 14: In rows run from frame 0 to 30, Out rows from 90 to 115). Frames are whole numbers and every row ends before the clip's last frame.
 - [ ] **Values are in range:** checkboxes are 0 or 1, dropdowns use the numbers in section 14, and decimals use a dot.
 - [ ] **Text fits:** the longest line's width follows section 3's rule for the font and Size.
-- [ ] **Files:** textures Textizo3DFX carries are written `textures/<file>` (section 11); other images and shaders are full paths with forward slashes, and the user must have that file.
+- [ ] **Files:** textures Textizo3D carries are written `textures/<file>` (section 11); other images and shaders are full paths with forward slashes, and the user must have that file.
 - [ ] **Each ID once.** Do not write the same input twice.
 - [ ] **Name:** the node has a short name like `Textizo3D-07A` (step 4 above).
 
 ---
 
-## 1. How Textizo3DFX works
+## 1. How Textizo3D works
 
-Textizo3DFX is an OpenFX plugin that draws its own 3D scene on the graphics card: the text as solid letters with a front face, sides and bevels; a camera; a key light with soft shadows, fill, ambient and under lights; reflections of an environment; and 2D glows on top. On the Fusion page it is a node (`Textizo3DFX1`) that needs no input: it draws at the composition's frame size, with a transparent background around the letters. Its optional input is a background: an image connected there is drawn behind the text.
+Textizo3D is an OpenFX plugin that draws its own 3D scene on the graphics card: the text as solid letters with a front face, sides and bevels; a camera; a key light with soft shadows, fill, ambient and under lights; reflections of an environment; and 2D glows on top. On the Fusion page it is a node (`Textizo3D1`) that needs no input: it draws at the composition's frame size, with a transparent background around the letters. Its optional input is a background: an image connected there is drawn behind the text.
 
 Its Inspector has eight pages: **Text, In, Out, Shape, Material, Camera, Light, Textures**. On the Fusion page a node pasted from a chat switches pages with its **Page** menu at the top; a node built by the kit's tool, or added with Add Tool, shows the Clipizo logo and page tabs instead.
 
 The **Look** menu on the Text page applies a ready look (section 13) and keeps the text. A node you write carries every value itself, so it never uses that menu.
 
-Every animation is per letter, word or line: each page (In, Out) has seven rows (Opacity, Blur, Position, Size, Tracking, Rotation, Explosion) that move the pieces in turn. Textizo3DFX starts with every row off: a still 3D title. Turn rows on only when the user wants movement.
+Every animation is per letter, word or line: each page (In, Out) has seven rows (Opacity, Blur, Position, Size, Tracking, Rotation, Explosion) that move the pieces in turn. Textizo3D starts with every row off: a still 3D title. Turn rows on only when the user wants movement.
 
 ## 2. The preset file
 
@@ -91,15 +91,15 @@ The order of the inputs does not matter.
 
 **What happens to inputs you leave out:**
 
-- A node **pasted as a new node** takes Textizo3DFX's defaults (section 14) for anything you leave out. The examples are written that way: they list `Text`, `Font`, `Style` and what differs from the defaults.
+- A node **pasted as a new node** takes Textizo3D's defaults (section 14) for anything you leave out. The examples are written that way: they list `Text`, `Font`, `Style` and what differs from the defaults.
 - A preset **loaded onto an existing node** (Settings > Load…) keeps that node's old values for anything left out. Presets built by the kit's tool write every input, so loading one gives exactly that look.
 
-**Never write** `Look` (it would apply a ready look over your values when the node is loaded), `FontMenu` or `StyleMenu` (their numbers depend on each computer's fonts; Textizo3DFX sets them from `Font` and `Style` by itself).
+**Never write** `Look` (it would apply a ready look over your values when the node is loaded), `FontMenu` or `StyleMenu` (their numbers depend on each computer's fonts; Textizo3D sets them from `Font` and `Style` by itself).
 
 ## 3. Text, font and placement (Text page)
 
 - `Text`: the words. Use `\n` for a new line. Keep it short: titles of one to four words look best in 3D.
-- `Font`, `Style`: the font's family and style names exactly as installed, for example `"Anton"` and `"Regular"`, `"Montserrat"` and `"Black"`. Textizo3DFX carries the fonts listed below, so they work on every computer; so do the fonts every Windows and Mac computer has (Arial, Arial Black, Impact, Georgia, Times New Roman, Verdana, Trebuchet MS, Courier New, Tahoma). Any other font must be installed where the video renders. A style the family lacks draws in its nearest weight; a missing family draws in Arial Black, then Arial.
+- `Font`, `Style`: the font's family and style names exactly as installed, for example `"Anton"` and `"Regular"`, `"Montserrat"` and `"Black"`. Textizo3D carries the fonts listed below, so they work on every computer; so do the fonts every Windows and Mac computer has (Arial, Arial Black, Impact, Georgia, Times New Roman, Verdana, Trebuchet MS, Courier New, Tahoma). Any other font must be installed where the video renders. A style the family lacks draws in its nearest weight; a missing family draws in Arial Black, then Arial.
 - `Size` (default 1): the letters' height. One unit is the font's full height (ascent plus descent); capitals are about half a unit tall.
 - `Tracking` (default 1): multiplies the space each letter takes. 0.85 to 0.95 tightens heavy fonts.
 - `LineSpacing` (default 1): lines are 0.826 × Size × Line Spacing apart.
@@ -107,7 +107,7 @@ The order of the inputs does not matter.
 - `PositionX`, `PositionY`, `PositionZ`: move the whole text, in units (Y up, Z toward the camera).
 - `RotationX`, `RotationY`, `RotationZ`: turn the whole text, in degrees (X tips it back, Y turns it, Z rolls it).
 
-**Fonts Textizo3DFX carries** (family: styles):
+**Fonts Textizo3D carries** (family: styles):
 
 <!-- fonts -->
 - **Anton**: Regular
@@ -194,7 +194,7 @@ How a row spreads over its pieces (N letters, words or lines; spaces and line br
 - Each piece moves for **S = (End - Start) / (1 + k × R)** frames, where k = Stagger / 100 and R = N - 1 (for centre out and edges in, R = the whole part of (N - 1) / 2). Piece number r (0, 1, 2, …) starts at **Start + r × k × S**.
 - **To give each piece `span` frames and a `gap` between their starts:** Stagger = 100 × gap / span and End = Start + span + gap × R. For "HELLO" (5 letters, R = 4), span 8 and gap 2: Stagger 25, End = Start + 16.
 
-The text holds still between the In rows' last frame and the Out rows' first frame. Textizo3DFX reuses that still frame instead of drawing it again (`T3HoldStill`, on by default).
+The text holds still between the In rows' last frame and the Out rows' first frame. Textizo3D reuses that still frame instead of drawing it again (`T3HoldStill`, on by default).
 
 ## 6. Eases
 
@@ -245,7 +245,7 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
 - `TexMapping`: 0 the image spans the whole text, 1 each word, 2 each letter. `TexScale` (default 1): repeats across that area (2 = twice). Side textures run along each letter's outline (one repeat per capital's height) and across the depth.
 - `EnvImage`: a 2:1 panorama (equirectangular, HDR or JPG/PNG) the letters reflect and are lit by, in place of the gradient and strips. `T3EnvRotation` turns it.
 
-**Textures Textizo3DFX carries.** Write them as `textures/<file>`: Textizo3DFX finds them inside its own installation, on every computer.
+**Textures Textizo3D carries.** Write them as `textures/<file>`: Textizo3D finds them inside its own installation, on every computer.
 
 <!-- textures -->
 - `textures/camo.jpg`
@@ -292,7 +292,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 **House style:**
 
-- **Still by default.** Textizo3DFX starts with every row off; add animation only when asked.
+- **Still by default.** Textizo3D starts with every row off; add animation only when asked.
 - **Fast entrances, a still hold, quick exits.** Reveals take 8 to 20 frames: blur-ins (Blur and Opacity by letters) or sticker-style pops (Size with Out Back or Out Elastic, a little Rotation Z). The text then holds still. No long slides across the frame.
 - **Short, big text:** one to four words, filling about half to three quarters of the frame's width.
 - **Weight:** heavy fonts (Anton, Archivo Black, Luckiest Guy, Montserrat Black, Poppins Black, Impact) read best in 3D. Give them depth (`ExtrusionDepth` 0.3 to 0.4) and a small bevel (0.02 to 0.04).
@@ -300,7 +300,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 - **Over footage:** a Shadow Only floor or wall, and Edge Glow or a darker side colour to separate the text from the picture.
 - **Moving letters:** `MotionBlur` 1.
 
-**Material recipes** (checked in Textizo3DFX's renders; values not listed stay at their defaults):
+**Material recipes** (checked in Textizo3D's renders; values not listed stay at their defaults):
 
 | Look | Values |
 |---|---|
@@ -315,7 +315,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 ## 13. Ready looks
 
-Textizo3DFX's **Look** menu has these looks. On the Edit page, or on a node already in Fusion, the user can pick them from that menu (it keeps the text). In this guide's numbering, start new looks after them.
+Textizo3D's **Look** menu has these looks. On the Edit page, or on a node already in Fusion, the user can pick them from that menu (it keeps the text). In this guide's numbering, start new looks after them.
 
 <!-- looks -->
 | Look | Look menu | What it is |
@@ -631,14 +631,14 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
-| `FaceTexture` | Face Texture | file | "" | a file path, or `textures/<file>` for a texture Textizo3DFX carries |
-| `SideTexture` | Side Texture | file | "" | a file path, or `textures/<file>` for a texture Textizo3DFX carries |
+| `FaceTexture` | Face Texture | file | "" | a file path, or `textures/<file>` for a texture Textizo3D carries |
+| `SideTexture` | Side Texture | file | "" | a file path, or `textures/<file>` for a texture Textizo3D carries |
 | `TexMapping` | Texture Mapping | choice | 0 | 0 Whole Text, 1 Per Word, 2 Per Letter |
 | `TexScale` | Texture Scale | number | 1 | slider 0 to 4; at least 0 |
-| `FaceShader` | Face Shader | file | "" | a file path, or `textures/<file>` for a texture Textizo3DFX carries |
-| `SideShader` | Side Shader | file | "" | a file path, or `textures/<file>` for a texture Textizo3DFX carries |
-| `EnvImage` | Environment Image | file | "" | a file path, or `textures/<file>` for a texture Textizo3DFX carries |
-| `EnvShader` | Environment Shader | file | "" | a file path, or `textures/<file>` for a texture Textizo3DFX carries |
+| `FaceShader` | Face Shader | file | "" | a file path, or `textures/<file>` for a texture Textizo3D carries |
+| `SideShader` | Side Shader | file | "" | a file path, or `textures/<file>` for a texture Textizo3D carries |
+| `EnvImage` | Environment Image | file | "" | a file path, or `textures/<file>` for a texture Textizo3D carries |
+| `EnvShader` | Environment Shader | file | "" | a file path, or `textures/<file>` for a texture Textizo3D carries |
 | `ShaderSpeed` | Shader Speed | number | 1 | slider 0 to 3; at least 0 |
 <!-- /controls -->
 
@@ -650,7 +650,7 @@ The first ready look, `Textizo3D-01A`: big green glossy money digits with dents,
 ```lua
 {
 	Tools = ordered() {
-		Textizo3DFX1 = ofx.com.clipizo.textizo3dfx {
+		Textizo3D1 = ofx.com.clipizo.textizo3dfx {
 			Inputs = {
 				Text = Input { Value = "$1,000", },
 				Font = Input { Value = "Inter", },
@@ -711,20 +711,20 @@ The first ready look, `Textizo3D-01A`: big green glossy money digits with dents,
 			ViewInfo = OperatorInfo { Pos = { 0, 0 } },
 		},
 	},
-	ActiveTool = "Textizo3DFX1"
+	ActiveTool = "Textizo3D1"
 }
 ```
 <!-- /example: Textizo3D-01A -->
 
 ## 16. Example 2: a variation with animation
 
-`Textizo3D-01B`: the same worn look in gold metal on "LEVEL UP", set in Inter Black (a font Textizo3DFX carries). The letters blur, fade and pop in from left to right (frames 0 to 18: each letter about 6 frames, starting 2 frames after the one before), hold, and blur out by words at the end of a 5-second clip at 24 fps (frames 104 to 116), with motion blur on.
+`Textizo3D-01B`: the same worn look in gold metal on "LEVEL UP", set in Inter Black (a font Textizo3D carries). The letters blur, fade and pop in from left to right (frames 0 to 18: each letter about 6 frames, starting 2 frames after the one before), hold, and blur out by words at the end of a 5-second clip at 24 fps (frames 104 to 116), with motion blur on.
 
 <!-- example: Textizo3D-01B -->
 ```lua
 {
 	Tools = ordered() {
-		Textizo3DFX1 = ofx.com.clipizo.textizo3dfx {
+		Textizo3D1 = ofx.com.clipizo.textizo3dfx {
 			Inputs = {
 				Text = Input { Value = "LEVEL UP", },
 				Font = Input { Value = "Inter", },
@@ -808,7 +808,7 @@ The first ready look, `Textizo3D-01A`: big green glossy money digits with dents,
 			ViewInfo = OperatorInfo { Pos = { 0, 0 } },
 		},
 	},
-	ActiveTool = "Textizo3DFX1"
+	ActiveTool = "Textizo3D1"
 }
 ```
 <!-- /example: Textizo3D-01B -->
@@ -818,7 +818,7 @@ The first ready look, `Textizo3D-01A`: big green glossy money digits with dents,
 - **As a new node:** on the Fusion page, click an empty spot in the Nodes area and paste the code (Ctrl+V, Mac: Cmd+V), or drag a `.setting` file onto the Nodes area.
 - **Connect** the node to MediaOut1, or through a Merge over footage (Quick start, step 4). A clip connected to the node's own input becomes its background: the text draws over it.
 - **On the Edit page,** put a Fusion Composition on the timeline (Effects > Toolbox > Effects > Fusion Composition), open it on the Fusion page, paste the node and connect it to MediaOut1. Or open the Fusion page on any clip and Merge the text over it.
-- **On an existing Textizo3DFX node:** right-click the node and choose **Settings > Load…**, then pick the `.setting` file. Presets in Resolve's Settings folder are listed in that menu:
+- **On an existing Textizo3D node:** right-click the node and choose **Settings > Load…**, then pick the `.setting` file. Presets in Resolve's Settings folder are listed in that menu:
   - Windows: `%APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Settings`
   - Mac: `~/Library/Application Support/Blackmagic Design/DaVinci Resolve/Fusion/Settings`
   - Linux: `~/.local/share/DaVinciResolve/Fusion/Settings`
@@ -830,7 +830,7 @@ The first ready look, `Textizo3D-01A`: big green glossy money digits with dents,
 | Problem | Fix |
 |---|---|
 | Pasting does nothing | Copy the whole block, from the first `{` to the last `}`, and click an empty spot in the Nodes area before pasting. |
-| Nothing appears, or Fusion reports an unknown tool | Textizo3DFX isn't installed, or Resolve wasn't restarted after installing it. |
+| Nothing appears, or Fusion reports an unknown tool | Textizo3D isn't installed, or Resolve wasn't restarted after installing it. |
 | The text replaced my video | The node was pasted while another node was selected, so Fusion wired it in. Connect it through a Merge (Quick start, step 4), or connect the clip to the node's own input. |
 | The text shows "TEXTIZO" | `Text` wasn't written. |
 | The wrong font | The font or style name isn't installed: use a font from section 3, or install it. |
@@ -848,6 +848,6 @@ The first ready look, `Textizo3D-01A`: big green glossy money digits with dents,
 - One node draws one text block (up to a few lines). For several titles, paste several nodes.
 - No keyframes: a node from this guide animates with its rows. The user can keyframe any control in Resolve afterwards.
 - Letters are drawn one by one, left to right (section 3).
-- Textures, environment images and shaders are files: the user's own must exist on the computer that renders. Textures Textizo3DFX carries (`textures/...`) are always there.
+- Textures, environment images and shaders are files: the user's own must exist on the computer that renders. Textures Textizo3D carries (`textures/...`) are always there.
 - The `Look` menu, `FontMenu` and `StyleMenu` are never written (section 2).
 - There is no colour management: colours are drawn as written, lit, over a transparent background.

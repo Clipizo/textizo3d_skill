@@ -1,6 +1,6 @@
 {
 	Tools = ordered() {
-		Textizo3DFX1 = ofx.com.clipizo.textizo3dfx {
+		Textizo3D1 = ofx.com.clipizo.textizo3dfx {
 			Inputs = {
 				Text = Input { Value = "MAIN EVENT", },
 				Font = Input { Value = "Anton", },
@@ -321,5 +321,5 @@
 			},
 		},
 	},
-	ActiveTool = "Textizo3DFX1"
+	ActiveTool = "Textizo3D1"
 }
