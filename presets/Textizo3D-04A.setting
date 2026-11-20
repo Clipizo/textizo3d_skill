@@ -264,6 +264,7 @@
 				EnvImage = Input { Value = "textures/env-sky.hdr", },
 				EnvShader = Input { Value = "", },
 				ShaderSpeed = Input { Value = 1, },
+				T3FxBeyond = Input { Value = 1, },
 				T3FireOn = Input { Value = 0, },
 				T3FireFlames = Input { Value = 1, },
 				T3FireHeight = Input { Value = 1, },

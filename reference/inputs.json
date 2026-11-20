@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-20",
- "parameters": "t3_params_gen.h 375e70ebce7d",
+ "parameters": "t3_params_gen.h 73f496bc7eaa",
  "pages": [
   "Text",
   "In",
@@ -3505,6 +3505,15 @@
     3.0
    ],
    "hint": "Multiplies the shaders' iTime."
+  },
+  "T3FxBeyond": {
+   "label": "Beyond the Letters",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1,
+   "hint": "On: the effects spread round the letters. Off: they stay inside the letters' shapes."
   },
   "T3FireOn": {
    "label": "Fire",
