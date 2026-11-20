@@ -1,0 +1,4173 @@
+{
+ "product": "Textizo3DFX",
+ "version": "1.0",
+ "tool": "ofx.com.clipizo.textizo3dfx",
+ "node": "Textizo3DFX1",
+ "generated": "2026-11-20",
+ "parameters": "t3_params_gen.h e2c56af17ab7",
+ "pages": [
+  "Text",
+  "In",
+  "Out",
+  "Shape",
+  "Material",
+  "Camera",
+  "Light",
+  "Textures"
+ ],
+ "inputs": {
+  "Look": {
+   "label": "Look",
+   "page": "Text",
+   "section": "",
+   "kind": "choice",
+   "role": "menu",
+   "why": "applies a ready look when it changes: presets carry the values instead",
+   "default": 0,
+   "options": [
+    "Custom",
+    "Textizo3D-01A",
+    "Textizo3D-02A",
+    "Textizo3D-03A",
+    "Textizo3D-04A",
+    "Textizo3D-05A",
+    "Textizo3D-06A",
+    "Textizo3D-07A",
+    "Textizo3D-08A",
+    "Textizo3D-09A",
+    "Textizo3D-10A",
+    "Textizo3D-11A"
+   ],
+   "hint": "Applies a ready-made Textizo3D look and keeps your text."
+  },
+  "Text": {
+   "label": "Text",
+   "page": "Text",
+   "section": "",
+   "kind": "text",
+   "role": "public",
+   "default": "TEXTIZO",
+   "multiline": true
+  },
+  "FontMenu": {
+   "label": "Font",
+   "page": "Text",
+   "section": "",
+   "kind": "ui",
+   "role": "ui",
+   "why": "a menu that follows Font (its numbers depend on the computer's fonts)",
+   "default": 0
+  },
+  "StyleMenu": {
+   "label": "Style",
+   "page": "Text",
+   "section": "",
+   "kind": "ui",
+   "role": "ui",
+   "why": "a menu that follows Style (its numbers depend on the computer's fonts)",
+   "default": 0
+  },
+  "Font": {
+   "label": "Font Name",
+   "page": "Text",
+   "section": "",
+   "kind": "string",
+   "role": "public",
+   "default": "Arial Black"
+  },
+  "Style": {
+   "label": "Style Name",
+   "page": "Text",
+   "section": "",
+   "kind": "string",
+   "role": "public",
+   "default": "Regular"
+  },
+  "Size": {
+   "label": "Size",
+   "page": "Text",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    5.0
+   ]
+  },
+  "Tracking": {
+   "label": "Tracking",
+   "page": "Text",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "LineSpacing": {
+   "label": "Line Spacing",
+   "page": "Text",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "Alignment": {
+   "label": "Alignment",
+   "page": "Text",
+   "section": "",
+   "kind": "choice",
+   "role": "public",
+   "default": 1,
+   "options": [
+    "Left",
+    "Center",
+    "Right"
+   ]
+  },
+  "PositionX": {
+   "label": "Position X",
+   "page": "Text",
+   "section": "Position and Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "PositionY": {
+   "label": "Position Y",
+   "page": "Text",
+   "section": "Position and Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "PositionZ": {
+   "label": "Position Z",
+   "page": "Text",
+   "section": "Position and Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "RotationX": {
+   "label": "Rotation X",
+   "page": "Text",
+   "section": "Position and Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "RotationY": {
+   "label": "Rotation Y",
+   "page": "Text",
+   "section": "Position and Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "RotationZ": {
+   "label": "Rotation Z",
+   "page": "Text",
+   "section": "Position and Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "T3InOpacityOn": {
+   "label": "On",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InOpacityPieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3InOpacityOrder": {
+   "label": "Order",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3InOpacityStart": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InOpacityEnd": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InOpacityStagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3InOpacityFrom": {
+   "label": "Start Value",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3InOpacityTo": {
+   "label": "End Value",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3InOpacityEase": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "choice",
+   "role": "public",
+   "default": 2,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3InBlurOn": {
+   "label": "On",
+   "page": "In",
+   "section": "Blur",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InBlurPieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Blur",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3InBlurOrder": {
+   "label": "Order",
+   "page": "In",
+   "section": "Blur",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3InBlurStart": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Blur",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InBlurEnd": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Blur",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InBlurStagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Blur",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3InBlurFrom": {
+   "label": "Start Value",
+   "page": "In",
+   "section": "Blur",
+   "kind": "number",
+   "role": "public",
+   "default": 0.1,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3InBlurTo": {
+   "label": "End Value",
+   "page": "In",
+   "section": "Blur",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3InBlurEase": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Blur",
+   "kind": "choice",
+   "role": "public",
+   "default": 5,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3InPosOn": {
+   "label": "On",
+   "page": "In",
+   "section": "Position",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InPosPieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Position",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3InPosOrder": {
+   "label": "Order",
+   "page": "In",
+   "section": "Position",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3InPosStart": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Position",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InPosEnd": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Position",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InPosStagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3InPosFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3InPosFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": -0.6,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3InPosFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3InPosToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3InPosToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3InPosToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3InPosEase": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Position",
+   "kind": "choice",
+   "role": "public",
+   "default": 5,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3InSizeOn": {
+   "label": "On",
+   "page": "In",
+   "section": "Size",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InSizePieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Size",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3InSizeOrder": {
+   "label": "Order",
+   "page": "In",
+   "section": "Size",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3InSizeStart": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Size",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InSizeEnd": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Size",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InSizeStagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Size",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3InSizeFrom": {
+   "label": "Start Value",
+   "page": "In",
+   "section": "Size",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3InSizeTo": {
+   "label": "End Value",
+   "page": "In",
+   "section": "Size",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3InSizeEase": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Size",
+   "kind": "choice",
+   "role": "public",
+   "default": 23,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3InTrackOn": {
+   "label": "On",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InTrackPieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3InTrackOrder": {
+   "label": "Order",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3InTrackStart": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InTrackEnd": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InTrackStagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3InTrackFrom": {
+   "label": "Start Value",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "number",
+   "role": "public",
+   "default": 2.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3InTrackTo": {
+   "label": "End Value",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3InTrackEase": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "choice",
+   "role": "public",
+   "default": 5,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3InRotOn": {
+   "label": "On",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InRotPieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3InRotOrder": {
+   "label": "Order",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3InRotStart": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InRotEnd": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InRotStagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3InRotFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 90.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3InRotFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3InRotFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3InRotToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3InRotToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3InRotToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3InRotEase": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "choice",
+   "role": "public",
+   "default": 23,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3InExplodeOn": {
+   "label": "On",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InExplodePieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3InExplodeOrder": {
+   "label": "Order",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3InExplodeStart": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InExplodeEnd": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InExplodeStagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3InExplodeFrom": {
+   "label": "Start Value",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 1.5,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3InExplodeTo": {
+   "label": "End Value",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3InExplodeDamping": {
+   "label": "Damping",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    8.0
+   ]
+  },
+  "T3InExplodeVariance": {
+   "label": "Variance",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 0.35,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3InExplodeSpinX": {
+   "label": "Spin X",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 180.0,
+   "slider": [
+    0.0,
+    720.0
+   ]
+  },
+  "T3InExplodeSpinY": {
+   "label": "Spin Y",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 180.0,
+   "slider": [
+    0.0,
+    720.0
+   ]
+  },
+  "T3InExplodeSpinZ": {
+   "label": "Spin Z",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 240.0,
+   "slider": [
+    0.0,
+    1440.0
+   ]
+  },
+  "T3InExplodePreRoll": {
+   "label": "Pre-Roll",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3InExplodeReverse": {
+   "label": "Reverse",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3InExplodeEase": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "choice",
+   "role": "public",
+   "default": 5,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3OutOpacityOn": {
+   "label": "On",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutOpacityPieces": {
+   "label": "Animate",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3OutOpacityOrder": {
+   "label": "Order",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3OutOpacityStart": {
+   "label": "Start Frame",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "integer",
+   "role": "public",
+   "default": 90,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutOpacityEnd": {
+   "label": "End Frame",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "integer",
+   "role": "public",
+   "default": 115,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutOpacityStagger": {
+   "label": "Stagger %",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3OutOpacityTo": {
+   "label": "End Value",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3OutOpacityEase": {
+   "label": "Ease",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "choice",
+   "role": "public",
+   "default": 1,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3OutBlurOn": {
+   "label": "On",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutBlurPieces": {
+   "label": "Animate",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3OutBlurOrder": {
+   "label": "Order",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3OutBlurStart": {
+   "label": "Start Frame",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "integer",
+   "role": "public",
+   "default": 90,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutBlurEnd": {
+   "label": "End Frame",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "integer",
+   "role": "public",
+   "default": 115,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutBlurStagger": {
+   "label": "Stagger %",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3OutBlurTo": {
+   "label": "End Value",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "number",
+   "role": "public",
+   "default": 0.1,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3OutBlurEase": {
+   "label": "Ease",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "choice",
+   "role": "public",
+   "default": 1,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3OutPosOn": {
+   "label": "On",
+   "page": "Out",
+   "section": "Position",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutPosPieces": {
+   "label": "Animate",
+   "page": "Out",
+   "section": "Position",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3OutPosOrder": {
+   "label": "Order",
+   "page": "Out",
+   "section": "Position",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3OutPosStart": {
+   "label": "Start Frame",
+   "page": "Out",
+   "section": "Position",
+   "kind": "integer",
+   "role": "public",
+   "default": 90,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutPosEnd": {
+   "label": "End Frame",
+   "page": "Out",
+   "section": "Position",
+   "kind": "integer",
+   "role": "public",
+   "default": 115,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutPosStagger": {
+   "label": "Stagger %",
+   "page": "Out",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3OutPosToX": {
+   "label": "End X",
+   "page": "Out",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3OutPosToY": {
+   "label": "End Y",
+   "page": "Out",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.6,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3OutPosToZ": {
+   "label": "End Z",
+   "page": "Out",
+   "section": "Position",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3OutPosEase": {
+   "label": "Ease",
+   "page": "Out",
+   "section": "Position",
+   "kind": "choice",
+   "role": "public",
+   "default": 4,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3OutSizeOn": {
+   "label": "On",
+   "page": "Out",
+   "section": "Size",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutSizePieces": {
+   "label": "Animate",
+   "page": "Out",
+   "section": "Size",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3OutSizeOrder": {
+   "label": "Order",
+   "page": "Out",
+   "section": "Size",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3OutSizeStart": {
+   "label": "Start Frame",
+   "page": "Out",
+   "section": "Size",
+   "kind": "integer",
+   "role": "public",
+   "default": 90,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutSizeEnd": {
+   "label": "End Frame",
+   "page": "Out",
+   "section": "Size",
+   "kind": "integer",
+   "role": "public",
+   "default": 115,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutSizeStagger": {
+   "label": "Stagger %",
+   "page": "Out",
+   "section": "Size",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3OutSizeTo": {
+   "label": "End Value",
+   "page": "Out",
+   "section": "Size",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3OutSizeEase": {
+   "label": "Ease",
+   "page": "Out",
+   "section": "Size",
+   "kind": "choice",
+   "role": "public",
+   "default": 22,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3OutTrackOn": {
+   "label": "On",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutTrackPieces": {
+   "label": "Animate",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3OutTrackOrder": {
+   "label": "Order",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3OutTrackStart": {
+   "label": "Start Frame",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "integer",
+   "role": "public",
+   "default": 90,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutTrackEnd": {
+   "label": "End Frame",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "integer",
+   "role": "public",
+   "default": 115,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutTrackStagger": {
+   "label": "Stagger %",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3OutTrackTo": {
+   "label": "End Value",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "number",
+   "role": "public",
+   "default": 2.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3OutTrackEase": {
+   "label": "Ease",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "choice",
+   "role": "public",
+   "default": 4,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3OutRotOn": {
+   "label": "On",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutRotPieces": {
+   "label": "Animate",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3OutRotOrder": {
+   "label": "Order",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3OutRotStart": {
+   "label": "Start Frame",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "integer",
+   "role": "public",
+   "default": 90,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutRotEnd": {
+   "label": "End Frame",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "integer",
+   "role": "public",
+   "default": 115,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutRotStagger": {
+   "label": "Stagger %",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3OutRotToX": {
+   "label": "End X",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": -90.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3OutRotToY": {
+   "label": "End Y",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3OutRotToZ": {
+   "label": "End Z",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3OutRotEase": {
+   "label": "Ease",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "choice",
+   "role": "public",
+   "default": 22,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "T3OutExplodeOn": {
+   "label": "On",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutExplodePieces": {
+   "label": "Animate",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3OutExplodeOrder": {
+   "label": "Order",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3OutExplodeStart": {
+   "label": "Start Frame",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 90,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutExplodeEnd": {
+   "label": "End Frame",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 115,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutExplodeStagger": {
+   "label": "Stagger %",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3OutExplodeTo": {
+   "label": "End Value",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 1.5,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3OutExplodeDamping": {
+   "label": "Damping",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    8.0
+   ]
+  },
+  "T3OutExplodeVariance": {
+   "label": "Variance",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 0.35,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3OutExplodeSpinX": {
+   "label": "Spin X",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 180.0,
+   "slider": [
+    0.0,
+    720.0
+   ]
+  },
+  "T3OutExplodeSpinY": {
+   "label": "Spin Y",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 180.0,
+   "slider": [
+    0.0,
+    720.0
+   ]
+  },
+  "T3OutExplodeSpinZ": {
+   "label": "Spin Z",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "number",
+   "role": "public",
+   "default": 240.0,
+   "slider": [
+    0.0,
+    1440.0
+   ]
+  },
+  "T3OutExplodePreRoll": {
+   "label": "Pre-Roll",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3OutExplodeReverse": {
+   "label": "Reverse",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "T3OutExplodeEase": {
+   "label": "Ease",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "choice",
+   "role": "public",
+   "default": 4,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce"
+   ]
+  },
+  "ExtrusionDepth": {
+   "label": "Extrusion Depth",
+   "page": "Shape",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 0.25,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "BevelDepth": {
+   "label": "Bevel Depth",
+   "page": "Shape",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 0.015,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    0.1
+   ]
+  },
+  "BevelWidth": {
+   "label": "Bevel Width",
+   "page": "Shape",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 0.015,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    0.1
+   ]
+  },
+  "FrontBevel": {
+   "label": "Front",
+   "page": "Shape",
+   "section": "Bevel Details",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1
+  },
+  "BackBevel": {
+   "label": "Back",
+   "page": "Shape",
+   "section": "Bevel Details",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1
+  },
+  "SmoothingAngle": {
+   "label": "Smoothing Angle",
+   "page": "Shape",
+   "section": "Bevel Details",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "max": 180.0,
+   "slider": [
+    0.0,
+    90.0
+   ]
+  },
+  "FaceColor": {
+   "label": "Face Color",
+   "page": "Material",
+   "section": "Color",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "fusion": [
+    "FaceColorRed",
+    "FaceColorGreen",
+    "FaceColorBlue"
+   ]
+  },
+  "SideColor": {
+   "label": "Side Color",
+   "page": "Material",
+   "section": "Color",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.45,
+    0.5,
+    0.6
+   ],
+   "fusion": [
+    "SideColorRed",
+    "SideColorGreen",
+    "SideColorBlue"
+   ]
+  },
+  "T3Roughness": {
+   "label": "Roughness",
+   "page": "Material",
+   "section": "Surface",
+   "kind": "number",
+   "role": "public",
+   "default": 0.35,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Metal": {
+   "label": "Metalness",
+   "page": "Material",
+   "section": "Surface",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Coat": {
+   "label": "Clear Coat",
+   "page": "Material",
+   "section": "Surface",
+   "kind": "number",
+   "role": "public",
+   "default": 0.4,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Emission": {
+   "label": "Emission",
+   "page": "Material",
+   "section": "Surface",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3CoatRough": {
+   "label": "Coat Roughness",
+   "page": "Material",
+   "section": "Surface Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.06,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Specular": {
+   "label": "Reflectivity",
+   "page": "Material",
+   "section": "Surface Details",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Bump": {
+   "label": "Face Bump",
+   "page": "Material",
+   "section": "Wear",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "max": 4.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Scratches": {
+   "label": "Scratches",
+   "page": "Material",
+   "section": "Wear",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Smudges": {
+   "label": "Smudges",
+   "page": "Material",
+   "section": "Wear",
+   "kind": "number",
+   "role": "public",
+   "default": 0.15,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    0.6
+   ]
+  },
+  "T3BumpStyle": {
+   "label": "Bump Style",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Hammered",
+    "Smooth"
+   ]
+  },
+  "T3BumpSize": {
+   "label": "Bump Size",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 1.5,
+   "min": 0.05,
+   "slider": [
+    0.2,
+    4.0
+   ]
+  },
+  "T3BumpDetail": {
+   "label": "Bump Detail",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "integer",
+   "role": "public",
+   "default": 1,
+   "min": 1,
+   "slider": [
+    1.0,
+    8.0
+   ]
+  },
+  "T3SideBump": {
+   "label": "Side Bump",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "max": 4.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3ScratchCount": {
+   "label": "Scratch Count",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 14.0,
+   "min": 0.5,
+   "slider": [
+    2.0,
+    40.0
+   ]
+  },
+  "T3ScratchLength": {
+   "label": "Scratch Length",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.05,
+   "slider": [
+    0.2,
+    3.0
+   ]
+  },
+  "T3ScratchWidth": {
+   "label": "Scratch Width",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.05,
+   "slider": [
+    0.3,
+    3.0
+   ]
+  },
+  "T3ScratchAngle": {
+   "label": "Scratch Angle",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 25.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "T3ScratchSeed": {
+   "label": "Scratch Seed",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ]
+  },
+  "T3SmudgeSize": {
+   "label": "Smudge Size",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.05,
+   "slider": [
+    0.2,
+    4.0
+   ]
+  },
+  "T3SmudgeSeed": {
+   "label": "Smudge Seed",
+   "page": "Material",
+   "section": "Wear Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ]
+  },
+  "T3EdgeGlow": {
+   "label": "Edge Glow",
+   "page": "Material",
+   "section": "Glow",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3Glow": {
+   "label": "Glow",
+   "page": "Material",
+   "section": "Glow",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "EdgeColor": {
+   "label": "Edge Color",
+   "page": "Material",
+   "section": "Glow Details",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "fusion": [
+    "EdgeColorRed",
+    "EdgeColorGreen",
+    "EdgeColorBlue"
+   ]
+  },
+  "T3EdgeWidth": {
+   "label": "Edge Width",
+   "page": "Material",
+   "section": "Glow Details",
+   "kind": "number",
+   "role": "public",
+   "default": 2.0,
+   "min": 0.0,
+   "slider": [
+    0.5,
+    10.0
+   ]
+  },
+  "T3EdgeSoft": {
+   "label": "Edge Softness",
+   "page": "Material",
+   "section": "Glow Details",
+   "kind": "number",
+   "role": "public",
+   "default": 6.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    30.0
+   ]
+  },
+  "T3GlowSize": {
+   "label": "Glow Size",
+   "page": "Material",
+   "section": "Glow Details",
+   "kind": "number",
+   "role": "public",
+   "default": 20.0,
+   "min": 0.0,
+   "slider": [
+    1.0,
+    100.0
+   ]
+  },
+  "T3GlowThreshold": {
+   "label": "Glow Threshold",
+   "page": "Material",
+   "section": "Glow Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.7,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3CamDistance": {
+   "label": "Distance",
+   "page": "Camera",
+   "section": "Camera",
+   "kind": "number",
+   "role": "public",
+   "default": 4.8,
+   "min": 0.1,
+   "slider": [
+    1.0,
+    20.0
+   ]
+  },
+  "T3CamFov": {
+   "label": "Field of View",
+   "page": "Camera",
+   "section": "Camera",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 1.0,
+   "max": 170.0,
+   "slider": [
+    5.0,
+    100.0
+   ]
+  },
+  "T3CamOrbit": {
+   "label": "Orbit",
+   "page": "Camera",
+   "section": "Camera",
+   "kind": "number",
+   "role": "public",
+   "default": -18.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "T3CamTilt": {
+   "label": "Tilt",
+   "page": "Camera",
+   "section": "Camera",
+   "kind": "number",
+   "role": "public",
+   "default": 10.0,
+   "min": -89.0,
+   "max": 89.0,
+   "slider": [
+    -89.0,
+    89.0
+   ]
+  },
+  "T3CamTargetY": {
+   "label": "Look At Height",
+   "page": "Camera",
+   "section": "Camera Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3CamDrift": {
+   "label": "Orbit Drift (over clip)",
+   "page": "Camera",
+   "section": "Camera Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -90.0,
+    90.0
+   ]
+  },
+  "T3CamPush": {
+   "label": "Push In % (over clip)",
+   "page": "Camera",
+   "section": "Camera Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": -90.0,
+   "max": 90.0,
+   "slider": [
+    -50.0,
+    50.0
+   ]
+  },
+  "MotionBlur": {
+   "label": "Motion Blur",
+   "page": "Camera",
+   "section": "Render Quality",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0
+  },
+  "BlurQuality": {
+   "label": "Blur Quality",
+   "page": "Camera",
+   "section": "Render Quality",
+   "kind": "integer",
+   "role": "public",
+   "default": 4,
+   "min": 1,
+   "max": 64,
+   "slider": [
+    1.0,
+    16.0
+   ]
+  },
+  "ShutterAngle": {
+   "label": "Shutter Angle",
+   "page": "Camera",
+   "section": "Render Quality",
+   "kind": "number",
+   "role": "public",
+   "default": 180.0,
+   "min": 0.0,
+   "max": 720.0,
+   "slider": [
+    0.0,
+    360.0
+   ]
+  },
+  "EdgeSmoothing": {
+   "label": "Edge Smoothing",
+   "page": "Camera",
+   "section": "Render Quality",
+   "kind": "integer",
+   "role": "public",
+   "default": 2,
+   "min": 1,
+   "max": 8,
+   "slider": [
+    1.0,
+    4.0
+   ]
+  },
+  "T3HoldStill": {
+   "label": "Reuse Still Frames",
+   "page": "Camera",
+   "section": "Render Quality",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1
+  },
+  "T3KeyIntensity": {
+   "label": "Key Light",
+   "page": "Light",
+   "section": "Key Light",
+   "kind": "number",
+   "role": "public",
+   "default": 0.9,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ]
+  },
+  "KeyColor": {
+   "label": "Key Color",
+   "page": "Light",
+   "section": "Key Light",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "fusion": [
+    "KeyColorRed",
+    "KeyColorGreen",
+    "KeyColorBlue"
+   ]
+  },
+  "T3KeyAngle": {
+   "label": "Key Angle",
+   "page": "Light",
+   "section": "Key Light",
+   "kind": "number",
+   "role": "public",
+   "default": -35.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "T3KeyHeight": {
+   "label": "Key Height",
+   "page": "Light",
+   "section": "Key Light",
+   "kind": "number",
+   "role": "public",
+   "default": 40.0,
+   "min": -89.0,
+   "max": 89.0,
+   "slider": [
+    -10.0,
+    90.0
+   ]
+  },
+  "T3KeySpread": {
+   "label": "Key Spread",
+   "page": "Light",
+   "section": "Key Details",
+   "kind": "number",
+   "role": "public",
+   "default": 70.0,
+   "min": 1.0,
+   "max": 179.0,
+   "slider": [
+    10.0,
+    170.0
+   ]
+  },
+  "T3KeyFalloff": {
+   "label": "Key Edge Softness",
+   "page": "Light",
+   "section": "Key Details",
+   "kind": "number",
+   "role": "public",
+   "default": 20.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    90.0
+   ]
+  },
+  "T3Shadows": {
+   "label": "Shadows",
+   "page": "Light",
+   "section": "Shadows",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1
+  },
+  "T3FloorMode": {
+   "label": "Floor",
+   "page": "Light",
+   "section": "Shadows",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Off",
+    "Shadow Only",
+    "Visible"
+   ]
+  },
+  "T3WallMode": {
+   "label": "Wall",
+   "page": "Light",
+   "section": "Shadows",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Off",
+    "Shadow Only",
+    "Visible"
+   ]
+  },
+  "T3ShadowDarkness": {
+   "label": "Shadow Darkness",
+   "page": "Light",
+   "section": "Shadows",
+   "kind": "number",
+   "role": "public",
+   "default": 0.6,
+   "min": 0.0,
+   "max": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3ShadowSoftness": {
+   "label": "Shadow Softness",
+   "page": "Light",
+   "section": "Shadows",
+   "kind": "number",
+   "role": "public",
+   "default": 0.015,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    0.05
+   ]
+  },
+  "T3FloorGap": {
+   "label": "Floor Gap",
+   "page": "Light",
+   "section": "Floor and Wall Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.15,
+   "slider": [
+    -1.0,
+    1.0
+   ]
+  },
+  "FloorColor": {
+   "label": "Floor Color",
+   "page": "Light",
+   "section": "Floor and Wall Details",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.5,
+    0.5,
+    0.52
+   ],
+   "fusion": [
+    "FloorColorRed",
+    "FloorColorGreen",
+    "FloorColorBlue"
+   ]
+  },
+  "T3WallDistance": {
+   "label": "Wall Distance",
+   "page": "Light",
+   "section": "Floor and Wall Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.4,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "WallColor": {
+   "label": "Wall Color",
+   "page": "Light",
+   "section": "Floor and Wall Details",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.5,
+    0.5,
+    0.52
+   ],
+   "fusion": [
+    "WallColorRed",
+    "WallColorGreen",
+    "WallColorBlue"
+   ]
+  },
+  "T3FillIntensity": {
+   "label": "Fill Light",
+   "page": "Light",
+   "section": "Fill Lights",
+   "kind": "number",
+   "role": "public",
+   "default": 0.25,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ]
+  },
+  "T3AmbientIntensity": {
+   "label": "Ambient Light",
+   "page": "Light",
+   "section": "Fill Lights",
+   "kind": "number",
+   "role": "public",
+   "default": 0.2,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ]
+  },
+  "T3UnderIntensity": {
+   "label": "Under Light",
+   "page": "Light",
+   "section": "Fill Lights",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ]
+  },
+  "FillColor": {
+   "label": "Fill Color",
+   "page": "Light",
+   "section": "Fill Details",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "fusion": [
+    "FillColorRed",
+    "FillColorGreen",
+    "FillColorBlue"
+   ]
+  },
+  "T3FillAngle": {
+   "label": "Fill Angle",
+   "page": "Light",
+   "section": "Fill Details",
+   "kind": "number",
+   "role": "public",
+   "default": 28.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "UnderColor": {
+   "label": "Under Color",
+   "page": "Light",
+   "section": "Fill Details",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "fusion": [
+    "UnderColorRed",
+    "UnderColorGreen",
+    "UnderColorBlue"
+   ]
+  },
+  "T3EnvIntensity": {
+   "label": "Reflections",
+   "page": "Light",
+   "section": "Reflections",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3Strips": {
+   "label": "Light Strips",
+   "page": "Light",
+   "section": "Reflections",
+   "kind": "number",
+   "role": "public",
+   "default": 0.6,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "EnvironmentTop": {
+   "label": "Environment Top",
+   "page": "Light",
+   "section": "Environment Details",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.7,
+    0.75,
+    0.8
+   ],
+   "fusion": [
+    "EnvironmentTopRed",
+    "EnvironmentTopGreen",
+    "EnvironmentTopBlue"
+   ]
+  },
+  "EnvironmentBottom": {
+   "label": "Environment Bottom",
+   "page": "Light",
+   "section": "Environment Details",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.04,
+    0.04,
+    0.05
+   ],
+   "fusion": [
+    "EnvironmentBottomRed",
+    "EnvironmentBottomGreen",
+    "EnvironmentBottomBlue"
+   ]
+  },
+  "T3StripCount": {
+   "label": "Strip Count",
+   "page": "Light",
+   "section": "Environment Details",
+   "kind": "number",
+   "role": "public",
+   "default": 20.0,
+   "min": 1.0,
+   "slider": [
+    2.0,
+    60.0
+   ]
+  },
+  "T3StripWidth": {
+   "label": "Strip Width",
+   "page": "Light",
+   "section": "Environment Details",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.05,
+   "slider": [
+    0.3,
+    3.0
+   ]
+  },
+  "T3EnvRotation": {
+   "label": "Environment Rotation",
+   "page": "Light",
+   "section": "Environment Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -180.0,
+    180.0
+   ]
+  },
+  "FaceTexture": {
+   "label": "Face Texture",
+   "page": "Textures",
+   "section": "",
+   "kind": "file",
+   "role": "public",
+   "default": "",
+   "hint": "An image (PNG, JPG, TGA, BMP, HDR) multiplied into the face colour."
+  },
+  "SideTexture": {
+   "label": "Side Texture",
+   "page": "Textures",
+   "section": "",
+   "kind": "file",
+   "role": "public",
+   "default": "",
+   "hint": "An image multiplied into the side colour."
+  },
+  "TexMapping": {
+   "label": "Texture Mapping",
+   "page": "Textures",
+   "section": "",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Whole Text",
+    "Per Word",
+    "Per Letter"
+   ],
+   "hint": "How a face texture spans the letters."
+  },
+  "TexScale": {
+   "label": "Texture Scale",
+   "page": "Textures",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    4.0
+   ],
+   "hint": "Repeats of the texture across the mapped area."
+  },
+  "FaceShader": {
+   "label": "Face Shader",
+   "page": "Textures",
+   "section": "",
+   "kind": "file",
+   "role": "public",
+   "default": "",
+   "hint": "A Shadertoy-style GLSL file (mainImage) whose picture colours the faces."
+  },
+  "SideShader": {
+   "label": "Side Shader",
+   "page": "Textures",
+   "section": "",
+   "kind": "file",
+   "role": "public",
+   "default": "",
+   "hint": "A Shadertoy-style GLSL file whose picture colours the sides."
+  },
+  "EnvImage": {
+   "label": "Environment Image",
+   "page": "Textures",
+   "section": "",
+   "kind": "file",
+   "role": "public",
+   "default": "",
+   "hint": "An equirectangular image (HDR or LDR) for the reflections, in place of the gradient and strips."
+  },
+  "EnvShader": {
+   "label": "Environment Shader",
+   "page": "Textures",
+   "section": "",
+   "kind": "file",
+   "role": "public",
+   "default": "",
+   "hint": "A Shadertoy-style GLSL file drawn as the environment (equirectangular)."
+  },
+  "ShaderSpeed": {
+   "label": "Shader Speed",
+   "page": "Textures",
+   "section": "",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "Multiplies the shaders' iTime."
+  }
+ },
+ "looks": [
+  {
+   "index": 1,
+   "name": "Textizo3D-01A",
+   "text": "$1,000",
+   "about": "Game Show: glossy green faces, green sides, plastic, worn (dents and scratches), edge glow, glow, shadow on the wall, no animation"
+  }
+ ],
+ "fonts": [
+  {
+   "family": "Anton",
+   "style": "Regular"
+  },
+  {
+   "family": "Archivo Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Bangers",
+   "style": "Regular"
+  },
+  {
+   "family": "Barlow",
+   "style": "Regular"
+  },
+  {
+   "family": "Barlow",
+   "style": "Bold"
+  },
+  {
+   "family": "Barlow",
+   "style": "Black"
+  },
+  {
+   "family": "Barlow Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Bebas Neue",
+   "style": "Regular"
+  },
+  {
+   "family": "Fredoka",
+   "style": "Light"
+  },
+  {
+   "family": "Fredoka Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Fredoka",
+   "style": "Regular"
+  },
+  {
+   "family": "Fredoka",
+   "style": "Medium"
+  },
+  {
+   "family": "Fredoka Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Fredoka",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Fredoka SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Fredoka",
+   "style": "Bold"
+  },
+  {
+   "family": "Inter",
+   "style": "Thin"
+  },
+  {
+   "family": "Inter Thin",
+   "style": "Regular"
+  },
+  {
+   "family": "Inter",
+   "style": "ExtraLight"
+  },
+  {
+   "family": "Inter ExtraLight",
+   "style": "Regular"
+  },
+  {
+   "family": "Inter",
+   "style": "Light"
+  },
+  {
+   "family": "Inter Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Inter",
+   "style": "Regular"
+  },
+  {
+   "family": "Inter",
+   "style": "Medium"
+  },
+  {
+   "family": "Inter Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Inter",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Inter SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Inter",
+   "style": "Bold"
+  },
+  {
+   "family": "Inter",
+   "style": "ExtraBold"
+  },
+  {
+   "family": "Inter ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Inter",
+   "style": "Black"
+  },
+  {
+   "family": "Inter Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Kanit",
+   "style": "Regular"
+  },
+  {
+   "family": "Kanit",
+   "style": "Bold"
+  },
+  {
+   "family": "Kanit",
+   "style": "Black"
+  },
+  {
+   "family": "Kanit Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Luckiest Guy",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "Thin"
+  },
+  {
+   "family": "Montserrat Thin",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "ExtraLight"
+  },
+  {
+   "family": "Montserrat ExtraLight",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "Light"
+  },
+  {
+   "family": "Montserrat Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "Medium"
+  },
+  {
+   "family": "Montserrat Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Montserrat SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "Bold"
+  },
+  {
+   "family": "Montserrat",
+   "style": "ExtraBold"
+  },
+  {
+   "family": "Montserrat ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Montserrat",
+   "style": "Black"
+  },
+  {
+   "family": "Montserrat Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Nunito",
+   "style": "ExtraLight"
+  },
+  {
+   "family": "Nunito ExtraLight",
+   "style": "Regular"
+  },
+  {
+   "family": "Nunito",
+   "style": "Light"
+  },
+  {
+   "family": "Nunito Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Nunito",
+   "style": "Regular"
+  },
+  {
+   "family": "Nunito",
+   "style": "Medium"
+  },
+  {
+   "family": "Nunito Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Nunito",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Nunito SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Nunito",
+   "style": "Bold"
+  },
+  {
+   "family": "Nunito",
+   "style": "ExtraBold"
+  },
+  {
+   "family": "Nunito ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Nunito",
+   "style": "Black"
+  },
+  {
+   "family": "Nunito Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Light"
+  },
+  {
+   "family": "Open Sans Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Open Sans SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Bold"
+  },
+  {
+   "family": "Open Sans",
+   "style": "ExtraBold"
+  },
+  {
+   "family": "Open Sans ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Condensed Light"
+  },
+  {
+   "family": "Open Sans Condensed Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Condensed Regular"
+  },
+  {
+   "family": "Open Sans Condensed Regular",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Condensed SemiBold"
+  },
+  {
+   "family": "Open Sans Condensed SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Condensed Bold"
+  },
+  {
+   "family": "Open Sans Condensed Bold",
+   "style": "Regular"
+  },
+  {
+   "family": "Open Sans",
+   "style": "Condensed ExtraBold"
+  },
+  {
+   "family": "Open Sans Condensed ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Oswald",
+   "style": "ExtraLight"
+  },
+  {
+   "family": "Oswald ExtraLight",
+   "style": "Regular"
+  },
+  {
+   "family": "Oswald",
+   "style": "Light"
+  },
+  {
+   "family": "Oswald Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Oswald",
+   "style": "Regular"
+  },
+  {
+   "family": "Oswald",
+   "style": "Medium"
+  },
+  {
+   "family": "Oswald Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Oswald",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Oswald SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Oswald",
+   "style": "Bold"
+  },
+  {
+   "family": "Permanent Marker",
+   "style": "Regular"
+  },
+  {
+   "family": "Poppins",
+   "style": "Regular"
+  },
+  {
+   "family": "Poppins",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Poppins SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Poppins",
+   "style": "Bold"
+  },
+  {
+   "family": "Poppins",
+   "style": "Black"
+  },
+  {
+   "family": "Poppins Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Thin"
+  },
+  {
+   "family": "Roboto Thin",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "ExtraLight"
+  },
+  {
+   "family": "Roboto ExtraLight",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Light"
+  },
+  {
+   "family": "Roboto Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Medium"
+  },
+  {
+   "family": "Roboto Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Roboto SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Bold"
+  },
+  {
+   "family": "Roboto",
+   "style": "ExtraBold"
+  },
+  {
+   "family": "Roboto ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Black"
+  },
+  {
+   "family": "Roboto Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed Thin"
+  },
+  {
+   "family": "Roboto Condensed Thin",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed ExtraLight"
+  },
+  {
+   "family": "Roboto Condensed ExtraLight",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed Light"
+  },
+  {
+   "family": "Roboto Condensed Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed Regular"
+  },
+  {
+   "family": "Roboto Condensed Regular",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed Medium"
+  },
+  {
+   "family": "Roboto Condensed Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed SemiBold"
+  },
+  {
+   "family": "Roboto Condensed SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed Bold"
+  },
+  {
+   "family": "Roboto Condensed Bold",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed ExtraBold"
+  },
+  {
+   "family": "Roboto Condensed ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Roboto",
+   "style": "Condensed Black"
+  },
+  {
+   "family": "Roboto Condensed Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Rubik",
+   "style": "Light"
+  },
+  {
+   "family": "Rubik Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Rubik",
+   "style": "Regular"
+  },
+  {
+   "family": "Rubik",
+   "style": "Medium"
+  },
+  {
+   "family": "Rubik Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Rubik",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Rubik SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Rubik",
+   "style": "Bold"
+  },
+  {
+   "family": "Rubik",
+   "style": "ExtraBold"
+  },
+  {
+   "family": "Rubik ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Rubik",
+   "style": "Black"
+  },
+  {
+   "family": "Rubik Black",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "Thin"
+  },
+  {
+   "family": "Vazirmatn Thin",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "ExtraLight"
+  },
+  {
+   "family": "Vazirmatn ExtraLight",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "Light"
+  },
+  {
+   "family": "Vazirmatn Light",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "Medium"
+  },
+  {
+   "family": "Vazirmatn Medium",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "SemiBold"
+  },
+  {
+   "family": "Vazirmatn SemiBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "Bold"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "ExtraBold"
+  },
+  {
+   "family": "Vazirmatn ExtraBold",
+   "style": "Regular"
+  },
+  {
+   "family": "Vazirmatn",
+   "style": "Black"
+  },
+  {
+   "family": "Vazirmatn Black",
+   "style": "Regular"
+  }
+ ],
+ "textures": []
+}
