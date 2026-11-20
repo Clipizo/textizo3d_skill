@@ -61,7 +61,9 @@ You are making a **Textizo3D node**: plain text in Fusion's settings format that
 
 Textizo3D is an OpenFX plugin that draws its own 3D scene on the graphics card: the text as solid letters with a front face, sides and bevels; a camera; a key light with soft shadows, fill, ambient and under lights; reflections of an environment; and 2D glows on top. On the Fusion page it is a node (`Textizo3D1`) that needs no input: it draws at the composition's frame size, with a transparent background around the letters. Its optional input is a background: an image connected there is drawn behind the text.
 
-Its Inspector has eight pages: **Text, In, Out, Shape, Material, Camera, Light, Textures**. On the Fusion page a node pasted from a chat switches pages with its **Page** menu at the top; a node built by the kit's tool, or added with Add Tool, shows the Clipizo logo and page tabs instead.
+Its Inspector has eight pages: **Text, In, Out, Effects, Material, Camera, Light, Textures** (the Text page also holds the Shape section: depth and bevels). On the Fusion page a node pasted from a chat switches pages with its **Page** menu at the top; a node built by the kit's tool, or added with Add Tool, shows the Clipizo logo and page tabs instead.
+
+On the viewer, Textizo3D draws the text's box with a small bar of four modes above it: **Move** (the default: drag the text), **Size** (drag away from or towards its middle), **Rotate** (drag round its middle) and **Turn** (drag to turn it in 3D). A drag sets Position, Size or Rotation, and keyframes them at the frame when they already have keys. On the Edit page, the viewer's overlay menu (lower left) must be on **Open FX Overlay**; on the Fusion page the selected node shows it.
 
 The **Look** menu on the Text page applies a ready look (section 13) and keeps the text. A node you write carries every value itself, so it never uses that menu.
 
@@ -202,7 +204,7 @@ The text holds still between the In rows' last frame and the Out rows' first fra
 
 Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) suit exits. Out Back (23) overshoots a little: good for pops. Out Elastic (26) and Out Bounce (29) wobble: sticker style.
 
-## 7. Shape
+## 7. Shape (the Text page's Shape section)
 
 - `ExtrusionDepth` (default 0.25): how deep the letters are, in units. 0.3 to 0.4 looks bold; 0.1 is a thin plate.
 - `BevelDepth`, `BevelWidth` (default 0.015): the rounded or chamfered edge around the front face. 0.03 catches more light (chrome, gold); 0 is a sharp edge. Thin fonts take small bevels.
@@ -217,7 +219,7 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
 - `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Bloom).
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
 - **Bloom and Edge Glow** (2D, over the picture): Bloom, `T3Glow` (0 to 3), lights up everything brighter than `T3GlowThreshold` (Bloom Threshold, 0 to 1), spread by `T3GlowSize` (Bloom Size, default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
-- **Effects** (the Material page's sections Effect: Glow ... Effect: Confetti; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
+- **Effects** (the **Effects** page, the fourth tab: a section each, Glow ... Confetti; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
   - **Glow** (`T3GlowFxOn` 1): a soft glow round the whole text, behind it. `T3GlowFxAmount` (0 to 3, default 1), `T3GlowFxSize` (0 to 4, default 1: about 30 pixels), `T3GlowFxTextColors` (1, default: the letters' own colours; 0: `GlowFxColor`, default 1, 0.82, 0.35). The plugin is a generator, so Resolve's own Glow can't be put on it on the Edit page: this is the text's glow.
   - **Fire** (`T3FireOn` 1): flames off the letters, drawn behind them, and embers flying. `T3FireFlames` (0 to 2, default 1; 0 leaves only embers), `T3FireHeight` (0 to 3, default 1: about a fifth of the frame's height), `T3FireEmbers` (0 to 3, default 1, how many sparks), `T3FireSpeed` (default 1), `T3FireDirection` (default 90, up), `FireColor` (the flames' main colour, default orange 1, 0.42, 0.06; their cores are hotter, their tips deeper). Made for the lava look (Textizo3D-03A); embers alone (`T3FireFlames` 0) suit the fight-night looks.
   - **Frost** (`T3FrostOn` 1): cold mist off the letters and snowflakes drifting. `T3FrostMist` (0 to 2, 0 leaves only snow), `T3FrostHeight` (how far mist and snow go), `T3FrostSnow` (0 to 3, how many flakes), `T3FrostSpeed`, `T3FrostDirection` (default -90, down), `FrostColor` (default 0.75, 0.92, 1). Made for the ice look (Textizo3D-02A); also cold chrome.
@@ -366,6 +368,12 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `RotationX` | Position and Rotation: Rotation X | number | 0 | slider -180 to 180 |
 | `RotationY` | Position and Rotation: Rotation Y | number | 0 | slider -180 to 180 |
 | `RotationZ` | Position and Rotation: Rotation Z | number | 0 | slider -180 to 180 |
+| `ExtrusionDepth` | Shape: Extrusion Depth | number | 0.25 | slider 0 to 1; at least 0 |
+| `BevelDepth` | Shape: Bevel Depth | number | 0.015 | slider 0 to 0.1; at least 0 |
+| `BevelWidth` | Shape: Bevel Width | number | 0.015 | slider 0 to 0.1; at least 0 |
+| `FrontBevel` | Shape: Front Bevel | checkbox | 1 | 0 or 1 |
+| `BackBevel` | Shape: Back Bevel | checkbox | 1 | 0 or 1 |
+| `SmoothingAngle` | Shape: Smoothing Angle | number | 30 | slider 0 to 90; allowed 0 to 180 |
 
 **In page**
 
@@ -522,16 +530,71 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutExplodeReverse` | Explosion: Reverse | checkbox | 0 | 0 or 1 |
 | `T3OutExplodeEase` | Explosion: Ease | choice | 4 | 0 to 30: the eases in section 6 |
 
-**Shape page**
+**Effects page**
 
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
-| `ExtrusionDepth` | Extrusion Depth | number | 0.25 | slider 0 to 1; at least 0 |
-| `BevelDepth` | Bevel Depth | number | 0.015 | slider 0 to 0.1; at least 0 |
-| `BevelWidth` | Bevel Width | number | 0.015 | slider 0 to 0.1; at least 0 |
-| `FrontBevel` | Bevel Details: Front | checkbox | 1 | 0 or 1 |
-| `BackBevel` | Bevel Details: Back | checkbox | 1 | 0 or 1 |
-| `SmoothingAngle` | Bevel Details: Smoothing Angle | number | 30 | slider 0 to 90; allowed 0 to 180 |
+| `T3GlowFxOn` | Glow | checkbox | 0 | 0 or 1 |
+| `T3GlowFxAmount` | Glow: Glow Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3GlowFxSize` | Glow: Glow Size | number | 1 | slider 0 to 4; at least 0 |
+| `T3GlowFxTextColors` | Glow: Text's Colors | checkbox | 1 | 0 or 1 |
+| `GlowFxColor` (`GlowFxColorRed`, `GlowFxColorGreen`, `GlowFxColorBlue`) | Glow: Glow Color | color | [1, 0.82, 0.35] | red, green, blue from 0 to 1 |
+| `T3FireOn` | Fire | checkbox | 0 | 0 or 1 |
+| `T3FireInside` | Fire: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3FireFlames` | Fire: Flames | number | 1 | slider 0 to 2; at least 0 |
+| `T3FireHeight` | Fire: Flame Height | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireEmbers` | Fire: Embers | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireSpeed` | Fire: Fire Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireDirection` | Fire: Fire Direction | number | 90 | slider -180 to 180 |
+| `FireColor` (`FireColorRed`, `FireColorGreen`, `FireColorBlue`) | Fire: Fire Color | color | [1, 0.42, 0.06] | red, green, blue from 0 to 1 |
+| `T3FrostOn` | Frost | checkbox | 0 | 0 or 1 |
+| `T3FrostInside` | Frost: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3FrostMist` | Frost: Mist | number | 1 | slider 0 to 2; at least 0 |
+| `T3FrostHeight` | Frost: Mist Reach | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostSnow` | Frost: Snow | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostSpeed` | Frost: Frost Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostDirection` | Frost: Frost Direction | number | -90 | slider -180 to 180 |
+| `FrostColor` (`FrostColorRed`, `FrostColorGreen`, `FrostColorBlue`) | Frost: Frost Color | color | [0.75, 0.92, 1] | red, green, blue from 0 to 1 |
+| `T3SmokeOn` | Smoke | checkbox | 0 | 0 or 1 |
+| `T3SmokeInside` | Smoke: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3SmokeAmount` | Smoke: Smoke Amount | number | 1 | slider 0 to 2; at least 0 |
+| `T3SmokeHeight` | Smoke: Smoke Height | number | 1 | slider 0 to 3; at least 0 |
+| `T3SmokeSpeed` | Smoke: Smoke Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3SmokeDirection` | Smoke: Smoke Direction | number | 90 | slider -180 to 180 |
+| `SmokeColor` (`SmokeColorRed`, `SmokeColorGreen`, `SmokeColorBlue`) | Smoke: Smoke Color | color | [0.32, 0.32, 0.35] | red, green, blue from 0 to 1 |
+| `T3ElectricOn` | Electric | checkbox | 0 | 0 or 1 |
+| `T3ElectricInside` | Electric: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3ElectricAmount` | Electric: Electric Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3ElectricReach` | Electric: Arc Reach | number | 1 | slider 0 to 3; at least 0 |
+| `T3ElectricSpeed` | Electric: Flicker Speed | number | 1 | slider 0 to 3; at least 0 |
+| `ElectricColor` (`ElectricColorRed`, `ElectricColorGreen`, `ElectricColorBlue`) | Electric: Electric Color | color | [0.45, 0.75, 1] | red, green, blue from 0 to 1 |
+| `T3RaysOn` | Light Rays | checkbox | 0 | 0 or 1 |
+| `T3RaysAmount` | Light Rays: Ray Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3RaysLength` | Light Rays: Ray Length | number | 1 | slider 0 to 3; at least 0 |
+| `T3RaysDirection` | Light Rays: Ray Direction | number | 90 | slider -180 to 180 |
+| `RaysColor` (`RaysColorRed`, `RaysColorGreen`, `RaysColorBlue`) | Light Rays: Ray Color | color | [1, 0.92, 0.75] | red, green, blue from 0 to 1 |
+| `T3ShineOn` | Shine | checkbox | 0 | 0 or 1 |
+| `T3ShineAmount` | Shine: Shine Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3ShineWidth` | Shine: Shine Width | number | 1 | slider 0 to 3; at least 0 |
+| `T3ShineEvery` | Shine: Shine Every (seconds) | number | 2.5 | slider 0 to 10; at least 0 |
+| `T3ShineDirection` | Shine: Shine Direction | number | -20 | slider -180 to 180 |
+| `ShineColor` (`ShineColorRed`, `ShineColorGreen`, `ShineColorBlue`) | Shine: Shine Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
+| `T3SparkleOn` | Sparkles | checkbox | 0 | 0 or 1 |
+| `T3SparkleAmount` | Sparkles: Sparkle Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3SparkleSize` | Sparkles: Sparkle Size | number | 1 | slider 0 to 3; at least 0 |
+| `T3SparkleSpeed` | Sparkles: Twinkle Speed | number | 1 | slider 0 to 3; at least 0 |
+| `SparkleColor` (`SparkleColorRed`, `SparkleColorGreen`, `SparkleColorBlue`) | Sparkles: Sparkle Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
+| `T3GlitchOn` | Glitch | checkbox | 0 | 0 or 1 |
+| `T3GlitchAmount` | Glitch: Glitch Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3GlitchFrequency` | Glitch: Glitch Frequency | number | 1 | slider 0 to 3; at least 0 |
+| `T3GlitchDirection` | Glitch: Glitch Direction | number | 0 | slider -180 to 180 |
+| `T3ConfettiOn` | Confetti | checkbox | 0 | 0 or 1 |
+| `T3ConfettiAmount` | Confetti: Confetti Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3ConfettiSize` | Confetti: Confetti Size | number | 1 | slider 0 to 3; at least 0 |
+| `T3ConfettiSpeed` | Confetti: Confetti Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3ConfettiDirection` | Confetti: Confetti Direction | number | -90 | slider -180 to 180 |
+| `T3ConfettiMany` | Confetti: Many Colors | checkbox | 1 | 0 or 1 |
+| `ConfettiColor` (`ConfettiColorRed`, `ConfettiColorGreen`, `ConfettiColorBlue`) | Confetti: Confetti Color | color | [1, 0.85, 0.2] | red, green, blue from 0 to 1 |
 
 **Material page**
 
@@ -566,67 +629,6 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3EdgeSoft` | Bloom and Edge Details: Edge Softness | number | 6 | slider 0 to 30; at least 0 |
 | `T3GlowSize` | Bloom and Edge Details: Bloom Size | number | 20 | slider 1 to 100; at least 0 |
 | `T3GlowThreshold` | Bloom and Edge Details: Bloom Threshold | number | 0.7 | slider 0 to 1; at least 0 |
-| `T3GlowFxOn` | Effect: Glow: Glow | checkbox | 0 | 0 or 1 |
-| `T3GlowFxAmount` | Effect: Glow: Glow Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3GlowFxSize` | Effect: Glow: Glow Size | number | 1 | slider 0 to 4; at least 0 |
-| `T3GlowFxTextColors` | Effect: Glow: Text's Colors | checkbox | 1 | 0 or 1 |
-| `GlowFxColor` (`GlowFxColorRed`, `GlowFxColorGreen`, `GlowFxColorBlue`) | Effect: Glow: Glow Color | color | [1, 0.82, 0.35] | red, green, blue from 0 to 1 |
-| `T3FireOn` | Effect: Fire: Fire | checkbox | 0 | 0 or 1 |
-| `T3FireInside` | Effect: Fire: Inside the Letters | checkbox | 0 | 0 or 1 |
-| `T3FireFlames` | Effect: Fire: Flames | number | 1 | slider 0 to 2; at least 0 |
-| `T3FireHeight` | Effect: Fire: Flame Height | number | 1 | slider 0 to 3; at least 0 |
-| `T3FireEmbers` | Effect: Fire: Embers | number | 1 | slider 0 to 3; at least 0 |
-| `T3FireSpeed` | Effect: Fire: Fire Speed | number | 1 | slider 0 to 3; at least 0 |
-| `T3FireDirection` | Effect: Fire: Fire Direction | number | 90 | slider -180 to 180 |
-| `FireColor` (`FireColorRed`, `FireColorGreen`, `FireColorBlue`) | Effect: Fire: Fire Color | color | [1, 0.42, 0.06] | red, green, blue from 0 to 1 |
-| `T3FrostOn` | Effect: Frost: Frost | checkbox | 0 | 0 or 1 |
-| `T3FrostInside` | Effect: Frost: Inside the Letters | checkbox | 0 | 0 or 1 |
-| `T3FrostMist` | Effect: Frost: Mist | number | 1 | slider 0 to 2; at least 0 |
-| `T3FrostHeight` | Effect: Frost: Mist Reach | number | 1 | slider 0 to 3; at least 0 |
-| `T3FrostSnow` | Effect: Frost: Snow | number | 1 | slider 0 to 3; at least 0 |
-| `T3FrostSpeed` | Effect: Frost: Frost Speed | number | 1 | slider 0 to 3; at least 0 |
-| `T3FrostDirection` | Effect: Frost: Frost Direction | number | -90 | slider -180 to 180 |
-| `FrostColor` (`FrostColorRed`, `FrostColorGreen`, `FrostColorBlue`) | Effect: Frost: Frost Color | color | [0.75, 0.92, 1] | red, green, blue from 0 to 1 |
-| `T3SmokeOn` | Effect: Smoke: Smoke | checkbox | 0 | 0 or 1 |
-| `T3SmokeInside` | Effect: Smoke: Inside the Letters | checkbox | 0 | 0 or 1 |
-| `T3SmokeAmount` | Effect: Smoke: Smoke Amount | number | 1 | slider 0 to 2; at least 0 |
-| `T3SmokeHeight` | Effect: Smoke: Smoke Height | number | 1 | slider 0 to 3; at least 0 |
-| `T3SmokeSpeed` | Effect: Smoke: Smoke Speed | number | 1 | slider 0 to 3; at least 0 |
-| `T3SmokeDirection` | Effect: Smoke: Smoke Direction | number | 90 | slider -180 to 180 |
-| `SmokeColor` (`SmokeColorRed`, `SmokeColorGreen`, `SmokeColorBlue`) | Effect: Smoke: Smoke Color | color | [0.32, 0.32, 0.35] | red, green, blue from 0 to 1 |
-| `T3ElectricOn` | Effect: Electric: Electric | checkbox | 0 | 0 or 1 |
-| `T3ElectricInside` | Effect: Electric: Inside the Letters | checkbox | 0 | 0 or 1 |
-| `T3ElectricAmount` | Effect: Electric: Electric Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3ElectricReach` | Effect: Electric: Arc Reach | number | 1 | slider 0 to 3; at least 0 |
-| `T3ElectricSpeed` | Effect: Electric: Flicker Speed | number | 1 | slider 0 to 3; at least 0 |
-| `ElectricColor` (`ElectricColorRed`, `ElectricColorGreen`, `ElectricColorBlue`) | Effect: Electric: Electric Color | color | [0.45, 0.75, 1] | red, green, blue from 0 to 1 |
-| `T3RaysOn` | Effect: Light Rays: Light Rays | checkbox | 0 | 0 or 1 |
-| `T3RaysAmount` | Effect: Light Rays: Ray Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3RaysLength` | Effect: Light Rays: Ray Length | number | 1 | slider 0 to 3; at least 0 |
-| `T3RaysDirection` | Effect: Light Rays: Ray Direction | number | 90 | slider -180 to 180 |
-| `RaysColor` (`RaysColorRed`, `RaysColorGreen`, `RaysColorBlue`) | Effect: Light Rays: Ray Color | color | [1, 0.92, 0.75] | red, green, blue from 0 to 1 |
-| `T3ShineOn` | Effect: Shine: Shine | checkbox | 0 | 0 or 1 |
-| `T3ShineAmount` | Effect: Shine: Shine Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3ShineWidth` | Effect: Shine: Shine Width | number | 1 | slider 0 to 3; at least 0 |
-| `T3ShineEvery` | Effect: Shine: Shine Every (seconds) | number | 2.5 | slider 0 to 10; at least 0 |
-| `T3ShineDirection` | Effect: Shine: Shine Direction | number | -20 | slider -180 to 180 |
-| `ShineColor` (`ShineColorRed`, `ShineColorGreen`, `ShineColorBlue`) | Effect: Shine: Shine Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
-| `T3SparkleOn` | Effect: Sparkles: Sparkles | checkbox | 0 | 0 or 1 |
-| `T3SparkleAmount` | Effect: Sparkles: Sparkle Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3SparkleSize` | Effect: Sparkles: Sparkle Size | number | 1 | slider 0 to 3; at least 0 |
-| `T3SparkleSpeed` | Effect: Sparkles: Twinkle Speed | number | 1 | slider 0 to 3; at least 0 |
-| `SparkleColor` (`SparkleColorRed`, `SparkleColorGreen`, `SparkleColorBlue`) | Effect: Sparkles: Sparkle Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
-| `T3GlitchOn` | Effect: Glitch: Glitch | checkbox | 0 | 0 or 1 |
-| `T3GlitchAmount` | Effect: Glitch: Glitch Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3GlitchFrequency` | Effect: Glitch: Glitch Frequency | number | 1 | slider 0 to 3; at least 0 |
-| `T3GlitchDirection` | Effect: Glitch: Glitch Direction | number | 0 | slider -180 to 180 |
-| `T3ConfettiOn` | Effect: Confetti: Confetti | checkbox | 0 | 0 or 1 |
-| `T3ConfettiAmount` | Effect: Confetti: Confetti Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3ConfettiSize` | Effect: Confetti: Confetti Size | number | 1 | slider 0 to 3; at least 0 |
-| `T3ConfettiSpeed` | Effect: Confetti: Confetti Speed | number | 1 | slider 0 to 3; at least 0 |
-| `T3ConfettiDirection` | Effect: Confetti: Confetti Direction | number | -90 | slider -180 to 180 |
-| `T3ConfettiMany` | Effect: Confetti: Many Colors | checkbox | 1 | 0 or 1 |
-| `ConfettiColor` (`ConfettiColorRed`, `ConfettiColorGreen`, `ConfettiColorBlue`) | Effect: Confetti: Confetti Color | color | [1, 0.85, 0.2] | red, green, blue from 0 to 1 |
 
 **Camera page**
 

@@ -357,7 +357,7 @@
 					{ MBTNC_AddButton = "Text", MBTNCD_ButtonWidth = 0.25 },
 					{ MBTNC_AddButton = "In", MBTNCD_ButtonWidth = 0.25 },
 					{ MBTNC_AddButton = "Out", MBTNCD_ButtonWidth = 0.25 },
-					{ MBTNC_AddButton = "Shape", MBTNCD_ButtonWidth = 0.25 },
+					{ MBTNC_AddButton = "Effects", MBTNCD_ButtonWidth = 0.25 },
 					{ MBTNC_AddButton = "Material", MBTNCD_ButtonWidth = 0.25 },
 					{ MBTNC_AddButton = "Camera", MBTNCD_ButtonWidth = 0.25 },
 					{ MBTNC_AddButton = "Light", MBTNCD_ButtonWidth = 0.25 },
