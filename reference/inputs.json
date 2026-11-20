@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3DFX1",
  "generated": "2026-11-20",
- "parameters": "t3_params_gen.h 9ccfbc0ac55a",
+ "parameters": "t3_params_gen.h 375e70ebce7d",
  "pages": [
   "Text",
   "In",
@@ -3505,6 +3505,234 @@
     3.0
    ],
    "hint": "Multiplies the shaders' iTime."
+  },
+  "T3FireOn": {
+   "label": "Fire",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Flames, embers and heat round the letters (light added over the picture)."
+  },
+  "T3FireFlames": {
+   "label": "Flames",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ],
+   "hint": "How strong the flames are (0: embers only)."
+  },
+  "T3FireHeight": {
+   "label": "Flame Height",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How high the flames reach."
+  },
+  "T3FireEmbers": {
+   "label": "Embers",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How many sparks rise from the letters."
+  },
+  "T3FireSpeed": {
+   "label": "Fire Speed",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "FireColor": {
+   "label": "Fire Color",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    0.42,
+    0.06
+   ],
+   "fusion": [
+    "FireColorRed",
+    "FireColorGreen",
+    "FireColorBlue"
+   ],
+   "hint": "The flames' main colour; their cores are hotter, their tips deeper."
+  },
+  "T3FrostOn": {
+   "label": "Frost",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Cold mist and snow round the letters (light added over the picture)."
+  },
+  "T3FrostMist": {
+   "label": "Mist",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ],
+   "hint": "How dense the mist sinking off the letters is (0: snow only)."
+  },
+  "T3FrostHeight": {
+   "label": "Mist Reach",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How far the mist and snow fall."
+  },
+  "T3FrostSnow": {
+   "label": "Snow",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How many flakes drift down from the letters."
+  },
+  "T3FrostSpeed": {
+   "label": "Frost Speed",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "FrostColor": {
+   "label": "Frost Color",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.75,
+    0.92,
+    1.0
+   ],
+   "fusion": [
+    "FrostColorRed",
+    "FrostColorGreen",
+    "FrostColorBlue"
+   ]
+  },
+  "T3SparkleOn": {
+   "label": "Sparkles",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Star glints twinkling on the letters."
+  },
+  "T3SparkleAmount": {
+   "label": "Sparkle Amount",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3SparkleSize": {
+   "label": "Sparkle Size",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3SparkleSpeed": {
+   "label": "Twinkle Speed",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "SparkleColor": {
+   "label": "Sparkle Color",
+   "page": "Material",
+   "section": "Effects",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "fusion": [
+    "SparkleColorRed",
+    "SparkleColorGreen",
+    "SparkleColorBlue"
+   ]
   }
  },
  "looks": [

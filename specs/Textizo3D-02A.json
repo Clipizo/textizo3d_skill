@@ -67,6 +67,7 @@
     "FaceTexture": "textures/ice-caustics.jpg",
     "SideTexture": "textures/ice-caustics.jpg",
     "TexScale": 0.8,
-    "EnvImage": "textures/env-sky.hdr"
+    "EnvImage": "textures/env-sky.hdr",
+    "SparkleColor": [0.8, 0.95, 1.0]
   }
 }

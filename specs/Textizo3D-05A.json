@@ -58,7 +58,8 @@
     "KeyColor": [1.0, 0.92, 0.78],
     "T3FillIntensity": 0.1,
     "T3AmbientIntensity": 0,
-    "T3EnvIntensity": 1.2,
-    "EnvImage": "textures/env-studio.hdr"
+    "T3EnvIntensity": 0.5,
+    "EnvImage": "textures/env-studio.hdr",
+    "SparkleColor": [1.0, 0.88, 0.55]
   }
 }

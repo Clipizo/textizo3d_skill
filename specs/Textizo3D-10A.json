@@ -50,6 +50,7 @@
     "T3AmbientIntensity": 0.15,
     "T3EnvIntensity": 0.6,
     "FaceTexture": "textures/gold-gradient.jpg",
-    "EnvImage": "textures/env-studio.hdr"
+    "EnvImage": "textures/env-studio.hdr",
+    "SparkleColor": [1.0, 0.92, 0.6]
   }
 }

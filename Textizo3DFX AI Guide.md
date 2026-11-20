@@ -217,6 +217,11 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
 - `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Glow).
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
 - **Glow** (2D, over the picture): `T3Glow` (0 to 3) blooms everything brighter than `T3GlowThreshold` (0 to 1), spread by `T3GlowSize` (default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light only.
+- **Effects** (the Material page's Effects section; every one off by default, animated by the clip's time, light added like the glows):
+  - **Fire** (`T3FireOn` 1): flames rising from the letters, drawn behind them, and embers drifting up. `T3FireFlames` (0 to 2, default 1; 0 leaves only embers), `T3FireHeight` (0 to 3, default 1: about a fifth of the frame's height), `T3FireEmbers` (0 to 3, default 1, how many sparks), `T3FireSpeed` (default 1), `FireColor` (the flames' main colour, default orange 1, 0.42, 0.06; their cores are hotter, their tips deeper). Made for the lava look (Textizo3D-03A); embers alone (`T3FireFlames` 0) suit the fight-night looks.
+  - **Frost** (`T3FrostOn` 1): cold mist sinking off the letters and snowflakes drifting down. `T3FrostMist` (0 to 2, 0 leaves only snow), `T3FrostHeight` (how far mist and snow fall), `T3FrostSnow` (0 to 3, how many flakes), `T3FrostSpeed`, `FrostColor` (default 0.75, 0.92, 1). Made for the ice look (Textizo3D-02A); also cold chrome.
+  - **Sparkles** (`T3SparkleOn` 1): four-point star glints twinkling on the letters. `T3SparkleAmount` (0 to 3), `T3SparkleSize` (0 to 3), `T3SparkleSpeed` (twinkle speed), `SparkleColor` (warm 1, 0.88, 0.55 on gold; icy 0.8, 0.95, 1 on ice). For gold, chrome, diamond, pearl and money.
+  - Effects make every frame move, so they are drawn frame by frame (Reuse Still Frames can't hold them); a 1080p frame costs about 2 ms more.
 
 ## 9. Camera
 
@@ -554,6 +559,23 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3EdgeSoft` | Glow Details: Edge Softness | number | 6 | slider 0 to 30; at least 0 |
 | `T3GlowSize` | Glow Details: Glow Size | number | 20 | slider 1 to 100; at least 0 |
 | `T3GlowThreshold` | Glow Details: Glow Threshold | number | 0.7 | slider 0 to 1; at least 0 |
+| `T3FireOn` | Effects: Fire | checkbox | 0 | 0 or 1 |
+| `T3FireFlames` | Effects: Flames | number | 1 | slider 0 to 2; at least 0 |
+| `T3FireHeight` | Effects: Flame Height | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireEmbers` | Effects: Embers | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireSpeed` | Effects: Fire Speed | number | 1 | slider 0 to 3; at least 0 |
+| `FireColor` (`FireColorRed`, `FireColorGreen`, `FireColorBlue`) | Effects: Fire Color | color | [1, 0.42, 0.06] | red, green, blue from 0 to 1 |
+| `T3FrostOn` | Effects: Frost | checkbox | 0 | 0 or 1 |
+| `T3FrostMist` | Effects: Mist | number | 1 | slider 0 to 2; at least 0 |
+| `T3FrostHeight` | Effects: Mist Reach | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostSnow` | Effects: Snow | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostSpeed` | Effects: Frost Speed | number | 1 | slider 0 to 3; at least 0 |
+| `FrostColor` (`FrostColorRed`, `FrostColorGreen`, `FrostColorBlue`) | Effects: Frost Color | color | [0.75, 0.92, 1] | red, green, blue from 0 to 1 |
+| `T3SparkleOn` | Effects: Sparkles | checkbox | 0 | 0 or 1 |
+| `T3SparkleAmount` | Effects: Sparkle Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3SparkleSize` | Effects: Sparkle Size | number | 1 | slider 0 to 3; at least 0 |
+| `T3SparkleSpeed` | Effects: Twinkle Speed | number | 1 | slider 0 to 3; at least 0 |
+| `SparkleColor` (`SparkleColorRed`, `SparkleColorGreen`, `SparkleColorBlue`) | Effects: Sparkle Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
 
 **Camera page**
 

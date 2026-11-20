@@ -57,7 +57,7 @@
     "T3KeyIntensity": 0.6,
     "T3FillIntensity": 0.1,
     "T3AmbientIntensity": 0,
-    "T3EnvIntensity": 1.2,
+    "T3EnvIntensity": 0.6,
     "FaceTexture": "textures/silver-brushed.jpg",
     "EnvImage": "textures/env-studio.hdr"
   }
