@@ -539,9 +539,16 @@ def apply_row(values, ref, side, name, row, where, notes):
         put("Pieces", row["by"], "by")
     if "order" in row:
         put("Order", row["order"], "order")
-    for field, suffix in (("start", "Start"), ("end", "End"), ("stagger", "Stagger"), ("ease", "Ease")):
+    for field, suffix in (("start", "Start"), ("end", "End"), ("stagger", "Stagger")):
         if field in row:
             put(suffix, row[field], field)
+    if "ease" in row:   # a row ease's name, or the row's own curve: "cubic-bezier(x1, y1, x2, y2)"
+        curve = row_curve(row["ease"], "%s.ease" % where)
+        if curve is None:
+            put("Ease", row["ease"], "ease")
+        else:
+            put("Ease", "Custom", "ease")
+            put("EaseCurve", " ".join(fmt_num(round(v, 4)) for v in curve), "ease")
     for field, suffix in (("from", "From"), ("to", "To")):
         if field not in row:
             continue
@@ -577,6 +584,17 @@ def apply_row(values, ref, side, name, row, where, notes):
         for extra in ("damping", "variance", "spin", "pre_roll", "reverse"):
             if extra in row:
                 raise ValueError("%s: %s is for the explosion row only" % (where, extra))
+
+
+def row_curve(value, where):
+    """The four numbers of a row's own curve, "cubic-bezier(x1, y1, x2, y2)" (or {"cubic-bezier": [...]}); None for a
+    row ease's name. The row's Ease is then Custom and its <Ease>Curve holds them (guide section 6)."""
+    if isinstance(value, dict):
+        return bezier_numbers(value.get("cubic-bezier", value.get("bezier")), where)
+    if isinstance(value, (list, tuple)):
+        return bezier_numbers(value, where)
+    m = re.match(r"^\s*cubic-bezier\s*\(([^)]*)\)\s*$", str(value), re.I)
+    return bezier_numbers(m.group(1).split(","), where) if m else None
 
 
 # --------------------------------------------------------------------------- the viewer's keyframes (ViewerKeys)
@@ -889,6 +907,14 @@ def values_to_spec(values, ref, name=None):
                     num(rid + "From", "from")
                 num(rid + "To", "to")
             opt(rid + "Ease", "ease")
+            if row.get("ease") == "custom" and rid + "EaseCurve" in entry:   # the row's own curve
+                parts = str(values.get(rid + "EaseCurve", base.get(rid + "EaseCurve", ""))).replace(",", " ").split()
+                try:
+                    nums = [float(p) for p in parts[:4]]
+                except ValueError:
+                    nums = []
+                if len(nums) == 4:
+                    row["ease"] = "cubic-bezier(%s)" % ", ".join(fmt_num(round(v, 4)) for v in nums)
             if key == "explosion":
                 num(rid + "Damping", "damping")
                 num(rid + "Variance", "variance")

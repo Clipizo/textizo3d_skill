@@ -115,7 +115,7 @@ For a chat answer (no files), `build --compact` writes only what differs from Te
 - `order`: `left_to_right`, `right_to_left`, `center_out`, `edges_in`, `random_one_by_one` or `random`.
 - `start`, `end`: frames from the clip's first frame; `stagger`: percent (guide section 5).
 - `from` (In rows only) and `to`: numbers, or `[x, y, z]` for `position` (units) and `rotation` (degrees).
-- `ease`: `linear`, `in_quad` ... `out_back`, `out_elastic`, `out_bounce` (guide section 6).
+- `ease`: `linear`, `in_quad` ... `out_back`, `out_elastic`, `out_bounce` (guide section 6), or the row's own curve, `"cubic-bezier(x1, y1, x2, y2)"`.
 - Explosion only: `damping`, `variance`, `spin` (`[x, y, z]` degrees), `pre_roll` (frames), `reverse` (`true`/`false`).
 
 Fields you leave out keep the look's (or the default) value.

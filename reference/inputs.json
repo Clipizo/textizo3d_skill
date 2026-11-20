@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-20",
- "parameters": "t3_params_gen.h 85684fd0a5c9",
+ "parameters": "t3_params_gen.h 1b7693c64d87",
  "pages": [
   "Text",
   "In",
@@ -350,8 +350,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3InOpacityEaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3InBlurOn": {
    "label": "On",
@@ -491,8 +500,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3InBlurEaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Blur",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3InPosOn": {
    "label": "On",
@@ -680,8 +698,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3InPosEaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Position",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3InSizeOn": {
    "label": "On",
@@ -821,8 +848,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3InSizeEaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Size",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3InTrackOn": {
    "label": "On",
@@ -962,8 +998,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3InTrackEaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3InRotOn": {
    "label": "On",
@@ -1151,8 +1196,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3InRotEaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3InExplodeOn": {
    "label": "On",
@@ -1376,8 +1430,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3InExplodeEaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3OutOpacityOn": {
    "label": "On",
@@ -1505,8 +1568,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3OutOpacityEaseCurve": {
+   "label": "Ease Curve",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3OutBlurOn": {
    "label": "On",
@@ -1634,8 +1706,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3OutBlurEaseCurve": {
+   "label": "Ease Curve",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3OutPosOn": {
    "label": "On",
@@ -1787,8 +1868,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3OutPosEaseCurve": {
+   "label": "Ease Curve",
+   "page": "Out",
+   "section": "Position",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3OutSizeOn": {
    "label": "On",
@@ -1916,8 +2006,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3OutSizeEaseCurve": {
+   "label": "Ease Curve",
+   "page": "Out",
+   "section": "Size",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3OutTrackOn": {
    "label": "On",
@@ -2045,8 +2144,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3OutTrackEaseCurve": {
+   "label": "Ease Curve",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3OutRotOn": {
    "label": "On",
@@ -2198,8 +2306,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3OutRotEaseCurve": {
+   "label": "Ease Curve",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "T3OutExplodeOn": {
    "label": "On",
@@ -2411,8 +2528,17 @@
     "In Out Elastic",
     "In Bounce",
     "Out Bounce",
-    "In Out Bounce"
+    "In Out Bounce",
+    "Custom"
    ]
+  },
+  "T3OutExplodeEaseCurve": {
+   "label": "Ease Curve",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
   },
   "ExtrusionDepth": {
    "label": "Extrusion Depth",

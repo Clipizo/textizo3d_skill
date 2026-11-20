@@ -202,7 +202,9 @@ The text holds still between the In rows' last frame and the Out rows' first fra
 
 ## 6. Eases
 
-`Ease` takes a number: 0 Linear; 1 In Quad, 2 Out Quad, 3 In Out Quad; 4 In Cubic, 5 Out Cubic, 6 In Out Cubic; 7 In Quart, 8 Out Quart, 9 In Out Quart; 10 In Quint, 11 Out Quint, 12 In Out Quint; 13 In Sine, 14 Out Sine, 15 In Out Sine; 16 In Expo, 17 Out Expo, 18 In Out Expo; 19 In Circ, 20 Out Circ, 21 In Out Circ; 22 In Back, 23 Out Back, 24 In Out Back; 25 In Elastic, 26 Out Elastic, 27 In Out Elastic; 28 In Bounce, 29 Out Bounce, 30 In Out Bounce.
+`Ease` takes a number: 0 Linear; 1 In Quad, 2 Out Quad, 3 In Out Quad; 4 In Cubic, 5 Out Cubic, 6 In Out Cubic; 7 In Quart, 8 Out Quart, 9 In Out Quart; 10 In Quint, 11 Out Quint, 12 In Out Quint; 13 In Sine, 14 Out Sine, 15 In Out Sine; 16 In Expo, 17 Out Expo, 18 In Out Expo; 19 In Circ, 20 Out Circ, 21 In Out Circ; 22 In Back, 23 Out Back, 24 In Out Back; 25 In Elastic, 26 Out Elastic, 27 In Out Elastic; 28 In Bounce, 29 Out Bounce, 30 In Out Bounce; 31 Custom.
+
+**Custom (31) is the row's own curve.** It lives in the row's hidden input `<Ease>Curve` (`T3InPosEaseCurve` for the In Position row, and so on) as four numbers `x1 y1 x2 y2`: CSS's `cubic-bezier(x1, y1, x2, y2)`, time across with x1 and x2 from 0 to 1, the way up with y1 and y2 free to go below 0 or above 1 (anticipation, overshoot). In Resolve, the **Custom** button right under each row's Ease opens a window where the user drags the curve's two handles. In a kit spec, write the row's `"ease": "cubic-bezier(0.1, 1, 0.35, 1)"`: the tool sets Ease to Custom and the curve; `to-spec` writes such a row back the same way.
 
 Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) suit exits. Out Back (23) overshoots a little: good for pops. Out Elastic (26) and Out Bounce (29) wobble: sticker style.
 
@@ -420,7 +422,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InOpacityStagger` | Opacity: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InOpacityFrom` | Opacity: Start Value | number | 0 | slider 0 to 1 |
 | `T3InOpacityTo` | Opacity: End Value | number | 1 | slider 0 to 1 |
-| `T3InOpacityEase` | Opacity: Ease | choice | 2 | 0 to 30: the eases in section 6 |
+| `T3InOpacityEase` | Opacity: Ease | choice | 2 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3InOpacityEaseCurve` | Opacity: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3InBlurOn` | Blur: On | checkbox | 0 | 0 or 1 |
 | `T3InBlurPieces` | Blur: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3InBlurOrder` | Blur: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -429,7 +432,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InBlurStagger` | Blur: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InBlurFrom` | Blur: Start Value | number | 0.1 | slider 0 to 0.2 |
 | `T3InBlurTo` | Blur: End Value | number | 0 | slider 0 to 0.2 |
-| `T3InBlurEase` | Blur: Ease | choice | 5 | 0 to 30: the eases in section 6 |
+| `T3InBlurEase` | Blur: Ease | choice | 5 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3InBlurEaseCurve` | Blur: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3InPosOn` | Position: On | checkbox | 0 | 0 or 1 |
 | `T3InPosPieces` | Position: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3InPosOrder` | Position: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -442,7 +446,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InPosToX` | Position: End X | number | 0 | slider -2 to 2 |
 | `T3InPosToY` | Position: End Y | number | 0 | slider -2 to 2 |
 | `T3InPosToZ` | Position: End Z | number | 0 | slider -2 to 2 |
-| `T3InPosEase` | Position: Ease | choice | 5 | 0 to 30: the eases in section 6 |
+| `T3InPosEase` | Position: Ease | choice | 5 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3InPosEaseCurve` | Position: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3InSizeOn` | Size: On | checkbox | 0 | 0 or 1 |
 | `T3InSizePieces` | Size: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3InSizeOrder` | Size: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -451,7 +456,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InSizeStagger` | Size: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InSizeFrom` | Size: Start Value | number | 0 | slider 0 to 4 |
 | `T3InSizeTo` | Size: End Value | number | 1 | slider 0 to 4 |
-| `T3InSizeEase` | Size: Ease | choice | 23 | 0 to 30: the eases in section 6 |
+| `T3InSizeEase` | Size: Ease | choice | 23 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3InSizeEaseCurve` | Size: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3InTrackOn` | Tracking: On | checkbox | 0 | 0 or 1 |
 | `T3InTrackPieces` | Tracking: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3InTrackOrder` | Tracking: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -460,7 +466,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InTrackStagger` | Tracking: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InTrackFrom` | Tracking: Start Value | number | 2 | slider -1 to 3 |
 | `T3InTrackTo` | Tracking: End Value | number | 0 | slider -1 to 3 |
-| `T3InTrackEase` | Tracking: Ease | choice | 5 | 0 to 30: the eases in section 6 |
+| `T3InTrackEase` | Tracking: Ease | choice | 5 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3InTrackEaseCurve` | Tracking: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3InRotOn` | Rotation: On | checkbox | 0 | 0 or 1 |
 | `T3InRotPieces` | Rotation: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3InRotOrder` | Rotation: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -473,7 +480,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InRotToX` | Rotation: End X | number | 0 | slider -360 to 360 |
 | `T3InRotToY` | Rotation: End Y | number | 0 | slider -360 to 360 |
 | `T3InRotToZ` | Rotation: End Z | number | 0 | slider -360 to 360 |
-| `T3InRotEase` | Rotation: Ease | choice | 23 | 0 to 30: the eases in section 6 |
+| `T3InRotEase` | Rotation: Ease | choice | 23 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3InRotEaseCurve` | Rotation: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3InExplodeOn` | Explosion: On | checkbox | 0 | 0 or 1 |
 | `T3InExplodePieces` | Explosion: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3InExplodeOrder` | Explosion: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -489,7 +497,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InExplodeSpinZ` | Explosion: Spin Z | number | 240 | slider 0 to 1440 |
 | `T3InExplodePreRoll` | Explosion: Pre-Roll | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InExplodeReverse` | Explosion: Reverse | checkbox | 0 | 0 or 1 |
-| `T3InExplodeEase` | Explosion: Ease | choice | 5 | 0 to 30: the eases in section 6 |
+| `T3InExplodeEase` | Explosion: Ease | choice | 5 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3InExplodeEaseCurve` | Explosion: Ease Curve | string | "0.65 0 0.35 1" | text |
 
 **Out page**
 
@@ -502,7 +511,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutOpacityEnd` | Opacity: End Frame | integer | 115 | slider 0 to 250; at least 0 |
 | `T3OutOpacityStagger` | Opacity: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutOpacityTo` | Opacity: End Value | number | 0 | slider 0 to 1 |
-| `T3OutOpacityEase` | Opacity: Ease | choice | 1 | 0 to 30: the eases in section 6 |
+| `T3OutOpacityEase` | Opacity: Ease | choice | 1 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3OutOpacityEaseCurve` | Opacity: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3OutBlurOn` | Blur: On | checkbox | 0 | 0 or 1 |
 | `T3OutBlurPieces` | Blur: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3OutBlurOrder` | Blur: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -510,7 +520,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutBlurEnd` | Blur: End Frame | integer | 115 | slider 0 to 250; at least 0 |
 | `T3OutBlurStagger` | Blur: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutBlurTo` | Blur: End Value | number | 0.1 | slider 0 to 0.2 |
-| `T3OutBlurEase` | Blur: Ease | choice | 1 | 0 to 30: the eases in section 6 |
+| `T3OutBlurEase` | Blur: Ease | choice | 1 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3OutBlurEaseCurve` | Blur: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3OutPosOn` | Position: On | checkbox | 0 | 0 or 1 |
 | `T3OutPosPieces` | Position: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3OutPosOrder` | Position: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -520,7 +531,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutPosToX` | Position: End X | number | 0 | slider -2 to 2 |
 | `T3OutPosToY` | Position: End Y | number | 0.6 | slider -2 to 2 |
 | `T3OutPosToZ` | Position: End Z | number | 0 | slider -2 to 2 |
-| `T3OutPosEase` | Position: Ease | choice | 4 | 0 to 30: the eases in section 6 |
+| `T3OutPosEase` | Position: Ease | choice | 4 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3OutPosEaseCurve` | Position: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3OutSizeOn` | Size: On | checkbox | 0 | 0 or 1 |
 | `T3OutSizePieces` | Size: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3OutSizeOrder` | Size: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -528,7 +540,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutSizeEnd` | Size: End Frame | integer | 115 | slider 0 to 250; at least 0 |
 | `T3OutSizeStagger` | Size: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutSizeTo` | Size: End Value | number | 0 | slider 0 to 4 |
-| `T3OutSizeEase` | Size: Ease | choice | 22 | 0 to 30: the eases in section 6 |
+| `T3OutSizeEase` | Size: Ease | choice | 22 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3OutSizeEaseCurve` | Size: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3OutTrackOn` | Tracking: On | checkbox | 0 | 0 or 1 |
 | `T3OutTrackPieces` | Tracking: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3OutTrackOrder` | Tracking: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -536,7 +549,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutTrackEnd` | Tracking: End Frame | integer | 115 | slider 0 to 250; at least 0 |
 | `T3OutTrackStagger` | Tracking: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutTrackTo` | Tracking: End Value | number | 2 | slider -1 to 3 |
-| `T3OutTrackEase` | Tracking: Ease | choice | 4 | 0 to 30: the eases in section 6 |
+| `T3OutTrackEase` | Tracking: Ease | choice | 4 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3OutTrackEaseCurve` | Tracking: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3OutRotOn` | Rotation: On | checkbox | 0 | 0 or 1 |
 | `T3OutRotPieces` | Rotation: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3OutRotOrder` | Rotation: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -546,7 +560,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutRotToX` | Rotation: End X | number | -90 | slider -360 to 360 |
 | `T3OutRotToY` | Rotation: End Y | number | 0 | slider -360 to 360 |
 | `T3OutRotToZ` | Rotation: End Z | number | 0 | slider -360 to 360 |
-| `T3OutRotEase` | Rotation: Ease | choice | 22 | 0 to 30: the eases in section 6 |
+| `T3OutRotEase` | Rotation: Ease | choice | 22 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3OutRotEaseCurve` | Rotation: Ease Curve | string | "0.65 0 0.35 1" | text |
 | `T3OutExplodeOn` | Explosion: On | checkbox | 0 | 0 or 1 |
 | `T3OutExplodePieces` | Explosion: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3OutExplodeOrder` | Explosion: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -561,7 +576,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutExplodeSpinZ` | Explosion: Spin Z | number | 240 | slider 0 to 1440 |
 | `T3OutExplodePreRoll` | Explosion: Pre-Roll | integer | 0 | slider 0 to 250; at least 0 |
 | `T3OutExplodeReverse` | Explosion: Reverse | checkbox | 0 | 0 or 1 |
-| `T3OutExplodeEase` | Explosion: Ease | choice | 4 | 0 to 30: the eases in section 6 |
+| `T3OutExplodeEase` | Explosion: Ease | choice | 4 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3OutExplodeEaseCurve` | Explosion: Ease Curve | string | "0.65 0 0.35 1" | text |
 
 **Effects page**
 
