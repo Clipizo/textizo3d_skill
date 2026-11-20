@@ -214,15 +214,21 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
 - `FaceColor`: the front faces. `SideColor`: the sides and bevels. A darker or more saturated side colour gives depth.
 - `T3Roughness` (0 mirror to 1 matte, default 0.35) and `T3Metal` (0 plastic to 1 metal): metal takes its colour into its reflections (gold, chrome, copper); plastic reflects white highlights over its colour.
 - `T3Coat` (default 0.4) with `T3CoatRough` (0.06): a clear varnish on top that adds a sharp gloss, even on rough or coloured plastic. `T3Specular` (Reflectivity, default 1): the strength of non-metal reflections.
-- `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Glow).
+- `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Bloom).
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
-- **Glow** (2D, over the picture): `T3Glow` (0 to 3) blooms everything brighter than `T3GlowThreshold` (0 to 1), spread by `T3GlowSize` (default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
-- **Effects** (the Material page's Effects section; every one off by default, animated by the clip's time, light added like the glows):
-  - **Beyond the Letters** (`T3FxBeyond`, default 1): the effects spread round the letters (flames rise above them, mist sinks below). 0 keeps every effect inside the letters' shapes (letters filled with fire, frost or sparkles).
-  - **Fire** (`T3FireOn` 1): flames rising from the letters, drawn behind them, and embers drifting up. `T3FireFlames` (0 to 2, default 1; 0 leaves only embers), `T3FireHeight` (0 to 3, default 1: about a fifth of the frame's height), `T3FireEmbers` (0 to 3, default 1, how many sparks), `T3FireSpeed` (default 1), `FireColor` (the flames' main colour, default orange 1, 0.42, 0.06; their cores are hotter, their tips deeper). Made for the lava look (Textizo3D-03A); embers alone (`T3FireFlames` 0) suit the fight-night looks.
-  - **Frost** (`T3FrostOn` 1): cold mist sinking off the letters and snowflakes drifting down. `T3FrostMist` (0 to 2, 0 leaves only snow), `T3FrostHeight` (how far mist and snow fall), `T3FrostSnow` (0 to 3, how many flakes), `T3FrostSpeed`, `FrostColor` (default 0.75, 0.92, 1). Made for the ice look (Textizo3D-02A); also cold chrome.
+- **Bloom and Edge Glow** (2D, over the picture): Bloom, `T3Glow` (0 to 3), lights up everything brighter than `T3GlowThreshold` (Bloom Threshold, 0 to 1), spread by `T3GlowSize` (Bloom Size, default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
+- **Effects** (the Material page's sections Effect: Glow ... Effect: Confetti; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
+  - **Glow** (`T3GlowFxOn` 1): a soft glow round the whole text, behind it. `T3GlowFxAmount` (0 to 3, default 1), `T3GlowFxSize` (0 to 4, default 1: about 30 pixels), `T3GlowFxTextColors` (1, default: the letters' own colours; 0: `GlowFxColor`, default 1, 0.82, 0.35). The plugin is a generator, so Resolve's own Glow can't be put on it on the Edit page: this is the text's glow.
+  - **Fire** (`T3FireOn` 1): flames off the letters, drawn behind them, and embers flying. `T3FireFlames` (0 to 2, default 1; 0 leaves only embers), `T3FireHeight` (0 to 3, default 1: about a fifth of the frame's height), `T3FireEmbers` (0 to 3, default 1, how many sparks), `T3FireSpeed` (default 1), `T3FireDirection` (default 90, up), `FireColor` (the flames' main colour, default orange 1, 0.42, 0.06; their cores are hotter, their tips deeper). Made for the lava look (Textizo3D-03A); embers alone (`T3FireFlames` 0) suit the fight-night looks.
+  - **Frost** (`T3FrostOn` 1): cold mist off the letters and snowflakes drifting. `T3FrostMist` (0 to 2, 0 leaves only snow), `T3FrostHeight` (how far mist and snow go), `T3FrostSnow` (0 to 3, how many flakes), `T3FrostSpeed`, `T3FrostDirection` (default -90, down), `FrostColor` (default 0.75, 0.92, 1). Made for the ice look (Textizo3D-02A); also cold chrome.
+  - **Smoke** (`T3SmokeOn` 1): smoke drifting off the letters; unlike the light effects it covers what is behind it. `T3SmokeAmount` (0 to 2), `T3SmokeHeight` (0 to 3, default 1: about a third of the frame's height), `T3SmokeSpeed`, `T3SmokeDirection` (default 90, up), `SmokeColor` (default dark grey 0.32, 0.32, 0.35; white 0.9, 0.9, 0.9 for steam).
+  - **Electric** (`T3ElectricOn` 1): crackling arcs round the letters. `T3ElectricAmount` (0 to 3), `T3ElectricReach` (0 to 3, how far the arcs jump), `T3ElectricSpeed` (how fast they flicker), `ElectricColor` (default 0.45, 0.75, 1).
+  - **Light Rays** (`T3RaysOn` 1): rays streaming out from behind the letters, as if lit from behind. `T3RaysAmount` (0 to 3), `T3RaysLength` (0 to 3), `T3RaysDirection` (default 90, up), `RaysColor` (default warm white 1, 0.92, 0.75).
+  - **Shine** (`T3ShineOn` 1): a band of light sweeping across the letters, again and again. `T3ShineAmount` (0 to 3), `T3ShineWidth` (0 to 3), `T3ShineEvery` (seconds from one sweep to the next, default 2.5; the first starts at the clip's start), `T3ShineDirection` (the way the band travels, default -20), `ShineColor`. For gold, chrome and logos.
   - **Sparkles** (`T3SparkleOn` 1): four-point star glints twinkling on the letters. `T3SparkleAmount` (0 to 3), `T3SparkleSize` (0 to 3), `T3SparkleSpeed` (twinkle speed), `SparkleColor` (warm 1, 0.88, 0.55 on gold; icy 0.8, 0.95, 1 on ice). For gold, chrome, diamond, pearl and money.
-  - Effects make every frame move, so they are drawn frame by frame (Reuse Still Frames can't hold them); a 1080p frame costs about 2 ms more.
+  - **Glitch** (`T3GlitchOn` 1): now and then slices of the picture jump and its colours split. `T3GlitchAmount` (0 to 3, how far), `T3GlitchFrequency` (0 to 3, how often), `T3GlitchDirection` (the way the slices jump, default 0: sideways).
+  - **Confetti** (`T3ConfettiOn` 1): solid confetti tumbling through the whole frame. `T3ConfettiAmount` (0 to 3), `T3ConfettiSize` (0 to 3), `T3ConfettiSpeed`, `T3ConfettiDirection` (default -90, falling), `T3ConfettiMany` (1, default: party colours; 0: shades of `ConfettiColor`).
+  - Effects make every frame move, so they are drawn frame by frame (Reuse Still Frames can't hold them). A 1080p frame takes a few milliseconds more; all ten together about 11 ms.
 
 ## 9. Camera
 
@@ -553,31 +559,74 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3ScratchSeed` | Wear Details: Scratch Seed | number | 0 | slider 0 to 100 |
 | `T3SmudgeSize` | Wear Details: Smudge Size | number | 1 | slider 0.2 to 4; at least 0.05 |
 | `T3SmudgeSeed` | Wear Details: Smudge Seed | number | 0 | slider 0 to 100 |
-| `T3EdgeGlow` | Glow: Edge Glow | number | 0 | slider 0 to 3; at least 0 |
-| `T3Glow` | Glow | number | 0 | slider 0 to 3; at least 0 |
-| `EdgeColor` (`EdgeColorRed`, `EdgeColorGreen`, `EdgeColorBlue`) | Glow Details: Edge Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
-| `T3EdgeWidth` | Glow Details: Edge Width | number | 2 | slider 0.5 to 10; at least 0 |
-| `T3EdgeSoft` | Glow Details: Edge Softness | number | 6 | slider 0 to 30; at least 0 |
-| `T3GlowSize` | Glow Details: Glow Size | number | 20 | slider 1 to 100; at least 0 |
-| `T3GlowThreshold` | Glow Details: Glow Threshold | number | 0.7 | slider 0 to 1; at least 0 |
-| `T3FxBeyond` | Effects: Beyond the Letters | checkbox | 1 | 0 or 1 |
-| `T3FireOn` | Effects: Fire | checkbox | 0 | 0 or 1 |
-| `T3FireFlames` | Effects: Flames | number | 1 | slider 0 to 2; at least 0 |
-| `T3FireHeight` | Effects: Flame Height | number | 1 | slider 0 to 3; at least 0 |
-| `T3FireEmbers` | Effects: Embers | number | 1 | slider 0 to 3; at least 0 |
-| `T3FireSpeed` | Effects: Fire Speed | number | 1 | slider 0 to 3; at least 0 |
-| `FireColor` (`FireColorRed`, `FireColorGreen`, `FireColorBlue`) | Effects: Fire Color | color | [1, 0.42, 0.06] | red, green, blue from 0 to 1 |
-| `T3FrostOn` | Effects: Frost | checkbox | 0 | 0 or 1 |
-| `T3FrostMist` | Effects: Mist | number | 1 | slider 0 to 2; at least 0 |
-| `T3FrostHeight` | Effects: Mist Reach | number | 1 | slider 0 to 3; at least 0 |
-| `T3FrostSnow` | Effects: Snow | number | 1 | slider 0 to 3; at least 0 |
-| `T3FrostSpeed` | Effects: Frost Speed | number | 1 | slider 0 to 3; at least 0 |
-| `FrostColor` (`FrostColorRed`, `FrostColorGreen`, `FrostColorBlue`) | Effects: Frost Color | color | [0.75, 0.92, 1] | red, green, blue from 0 to 1 |
-| `T3SparkleOn` | Effects: Sparkles | checkbox | 0 | 0 or 1 |
-| `T3SparkleAmount` | Effects: Sparkle Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3SparkleSize` | Effects: Sparkle Size | number | 1 | slider 0 to 3; at least 0 |
-| `T3SparkleSpeed` | Effects: Twinkle Speed | number | 1 | slider 0 to 3; at least 0 |
-| `SparkleColor` (`SparkleColorRed`, `SparkleColorGreen`, `SparkleColorBlue`) | Effects: Sparkle Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
+| `T3EdgeGlow` | Bloom and Edge Glow: Edge Glow | number | 0 | slider 0 to 3; at least 0 |
+| `T3Glow` | Bloom and Edge Glow: Bloom | number | 0 | slider 0 to 3; at least 0 |
+| `EdgeColor` (`EdgeColorRed`, `EdgeColorGreen`, `EdgeColorBlue`) | Bloom and Edge Details: Edge Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
+| `T3EdgeWidth` | Bloom and Edge Details: Edge Width | number | 2 | slider 0.5 to 10; at least 0 |
+| `T3EdgeSoft` | Bloom and Edge Details: Edge Softness | number | 6 | slider 0 to 30; at least 0 |
+| `T3GlowSize` | Bloom and Edge Details: Bloom Size | number | 20 | slider 1 to 100; at least 0 |
+| `T3GlowThreshold` | Bloom and Edge Details: Bloom Threshold | number | 0.7 | slider 0 to 1; at least 0 |
+| `T3GlowFxOn` | Effect: Glow: Glow | checkbox | 0 | 0 or 1 |
+| `T3GlowFxAmount` | Effect: Glow: Glow Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3GlowFxSize` | Effect: Glow: Glow Size | number | 1 | slider 0 to 4; at least 0 |
+| `T3GlowFxTextColors` | Effect: Glow: Text's Colors | checkbox | 1 | 0 or 1 |
+| `GlowFxColor` (`GlowFxColorRed`, `GlowFxColorGreen`, `GlowFxColorBlue`) | Effect: Glow: Glow Color | color | [1, 0.82, 0.35] | red, green, blue from 0 to 1 |
+| `T3FireOn` | Effect: Fire: Fire | checkbox | 0 | 0 or 1 |
+| `T3FireInside` | Effect: Fire: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3FireFlames` | Effect: Fire: Flames | number | 1 | slider 0 to 2; at least 0 |
+| `T3FireHeight` | Effect: Fire: Flame Height | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireEmbers` | Effect: Fire: Embers | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireSpeed` | Effect: Fire: Fire Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3FireDirection` | Effect: Fire: Fire Direction | number | 90 | slider -180 to 180 |
+| `FireColor` (`FireColorRed`, `FireColorGreen`, `FireColorBlue`) | Effect: Fire: Fire Color | color | [1, 0.42, 0.06] | red, green, blue from 0 to 1 |
+| `T3FrostOn` | Effect: Frost: Frost | checkbox | 0 | 0 or 1 |
+| `T3FrostInside` | Effect: Frost: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3FrostMist` | Effect: Frost: Mist | number | 1 | slider 0 to 2; at least 0 |
+| `T3FrostHeight` | Effect: Frost: Mist Reach | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostSnow` | Effect: Frost: Snow | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostSpeed` | Effect: Frost: Frost Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3FrostDirection` | Effect: Frost: Frost Direction | number | -90 | slider -180 to 180 |
+| `FrostColor` (`FrostColorRed`, `FrostColorGreen`, `FrostColorBlue`) | Effect: Frost: Frost Color | color | [0.75, 0.92, 1] | red, green, blue from 0 to 1 |
+| `T3SmokeOn` | Effect: Smoke: Smoke | checkbox | 0 | 0 or 1 |
+| `T3SmokeInside` | Effect: Smoke: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3SmokeAmount` | Effect: Smoke: Smoke Amount | number | 1 | slider 0 to 2; at least 0 |
+| `T3SmokeHeight` | Effect: Smoke: Smoke Height | number | 1 | slider 0 to 3; at least 0 |
+| `T3SmokeSpeed` | Effect: Smoke: Smoke Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3SmokeDirection` | Effect: Smoke: Smoke Direction | number | 90 | slider -180 to 180 |
+| `SmokeColor` (`SmokeColorRed`, `SmokeColorGreen`, `SmokeColorBlue`) | Effect: Smoke: Smoke Color | color | [0.32, 0.32, 0.35] | red, green, blue from 0 to 1 |
+| `T3ElectricOn` | Effect: Electric: Electric | checkbox | 0 | 0 or 1 |
+| `T3ElectricInside` | Effect: Electric: Inside the Letters | checkbox | 0 | 0 or 1 |
+| `T3ElectricAmount` | Effect: Electric: Electric Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3ElectricReach` | Effect: Electric: Arc Reach | number | 1 | slider 0 to 3; at least 0 |
+| `T3ElectricSpeed` | Effect: Electric: Flicker Speed | number | 1 | slider 0 to 3; at least 0 |
+| `ElectricColor` (`ElectricColorRed`, `ElectricColorGreen`, `ElectricColorBlue`) | Effect: Electric: Electric Color | color | [0.45, 0.75, 1] | red, green, blue from 0 to 1 |
+| `T3RaysOn` | Effect: Light Rays: Light Rays | checkbox | 0 | 0 or 1 |
+| `T3RaysAmount` | Effect: Light Rays: Ray Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3RaysLength` | Effect: Light Rays: Ray Length | number | 1 | slider 0 to 3; at least 0 |
+| `T3RaysDirection` | Effect: Light Rays: Ray Direction | number | 90 | slider -180 to 180 |
+| `RaysColor` (`RaysColorRed`, `RaysColorGreen`, `RaysColorBlue`) | Effect: Light Rays: Ray Color | color | [1, 0.92, 0.75] | red, green, blue from 0 to 1 |
+| `T3ShineOn` | Effect: Shine: Shine | checkbox | 0 | 0 or 1 |
+| `T3ShineAmount` | Effect: Shine: Shine Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3ShineWidth` | Effect: Shine: Shine Width | number | 1 | slider 0 to 3; at least 0 |
+| `T3ShineEvery` | Effect: Shine: Shine Every (seconds) | number | 2.5 | slider 0 to 10; at least 0 |
+| `T3ShineDirection` | Effect: Shine: Shine Direction | number | -20 | slider -180 to 180 |
+| `ShineColor` (`ShineColorRed`, `ShineColorGreen`, `ShineColorBlue`) | Effect: Shine: Shine Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
+| `T3SparkleOn` | Effect: Sparkles: Sparkles | checkbox | 0 | 0 or 1 |
+| `T3SparkleAmount` | Effect: Sparkles: Sparkle Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3SparkleSize` | Effect: Sparkles: Sparkle Size | number | 1 | slider 0 to 3; at least 0 |
+| `T3SparkleSpeed` | Effect: Sparkles: Twinkle Speed | number | 1 | slider 0 to 3; at least 0 |
+| `SparkleColor` (`SparkleColorRed`, `SparkleColorGreen`, `SparkleColorBlue`) | Effect: Sparkles: Sparkle Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
+| `T3GlitchOn` | Effect: Glitch: Glitch | checkbox | 0 | 0 or 1 |
+| `T3GlitchAmount` | Effect: Glitch: Glitch Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3GlitchFrequency` | Effect: Glitch: Glitch Frequency | number | 1 | slider 0 to 3; at least 0 |
+| `T3GlitchDirection` | Effect: Glitch: Glitch Direction | number | 0 | slider -180 to 180 |
+| `T3ConfettiOn` | Effect: Confetti: Confetti | checkbox | 0 | 0 or 1 |
+| `T3ConfettiAmount` | Effect: Confetti: Confetti Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3ConfettiSize` | Effect: Confetti: Confetti Size | number | 1 | slider 0 to 3; at least 0 |
+| `T3ConfettiSpeed` | Effect: Confetti: Confetti Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3ConfettiDirection` | Effect: Confetti: Confetti Direction | number | -90 | slider -180 to 180 |
+| `T3ConfettiMany` | Effect: Confetti: Many Colors | checkbox | 1 | 0 or 1 |
+| `ConfettiColor` (`ConfettiColorRed`, `ConfettiColorGreen`, `ConfettiColorBlue`) | Effect: Confetti: Confetti Color | color | [1, 0.85, 0.2] | red, green, blue from 0 to 1 |
 
 **Camera page**
 

@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-20",
- "parameters": "t3_params_gen.h 73f496bc7eaa",
+ "parameters": "t3_params_gen.h 408465b6589d",
  "pages": [
   "Text",
   "In",
@@ -2783,7 +2783,7 @@
   "T3EdgeGlow": {
    "label": "Edge Glow",
    "page": "Material",
-   "section": "Glow",
+   "section": "Bloom and Edge Glow",
    "kind": "number",
    "role": "public",
    "default": 0.0,
@@ -2794,9 +2794,9 @@
    ]
   },
   "T3Glow": {
-   "label": "Glow",
+   "label": "Bloom",
    "page": "Material",
-   "section": "Glow",
+   "section": "Bloom and Edge Glow",
    "kind": "number",
    "role": "public",
    "default": 0.0,
@@ -2809,7 +2809,7 @@
   "EdgeColor": {
    "label": "Edge Color",
    "page": "Material",
-   "section": "Glow Details",
+   "section": "Bloom and Edge Details",
    "kind": "color",
    "role": "public",
    "default": [
@@ -2826,7 +2826,7 @@
   "T3EdgeWidth": {
    "label": "Edge Width",
    "page": "Material",
-   "section": "Glow Details",
+   "section": "Bloom and Edge Details",
    "kind": "number",
    "role": "public",
    "default": 2.0,
@@ -2839,7 +2839,7 @@
   "T3EdgeSoft": {
    "label": "Edge Softness",
    "page": "Material",
-   "section": "Glow Details",
+   "section": "Bloom and Edge Details",
    "kind": "number",
    "role": "public",
    "default": 6.0,
@@ -2850,9 +2850,9 @@
    ]
   },
   "T3GlowSize": {
-   "label": "Glow Size",
+   "label": "Bloom Size",
    "page": "Material",
-   "section": "Glow Details",
+   "section": "Bloom and Edge Details",
    "kind": "number",
    "role": "public",
    "default": 20.0,
@@ -2863,9 +2863,9 @@
    ]
   },
   "T3GlowThreshold": {
-   "label": "Glow Threshold",
+   "label": "Bloom Threshold",
    "page": "Material",
-   "section": "Glow Details",
+   "section": "Bloom and Edge Details",
    "kind": "number",
    "role": "public",
    "default": 0.7,
@@ -3506,28 +3506,90 @@
    ],
    "hint": "Multiplies the shaders' iTime."
   },
-  "T3FxBeyond": {
-   "label": "Beyond the Letters",
+  "T3GlowFxOn": {
+   "label": "Glow",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Glow",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "A soft glow round the whole text, in its own colours or one colour."
+  },
+  "T3GlowFxAmount": {
+   "label": "Glow Amount",
+   "page": "Material",
+   "section": "Effect: Glow",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3GlowFxSize": {
+   "label": "Glow Size",
+   "page": "Material",
+   "section": "Effect: Glow",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    4.0
+   ],
+   "hint": "How far the glow spreads."
+  },
+  "T3GlowFxTextColors": {
+   "label": "Text's Colors",
+   "page": "Material",
+   "section": "Effect: Glow",
    "kind": "checkbox",
    "role": "public",
    "default": 1,
-   "hint": "On: the effects spread round the letters. Off: they stay inside the letters' shapes."
+   "hint": "On: the glow takes the letters' own colours. Off: Glow Color."
+  },
+  "GlowFxColor": {
+   "label": "Glow Color",
+   "page": "Material",
+   "section": "Effect: Glow",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    0.82,
+    0.35
+   ],
+   "fusion": [
+    "GlowFxColorRed",
+    "GlowFxColorGreen",
+    "GlowFxColorBlue"
+   ]
   },
   "T3FireOn": {
    "label": "Fire",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Fire",
    "kind": "checkbox",
    "role": "public",
    "default": 0,
    "hint": "Flames, embers and heat round the letters (light added over the picture)."
   },
+  "T3FireInside": {
+   "label": "Inside the Letters",
+   "page": "Material",
+   "section": "Effect: Fire",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Keeps the fire within the letters' shapes."
+  },
   "T3FireFlames": {
    "label": "Flames",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Fire",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3541,7 +3603,7 @@
   "T3FireHeight": {
    "label": "Flame Height",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Fire",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3550,12 +3612,12 @@
     0.0,
     3.0
    ],
-   "hint": "How high the flames reach."
+   "hint": "How far the flames reach."
   },
   "T3FireEmbers": {
    "label": "Embers",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Fire",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3564,12 +3626,12 @@
     0.0,
     3.0
    ],
-   "hint": "How many sparks rise from the letters."
+   "hint": "How many sparks fly off the letters."
   },
   "T3FireSpeed": {
    "label": "Fire Speed",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Fire",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3579,10 +3641,23 @@
     3.0
    ]
   },
+  "T3FireDirection": {
+   "label": "Fire Direction",
+   "page": "Material",
+   "section": "Effect: Fire",
+   "kind": "number",
+   "role": "public",
+   "default": 90.0,
+   "slider": [
+    -180.0,
+    180.0
+   ],
+   "hint": "The way the flames and embers go, in degrees: 90 up, 0 right, -90 down."
+  },
   "FireColor": {
    "label": "Fire Color",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Fire",
    "kind": "color",
    "role": "public",
    "default": [
@@ -3600,16 +3675,25 @@
   "T3FrostOn": {
    "label": "Frost",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Frost",
    "kind": "checkbox",
    "role": "public",
    "default": 0,
    "hint": "Cold mist and snow round the letters (light added over the picture)."
   },
+  "T3FrostInside": {
+   "label": "Inside the Letters",
+   "page": "Material",
+   "section": "Effect: Frost",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Keeps the mist and snow within the letters' shapes."
+  },
   "T3FrostMist": {
    "label": "Mist",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Frost",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3618,12 +3702,12 @@
     0.0,
     2.0
    ],
-   "hint": "How dense the mist sinking off the letters is (0: snow only)."
+   "hint": "How dense the mist off the letters is (0: snow only)."
   },
   "T3FrostHeight": {
    "label": "Mist Reach",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Frost",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3632,12 +3716,12 @@
     0.0,
     3.0
    ],
-   "hint": "How far the mist and snow fall."
+   "hint": "How far the mist and snow go."
   },
   "T3FrostSnow": {
    "label": "Snow",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Frost",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3646,12 +3730,12 @@
     0.0,
     3.0
    ],
-   "hint": "How many flakes drift down from the letters."
+   "hint": "How many flakes drift off the letters."
   },
   "T3FrostSpeed": {
    "label": "Frost Speed",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Frost",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3661,10 +3745,23 @@
     3.0
    ]
   },
+  "T3FrostDirection": {
+   "label": "Frost Direction",
+   "page": "Material",
+   "section": "Effect: Frost",
+   "kind": "number",
+   "role": "public",
+   "default": -90.0,
+   "slider": [
+    -180.0,
+    180.0
+   ],
+   "hint": "The way the mist and snow go, in degrees: -90 down, 90 up."
+  },
   "FrostColor": {
    "label": "Frost Color",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Frost",
    "kind": "color",
    "role": "public",
    "default": [
@@ -3678,10 +3775,317 @@
     "FrostColorBlue"
    ]
   },
+  "T3SmokeOn": {
+   "label": "Smoke",
+   "page": "Material",
+   "section": "Effect: Smoke",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Smoke drifting off the letters (it covers what is behind it)."
+  },
+  "T3SmokeInside": {
+   "label": "Inside the Letters",
+   "page": "Material",
+   "section": "Effect: Smoke",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Keeps the smoke within the letters' shapes."
+  },
+  "T3SmokeAmount": {
+   "label": "Smoke Amount",
+   "page": "Material",
+   "section": "Effect: Smoke",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ]
+  },
+  "T3SmokeHeight": {
+   "label": "Smoke Height",
+   "page": "Material",
+   "section": "Effect: Smoke",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How far the smoke goes."
+  },
+  "T3SmokeSpeed": {
+   "label": "Smoke Speed",
+   "page": "Material",
+   "section": "Effect: Smoke",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3SmokeDirection": {
+   "label": "Smoke Direction",
+   "page": "Material",
+   "section": "Effect: Smoke",
+   "kind": "number",
+   "role": "public",
+   "default": 90.0,
+   "slider": [
+    -180.0,
+    180.0
+   ],
+   "hint": "The way the smoke drifts, in degrees: 90 up, 0 right."
+  },
+  "SmokeColor": {
+   "label": "Smoke Color",
+   "page": "Material",
+   "section": "Effect: Smoke",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.32,
+    0.32,
+    0.35
+   ],
+   "fusion": [
+    "SmokeColorRed",
+    "SmokeColorGreen",
+    "SmokeColorBlue"
+   ]
+  },
+  "T3ElectricOn": {
+   "label": "Electric",
+   "page": "Material",
+   "section": "Effect: Electric",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Crackling electric arcs round the letters."
+  },
+  "T3ElectricInside": {
+   "label": "Inside the Letters",
+   "page": "Material",
+   "section": "Effect: Electric",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Keeps the arcs within the letters' shapes."
+  },
+  "T3ElectricAmount": {
+   "label": "Electric Amount",
+   "page": "Material",
+   "section": "Effect: Electric",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3ElectricReach": {
+   "label": "Arc Reach",
+   "page": "Material",
+   "section": "Effect: Electric",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How far the arcs jump from the letters."
+  },
+  "T3ElectricSpeed": {
+   "label": "Flicker Speed",
+   "page": "Material",
+   "section": "Effect: Electric",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "ElectricColor": {
+   "label": "Electric Color",
+   "page": "Material",
+   "section": "Effect: Electric",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    0.45,
+    0.75,
+    1.0
+   ],
+   "fusion": [
+    "ElectricColorRed",
+    "ElectricColorGreen",
+    "ElectricColorBlue"
+   ]
+  },
+  "T3RaysOn": {
+   "label": "Light Rays",
+   "page": "Material",
+   "section": "Effect: Light Rays",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Rays of light streaming out from behind the letters."
+  },
+  "T3RaysAmount": {
+   "label": "Ray Amount",
+   "page": "Material",
+   "section": "Effect: Light Rays",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3RaysLength": {
+   "label": "Ray Length",
+   "page": "Material",
+   "section": "Effect: Light Rays",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3RaysDirection": {
+   "label": "Ray Direction",
+   "page": "Material",
+   "section": "Effect: Light Rays",
+   "kind": "number",
+   "role": "public",
+   "default": 90.0,
+   "slider": [
+    -180.0,
+    180.0
+   ],
+   "hint": "The way the rays shine, in degrees: 90 up, 0 right, -90 down."
+  },
+  "RaysColor": {
+   "label": "Ray Color",
+   "page": "Material",
+   "section": "Effect: Light Rays",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    0.92,
+    0.75
+   ],
+   "fusion": [
+    "RaysColorRed",
+    "RaysColorGreen",
+    "RaysColorBlue"
+   ]
+  },
+  "T3ShineOn": {
+   "label": "Shine",
+   "page": "Material",
+   "section": "Effect: Shine",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "A band of light sweeping across the letters, again and again."
+  },
+  "T3ShineAmount": {
+   "label": "Shine Amount",
+   "page": "Material",
+   "section": "Effect: Shine",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3ShineWidth": {
+   "label": "Shine Width",
+   "page": "Material",
+   "section": "Effect: Shine",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3ShineEvery": {
+   "label": "Shine Every (seconds)",
+   "page": "Material",
+   "section": "Effect: Shine",
+   "kind": "number",
+   "role": "public",
+   "default": 2.5,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    10.0
+   ],
+   "hint": "The time from one sweep to the next."
+  },
+  "T3ShineDirection": {
+   "label": "Shine Direction",
+   "page": "Material",
+   "section": "Effect: Shine",
+   "kind": "number",
+   "role": "public",
+   "default": -20.0,
+   "slider": [
+    -180.0,
+    180.0
+   ],
+   "hint": "The way the band travels, in degrees: 0 left to right, 90 up."
+  },
+  "ShineColor": {
+   "label": "Shine Color",
+   "page": "Material",
+   "section": "Effect: Shine",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    1.0,
+    1.0
+   ],
+   "fusion": [
+    "ShineColorRed",
+    "ShineColorGreen",
+    "ShineColorBlue"
+   ]
+  },
   "T3SparkleOn": {
    "label": "Sparkles",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Sparkles",
    "kind": "checkbox",
    "role": "public",
    "default": 0,
@@ -3690,7 +4094,7 @@
   "T3SparkleAmount": {
    "label": "Sparkle Amount",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Sparkles",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3703,7 +4107,7 @@
   "T3SparkleSize": {
    "label": "Sparkle Size",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Sparkles",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3716,7 +4120,7 @@
   "T3SparkleSpeed": {
    "label": "Twinkle Speed",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Sparkles",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -3729,7 +4133,7 @@
   "SparkleColor": {
    "label": "Sparkle Color",
    "page": "Material",
-   "section": "Effects",
+   "section": "Effect: Sparkles",
    "kind": "color",
    "role": "public",
    "default": [
@@ -3741,6 +4145,142 @@
     "SparkleColorRed",
     "SparkleColorGreen",
     "SparkleColorBlue"
+   ]
+  },
+  "T3GlitchOn": {
+   "label": "Glitch",
+   "page": "Material",
+   "section": "Effect: Glitch",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Digital glitches: slices of the text jump and its colours split, now and then."
+  },
+  "T3GlitchAmount": {
+   "label": "Glitch Amount",
+   "page": "Material",
+   "section": "Effect: Glitch",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3GlitchFrequency": {
+   "label": "Glitch Frequency",
+   "page": "Material",
+   "section": "Effect: Glitch",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How often it glitches."
+  },
+  "T3GlitchDirection": {
+   "label": "Glitch Direction",
+   "page": "Material",
+   "section": "Effect: Glitch",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -180.0,
+    180.0
+   ],
+   "hint": "The way the slices jump, in degrees: 0 sideways, 90 up and down."
+  },
+  "T3ConfettiOn": {
+   "label": "Confetti",
+   "page": "Material",
+   "section": "Effect: Confetti",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Confetti tumbling through the frame (solid pieces over the picture)."
+  },
+  "T3ConfettiAmount": {
+   "label": "Confetti Amount",
+   "page": "Material",
+   "section": "Effect: Confetti",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3ConfettiSize": {
+   "label": "Confetti Size",
+   "page": "Material",
+   "section": "Effect: Confetti",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3ConfettiSpeed": {
+   "label": "Confetti Speed",
+   "page": "Material",
+   "section": "Effect: Confetti",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
+  },
+  "T3ConfettiDirection": {
+   "label": "Confetti Direction",
+   "page": "Material",
+   "section": "Effect: Confetti",
+   "kind": "number",
+   "role": "public",
+   "default": -90.0,
+   "slider": [
+    -180.0,
+    180.0
+   ],
+   "hint": "The way the confetti falls, in degrees: -90 down."
+  },
+  "T3ConfettiMany": {
+   "label": "Many Colors",
+   "page": "Material",
+   "section": "Effect: Confetti",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1,
+   "hint": "On: party colours. Off: Confetti Color."
+  },
+  "ConfettiColor": {
+   "label": "Confetti Color",
+   "page": "Material",
+   "section": "Effect: Confetti",
+   "kind": "color",
+   "role": "public",
+   "default": [
+    1.0,
+    0.85,
+    0.2
+   ],
+   "fusion": [
+    "ConfettiColorRed",
+    "ConfettiColorGreen",
+    "ConfettiColorBlue"
    ]
   }
  },
