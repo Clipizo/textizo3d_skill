@@ -1,0 +1,68 @@
+{
+  "name": "Textizo3D-11A",
+  "notes": "Pearl puff: inflated italic letters, pearly white-blue faces, blue rims, white specular streaks.",
+  "text": "VIBES",
+  "font": "Fredoka",
+  "style": "Bold Italic",
+  "in": {
+    "opacity": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 10,
+      "stagger": 35,
+      "from": 0,
+      "to": 1,
+      "ease": "out_quad"
+    },
+    "blur": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 14,
+      "stagger": 35,
+      "from": 0.1,
+      "to": 0,
+      "ease": "out_cubic"
+    },
+    "size": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 14,
+      "stagger": 35,
+      "from": 1.25,
+      "to": 1,
+      "ease": "out_back"
+    }
+  },
+  "inputs": {
+    "RotationX": -3,
+    "RotationY": -8,
+    "BevelDepth": 0.09,
+    "BevelWidth": 0.09,
+    "SmoothingAngle": 90,
+    "FaceColor": [0.95, 0.98, 1.0],
+    "SideColor": [0.24, 0.53, 0.73],
+    "T3Roughness": 0.18,
+    "T3Coat": 1,
+    "T3CoatRough": 0.02,
+    "T3Smudges": 0,
+    "T3EdgeGlow": 0.5,
+    "T3Glow": 0.4,
+    "EdgeColor": [0.6, 0.85, 1.0],
+    "T3EdgeWidth": 0.5,
+    "T3GlowSize": 30,
+    "T3GlowThreshold": 0.75,
+    "T3CamDistance": 4,
+    "T3CamFov": 36,
+    "T3CamOrbit": -6,
+    "T3CamTilt": 2,
+    "T3KeyIntensity": 0.6,
+    "T3FillIntensity": 0.4,
+    "T3AmbientIntensity": 0.1,
+    "FillColor": [0.5, 0.7, 1.0],
+    "T3EnvIntensity": 1.4,
+    "EnvImage": "textures/env-studio.hdr"
+  }
+}

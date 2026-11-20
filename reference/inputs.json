@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3DFX1",
  "generated": "2026-11-20",
- "parameters": "t3_params_gen.h e2c56af17ab7",
+ "parameters": "t3_params_gen.h 9ccfbc0ac55a",
  "pages": [
   "Text",
   "In",
@@ -36,7 +36,11 @@
     "Textizo3D-08A",
     "Textizo3D-09A",
     "Textizo3D-10A",
-    "Textizo3D-11A"
+    "Textizo3D-11A",
+    "Textizo3D-12A",
+    "Textizo3D-13A",
+    "Textizo3D-14A",
+    "Textizo3D-15A"
    ],
    "hint": "Applies a ready-made Textizo3D look and keeps your text."
   },
@@ -3508,7 +3512,91 @@
    "index": 1,
    "name": "Textizo3D-01A",
    "text": "$1,000",
-   "about": "Game Show: glossy green faces, green sides, plastic, worn (dents and scratches), edge glow, glow, shadow on the wall, no animation"
+   "about": "Money: glossy green with dents and scratches, a green edge glow and bloom, a soft shadow on a wall behind."
+  },
+  {
+   "index": 2,
+   "name": "Textizo3D-02A",
+   "text": "ICE COLD",
+   "about": "Ice: chunky letters of clear cyan ice, white caustics inside, a thick rounded bevel, cool bloom."
+  },
+  {
+   "index": 3,
+   "name": "Textizo3D-03A",
+   "text": "ON FIRE",
+   "about": "Lava: chunky lumpy letters of marbled molten lava, self-lit, a yellow edge glow, a deep rounded bevel."
+  },
+  {
+   "index": 4,
+   "name": "Textizo3D-04A",
+   "text": "LEGEND",
+   "about": "Sky chrome: white chrome faces, the sky's blue in the chamfer and the sides, deep extrusion, low camera."
+  },
+  {
+   "index": 5,
+   "name": "Textizo3D-05A",
+   "text": "WINNER",
+   "about": "Gold: bright yellow-gold faces, darker brown-gold sides, a hard chamfer catching the light, low camera."
+  },
+  {
+   "index": 6,
+   "name": "Textizo3D-06A",
+   "text": "2026",
+   "about": "Brushed steel: pale blue-grey brushed faces, near-black steel sides, low camera."
+  },
+  {
+   "index": 7,
+   "name": "Textizo3D-07A",
+   "text": "PLAYER 1",
+   "about": "Game-show names: glossy light-blue plastic, deeper blue sides, deep extrusion, soft light from the top."
+  },
+  {
+   "index": 8,
+   "name": "Textizo3D-08A",
+   "text": "$5,000",
+   "about": "Money, green: glossy bright green, a dark green extrusion as its outline, a green-lit top, a green bloom."
+  },
+  {
+   "index": 9,
+   "name": "Textizo3D-09A",
+   "text": "-$400",
+   "about": "Money, red: glossy red faces with a crisp white stroke, a red-brown extrusion."
+  },
+  {
+   "index": 10,
+   "name": "Textizo3D-10A",
+   "text": "2026",
+   "about": "Gold numbers: pale-to-deep yellow faces on a deep navy extrusion, star glints."
+  },
+  {
+   "index": 11,
+   "name": "Textizo3D-11A",
+   "text": "VIBES",
+   "about": "Pearl puff: inflated italic letters, pearly white-blue faces, blue rims, white specular streaks."
+  },
+  {
+   "index": 12,
+   "name": "Textizo3D-12A",
+   "text": "SAVAGE",
+   "about": "Bandana: black paisley print on each letter, black sides, a fiery rim and fire light from below."
+  },
+  {
+   "index": 13,
+   "name": "Textizo3D-13A",
+   "text": "WILD",
+   "about": "Leopard: leopard print on the faces, dark brown sides, fire light from below."
+  },
+  {
+   "index": 14,
+   "name": "Textizo3D-14A",
+   "text": "MAIN EVENT",
+   "about": "Fight poster: worn white print, a shallow dark-red extrusion, a red glow from below, a soft shadow behind."
+  },
+  {
+   "index": 15,
+   "name": "Textizo3D-15A",
+   "text": "FIGHT NIGHT",
+   "about": "Arena chrome: silver letters lit by a ring's red and blue lights, a red edge glow."
   }
  ],
  "fonts": [
@@ -4169,5 +4257,24 @@
    "style": "Regular"
   }
  ],
- "textures": []
+ "textures": [
+  "textures/camo.jpg",
+  "textures/carbon-fiber.jpg",
+  "textures/diamond-glitter.jpg",
+  "textures/distressed-white.jpg",
+  "textures/env-arena.hdr",
+  "textures/env-sky.hdr",
+  "textures/env-studio.hdr",
+  "textures/env-sunset.hdr",
+  "textures/gold-brushed.jpg",
+  "textures/gold-glitter.jpg",
+  "textures/gold-gradient.jpg",
+  "textures/ice-caustics.jpg",
+  "textures/ice.jpg",
+  "textures/lava-molten.jpg",
+  "textures/lava.jpg",
+  "textures/leopard.jpg",
+  "textures/paisley.jpg",
+  "textures/silver-brushed.jpg"
+ ]
 }

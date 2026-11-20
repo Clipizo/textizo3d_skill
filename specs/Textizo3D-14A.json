@@ -1,0 +1,58 @@
+{
+  "name": "Textizo3D-14A",
+  "notes": "Fight poster: worn white print, a shallow dark-red extrusion, a red glow from below, a soft shadow behind.",
+  "text": "MAIN EVENT",
+  "font": "Anton",
+  "style": "Regular",
+  "in": {
+    "opacity": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 4,
+      "stagger": 30,
+      "from": 0,
+      "to": 1,
+      "ease": "out_quad"
+    },
+    "size": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 6,
+      "stagger": 30,
+      "from": 1.4,
+      "to": 1,
+      "ease": "out_expo"
+    }
+  },
+  "inputs": {
+    "ExtrusionDepth": 0.12,
+    "BevelDepth": 0,
+    "BevelWidth": 0,
+    "SideColor": [0.22, 0.02, 0.01],
+    "T3Roughness": 0.6,
+    "T3Coat": 0,
+    "T3Smudges": 0,
+    "T3CamDistance": 3.2,
+    "T3CamFov": 34,
+    "T3CamOrbit": 0,
+    "T3CamTilt": 2,
+    "MotionBlur": true,
+    "BlurQuality": 6,
+    "T3KeyIntensity": 1,
+    "T3KeyAngle": -20,
+    "T3KeyHeight": 45,
+    "T3WallMode": "Shadow Only",
+    "T3ShadowDarkness": 0.7,
+    "T3ShadowSoftness": 0.03,
+    "T3WallDistance": 0.3,
+    "T3FillIntensity": 0.2,
+    "T3AmbientIntensity": 0.25,
+    "T3UnderIntensity": 0.8,
+    "UnderColor": [1.0, 0.25, 0.08],
+    "T3EnvIntensity": 0.3,
+    "FaceTexture": "textures/distressed-white.jpg",
+    "TexScale": 1.5
+  }
+}

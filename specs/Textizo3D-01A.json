@@ -1,8 +1,8 @@
 {
   "name": "Textizo3D-01A",
-  "notes": "Game Show: glossy green faces, green sides, plastic, worn (dents and scratches), edge glow, glow, shadow on the wall, no animation",
+  "notes": "Money: glossy green with dents and scratches, a green edge glow and bloom, a soft shadow on a wall behind.",
   "text": "$1,000",
-  "font": "Inter 28pt",
+  "font": "Inter",
   "style": "Black",
   "inputs": {
     "Tracking": 0.86,

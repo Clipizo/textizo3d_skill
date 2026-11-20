@@ -1,0 +1,56 @@
+{
+  "name": "Textizo3D-13A",
+  "notes": "Leopard: leopard print on the faces, dark brown sides, fire light from below.",
+  "text": "WILD",
+  "font": "Archivo Black",
+  "style": "Regular",
+  "in": {
+    "opacity": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 4,
+      "stagger": 30,
+      "from": 0,
+      "to": 1,
+      "ease": "out_quad"
+    },
+    "size": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 8,
+      "stagger": 30,
+      "from": 1.6,
+      "to": 1,
+      "ease": "out_expo"
+    }
+  },
+  "inputs": {
+    "RotationX": -4,
+    "RotationY": -10,
+    "ExtrusionDepth": 0.3,
+    "BevelDepth": 0.02,
+    "BevelWidth": 0.02,
+    "SmoothingAngle": 40,
+    "SideColor": [0.15, 0.1, 0.06],
+    "T3Roughness": 0.7,
+    "T3Coat": 0,
+    "T3Smudges": 0,
+    "T3Glow": 0.3,
+    "T3CamFov": 36,
+    "T3CamOrbit": -10,
+    "T3CamTilt": -8,
+    "MotionBlur": true,
+    "BlurQuality": 6,
+    "T3KeyIntensity": 0.85,
+    "KeyColor": [1.0, 0.92, 0.82],
+    "T3FillIntensity": 0.1,
+    "T3AmbientIntensity": 0.15,
+    "T3UnderIntensity": 0.8,
+    "UnderColor": [1.0, 0.45, 0.12],
+    "T3EnvIntensity": 0.5,
+    "FaceTexture": "textures/leopard.jpg",
+    "TexScale": 1.5
+  }
+}

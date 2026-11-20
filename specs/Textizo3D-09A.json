@@ -1,0 +1,55 @@
+{
+  "name": "Textizo3D-09A",
+  "notes": "Money, red: glossy red faces with a crisp white stroke, a red-brown extrusion.",
+  "text": "-$400",
+  "font": "Montserrat",
+  "style": "Black",
+  "in": {
+    "opacity": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 6,
+      "stagger": 40,
+      "from": 0,
+      "to": 1,
+      "ease": "out_quad"
+    },
+    "size": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 12,
+      "stagger": 40,
+      "from": 0,
+      "to": 1,
+      "ease": "out_back"
+    }
+  },
+  "inputs": {
+    "RotationX": -2,
+    "RotationY": -6,
+    "ExtrusionDepth": 0.16,
+    "SmoothingAngle": 60,
+    "FaceColor": [0.99, 0.13, 0.01],
+    "SideColor": [0.65, 0.15, 0.06],
+    "T3Roughness": 0.2,
+    "T3Coat": 0.9,
+    "T3CoatRough": 0.04,
+    "T3Smudges": 0,
+    "T3EdgeGlow": 1.6,
+    "T3EdgeWidth": 1.4,
+    "T3EdgeSoft": 0,
+    "T3CamDistance": 4,
+    "T3CamFov": 36,
+    "T3CamOrbit": -4,
+    "T3CamTilt": 4,
+    "T3KeyIntensity": 1,
+    "T3KeyHeight": 65,
+    "T3KeySpread": 110,
+    "T3KeyFalloff": 40,
+    "T3FillIntensity": 0.3,
+    "T3EnvIntensity": 0.8,
+    "EnvImage": "textures/env-studio.hdr"
+  }
+}

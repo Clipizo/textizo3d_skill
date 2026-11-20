@@ -243,7 +243,24 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
 **Textures Textizo3DFX carries.** Write them as `textures/<file>`: Textizo3DFX finds them inside its own installation, on every computer.
 
 <!-- textures -->
-This version carries no textures yet. Use the user's own images by their full path (for example `C:/Users/me/Pictures/gold.jpg`).
+- `textures/camo.jpg`
+- `textures/carbon-fiber.jpg`
+- `textures/diamond-glitter.jpg`
+- `textures/distressed-white.jpg`
+- `textures/env-arena.hdr`
+- `textures/env-sky.hdr`
+- `textures/env-studio.hdr`
+- `textures/env-sunset.hdr`
+- `textures/gold-brushed.jpg`
+- `textures/gold-glitter.jpg`
+- `textures/gold-gradient.jpg`
+- `textures/ice-caustics.jpg`
+- `textures/ice.jpg`
+- `textures/lava-molten.jpg`
+- `textures/lava.jpg`
+- `textures/leopard.jpg`
+- `textures/paisley.jpg`
+- `textures/silver-brushed.jpg`
 <!-- /textures -->
 
 **The user's own images** are full paths with forward slashes, for example `"C:/Users/me/Pictures/marble.jpg"` (Windows) or `"/Users/me/Pictures/marble.jpg"` (Mac). The file must exist at that path on the computer that renders. Ask the user for the path; never invent one.
@@ -298,7 +315,21 @@ Textizo3DFX's **Look** menu has these looks. On the Edit page, or on a node alre
 <!-- looks -->
 | Look | Look menu | What it is |
 |---|---|---|
-| Textizo3D-01A | 1 | Game Show: glossy green faces, green sides, plastic, worn (dents and scratches), edge glow, glow, shadow on the wall, no animation |
+| Textizo3D-01A | 1 | Money: glossy green with dents and scratches, a green edge glow and bloom, a soft shadow on a wall behind. |
+| Textizo3D-02A | 2 | Ice: chunky letters of clear cyan ice, white caustics inside, a thick rounded bevel, cool bloom. |
+| Textizo3D-03A | 3 | Lava: chunky lumpy letters of marbled molten lava, self-lit, a yellow edge glow, a deep rounded bevel. |
+| Textizo3D-04A | 4 | Sky chrome: white chrome faces, the sky's blue in the chamfer and the sides, deep extrusion, low camera. |
+| Textizo3D-05A | 5 | Gold: bright yellow-gold faces, darker brown-gold sides, a hard chamfer catching the light, low camera. |
+| Textizo3D-06A | 6 | Brushed steel: pale blue-grey brushed faces, near-black steel sides, low camera. |
+| Textizo3D-07A | 7 | Game-show names: glossy light-blue plastic, deeper blue sides, deep extrusion, soft light from the top. |
+| Textizo3D-08A | 8 | Money, green: glossy bright green, a dark green extrusion as its outline, a green-lit top, a green bloom. |
+| Textizo3D-09A | 9 | Money, red: glossy red faces with a crisp white stroke, a red-brown extrusion. |
+| Textizo3D-10A | 10 | Gold numbers: pale-to-deep yellow faces on a deep navy extrusion, star glints. |
+| Textizo3D-11A | 11 | Pearl puff: inflated italic letters, pearly white-blue faces, blue rims, white specular streaks. |
+| Textizo3D-12A | 12 | Bandana: black paisley print on each letter, black sides, a fiery rim and fire light from below. |
+| Textizo3D-13A | 13 | Leopard: leopard print on the faces, dark brown sides, fire light from below. |
+| Textizo3D-14A | 14 | Fight poster: worn white print, a shallow dark-red extrusion, a red glow from below, a soft shadow behind. |
+| Textizo3D-15A | 15 | Arena chrome: silver letters lit by a ring's red and blue lights, a red edge glow. |
 <!-- /looks -->
 
 ## 14. Control reference
@@ -600,7 +631,7 @@ The first ready look, `Textizo3D-01A`: big green glossy money digits with dents,
 		Textizo3DFX1 = ofx.com.clipizo.textizo3dfx {
 			Inputs = {
 				Text = Input { Value = "$1,000", },
-				Font = Input { Value = "Inter 28pt", },
+				Font = Input { Value = "Inter", },
 				Style = Input { Value = "Black", },
 				Tracking = Input { Value = 0.86, },
 				PositionY = Input { Value = 0.145, },

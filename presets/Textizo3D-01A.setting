@@ -3,7 +3,7 @@
 		Textizo3DFX1 = ofx.com.clipizo.textizo3dfx {
 			Inputs = {
 				Text = Input { Value = "$1,000", },
-				Font = Input { Value = "Inter 28pt", },
+				Font = Input { Value = "Inter", },
 				Style = Input { Value = "Black", },
 				Size = Input { Value = 1, },
 				Tracking = Input { Value = 0.86, },

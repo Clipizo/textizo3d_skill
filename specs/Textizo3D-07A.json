@@ -1,0 +1,54 @@
+{
+  "name": "Textizo3D-07A",
+  "notes": "Game-show names: glossy light-blue plastic, deeper blue sides, deep extrusion, soft light from the top.",
+  "text": "PLAYER 1",
+  "font": "Fredoka",
+  "style": "Bold",
+  "in": {
+    "opacity": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 6,
+      "stagger": 40,
+      "from": 0,
+      "to": 1,
+      "ease": "out_quad"
+    },
+    "size": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 12,
+      "stagger": 40,
+      "from": 0,
+      "to": 1,
+      "ease": "out_back"
+    }
+  },
+  "inputs": {
+    "RotationX": -2,
+    "RotationY": -8,
+    "ExtrusionDepth": 0.36,
+    "BevelDepth": 0.02,
+    "BevelWidth": 0.02,
+    "SmoothingAngle": 70,
+    "FaceColor": [0.41, 0.74, 0.96],
+    "SideColor": [0.07, 0.4, 0.64],
+    "T3Roughness": 0.25,
+    "T3Coat": 0.8,
+    "T3CoatRough": 0.05,
+    "T3Smudges": 0,
+    "T3CamDistance": 4,
+    "T3CamFov": 36,
+    "T3CamOrbit": -6,
+    "T3CamTilt": 6,
+    "T3KeyHeight": 70,
+    "T3KeySpread": 120,
+    "T3KeyFalloff": 40,
+    "T3FillIntensity": 0.35,
+    "T3AmbientIntensity": 0.25,
+    "T3EnvIntensity": 0.8,
+    "EnvImage": "textures/env-studio.hdr"
+  }
+}

@@ -54,7 +54,21 @@ The ready looks:
 <!-- looks -->
 | Look | Look menu | What it is |
 |---|---|---|
-| Textizo3D-01A | 1 | Game Show: glossy green faces, green sides, plastic, worn (dents and scratches), edge glow, glow, shadow on the wall, no animation |
+| Textizo3D-01A | 1 | Money: glossy green with dents and scratches, a green edge glow and bloom, a soft shadow on a wall behind. |
+| Textizo3D-02A | 2 | Ice: chunky letters of clear cyan ice, white caustics inside, a thick rounded bevel, cool bloom. |
+| Textizo3D-03A | 3 | Lava: chunky lumpy letters of marbled molten lava, self-lit, a yellow edge glow, a deep rounded bevel. |
+| Textizo3D-04A | 4 | Sky chrome: white chrome faces, the sky's blue in the chamfer and the sides, deep extrusion, low camera. |
+| Textizo3D-05A | 5 | Gold: bright yellow-gold faces, darker brown-gold sides, a hard chamfer catching the light, low camera. |
+| Textizo3D-06A | 6 | Brushed steel: pale blue-grey brushed faces, near-black steel sides, low camera. |
+| Textizo3D-07A | 7 | Game-show names: glossy light-blue plastic, deeper blue sides, deep extrusion, soft light from the top. |
+| Textizo3D-08A | 8 | Money, green: glossy bright green, a dark green extrusion as its outline, a green-lit top, a green bloom. |
+| Textizo3D-09A | 9 | Money, red: glossy red faces with a crisp white stroke, a red-brown extrusion. |
+| Textizo3D-10A | 10 | Gold numbers: pale-to-deep yellow faces on a deep navy extrusion, star glints. |
+| Textizo3D-11A | 11 | Pearl puff: inflated italic letters, pearly white-blue faces, blue rims, white specular streaks. |
+| Textizo3D-12A | 12 | Bandana: black paisley print on each letter, black sides, a fiery rim and fire light from below. |
+| Textizo3D-13A | 13 | Leopard: leopard print on the faces, dark brown sides, fire light from below. |
+| Textizo3D-14A | 14 | Fight poster: worn white print, a shallow dark-red extrusion, a red glow from below, a soft shadow behind. |
+| Textizo3D-15A | 15 | Arena chrome: silver letters lit by a ring's red and blue lights, a red edge glow. |
 <!-- /looks -->
 
 New looks get short names like `Textizo3D-07A`: a number for each look and a letter for each variation.

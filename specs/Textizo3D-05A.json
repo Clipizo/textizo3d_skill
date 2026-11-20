@@ -1,0 +1,64 @@
+{
+  "name": "Textizo3D-05A",
+  "notes": "Gold: bright yellow-gold faces, darker brown-gold sides, a hard chamfer catching the light, low camera.",
+  "text": "WINNER",
+  "font": "Archivo Black",
+  "style": "Regular",
+  "in": {
+    "opacity": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 10,
+      "stagger": 35,
+      "from": 0,
+      "to": 1,
+      "ease": "out_quad"
+    },
+    "blur": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 14,
+      "stagger": 35,
+      "from": 0.1,
+      "to": 0,
+      "ease": "out_cubic"
+    },
+    "size": {
+      "by": "letters",
+      "order": "left_to_right",
+      "start": 0,
+      "end": 14,
+      "stagger": 35,
+      "from": 1.25,
+      "to": 1,
+      "ease": "out_back"
+    }
+  },
+  "inputs": {
+    "RotationX": -4,
+    "RotationY": -12,
+    "ExtrusionDepth": 0.24,
+    "BevelDepth": 0.03,
+    "BevelWidth": 0.03,
+    "FaceColor": [1.0, 0.8, 0.36],
+    "SideColor": [0.62, 0.4, 0.2],
+    "T3Roughness": 0.12,
+    "T3Metal": 1,
+    "T3Coat": 0,
+    "T3Smudges": 0,
+    "T3Glow": 0.35,
+    "T3GlowSize": 25,
+    "T3GlowThreshold": 0.85,
+    "T3CamFov": 34,
+    "T3CamOrbit": -8,
+    "T3CamTilt": -10,
+    "T3KeyIntensity": 0.5,
+    "KeyColor": [1.0, 0.92, 0.78],
+    "T3FillIntensity": 0.1,
+    "T3AmbientIntensity": 0,
+    "T3EnvIntensity": 1.2,
+    "EnvImage": "textures/env-studio.hdr"
+  }
+}
