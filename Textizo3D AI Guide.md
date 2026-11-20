@@ -65,6 +65,8 @@ Its Inspector has eight pages: **Text, In, Out, Effects, Material, Camera, Light
 
 On the viewer, Textizo3D draws the text's box with a small bar of four modes above it: **Move** (the default: drag the text), **Size** (drag away from or towards its middle), **Rotate** (drag round its middle) and **Turn** (drag to turn it in 3D). A drag sets Position, Size or Rotation, and keyframes them at the frame when they already have keys. On the Edit page, the viewer's overlay menu (lower left) must be on **Open FX Overlay**; on the Fusion page the selected node shows it.
 
+Under the picture the viewer also shows a **timeline** of the clip: its diamond button adds a keyframe of the whole transform (Position, Size, Rotation) at the current frame, or takes it away; while there are keyframes, every drag on the viewer keys the frame it is on; a key can be dragged along the strip to another frame, and the curve between two keys picks its easing (Linear, Ease In, Ease Out, Ease In Out, Back, Elastic, Bounce, Hold). These keyframes are Textizo3D's own and live in the input `ViewerKeys` (the seven Position, Size and Rotation inputs show disabled while it has any). A node you write can animate the text with it: one line per key, `frame|PositionX|PositionY|PositionZ|Size|RotationX|RotationY|RotationZ|ease`, frames counted from the clip's first, the lines joined with `\n` in the node's text; `ease` is the curve of the way to the next key (0 Linear, 4 Ease In, 5 Ease Out, 6 Ease In Out, 23 Back, 26 Elastic, 29 Bounce, -1 Hold; any of the rows' 31 eases works). For example `0|-3|0|0|1|0|0|0|26\n18|0|0|0|1|0|0|0|6` slides the text in from the left and lets it settle with a wobble.
+
 The **Look** menu on the Text page applies a ready look (section 13) and keeps the text. A node you write carries every value itself, so it never uses that menu.
 
 Every animation is per letter, word or line: each page (In, Out) has seven rows (Opacity, Blur, Position, Size, Tracking, Rotation, Explosion) that move the pieces in turn. Textizo3D starts with every row off: a still 3D title. Turn rows on only when the user wants movement.
@@ -219,7 +221,7 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
 - `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Bloom).
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
 - **Bloom and Edge Glow** (2D, over the picture): Bloom, `T3Glow` (0 to 3), lights up everything brighter than `T3GlowThreshold` (Bloom Threshold, 0 to 1), spread by `T3GlowSize` (Bloom Size, default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
-- **Effects** (the **Effects** page, the fourth tab: a section each, Glow ... Confetti; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
+- **Effects** (the **Effects** page, the fourth tab: a section each, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
   - **Glow** (`T3GlowFxOn` 1): a soft glow round the whole text, behind it. `T3GlowFxAmount` (0 to 3, default 1), `T3GlowFxSize` (0 to 4, default 1: about 30 pixels), `T3GlowFxTextColors` (1, default: the letters' own colours; 0: `GlowFxColor`, default 1, 0.82, 0.35). The plugin is a generator, so Resolve's own Glow can't be put on it on the Edit page: this is the text's glow.
   - **Fire** (`T3FireOn` 1): flames off the letters, drawn behind them, and embers flying. `T3FireFlames` (0 to 2, default 1; 0 leaves only embers), `T3FireHeight` (0 to 3, default 1: about a fifth of the frame's height), `T3FireEmbers` (0 to 3, default 1, how many sparks), `T3FireSpeed` (default 1), `T3FireDirection` (default 90, up), `FireColor` (the flames' main colour, default orange 1, 0.42, 0.06; their cores are hotter, their tips deeper). Made for the lava look (Textizo3D-03A); embers alone (`T3FireFlames` 0) suit the fight-night looks.
   - **Frost** (`T3FrostOn` 1): cold mist off the letters and snowflakes drifting. `T3FrostMist` (0 to 2, 0 leaves only snow), `T3FrostHeight` (how far mist and snow go), `T3FrostSnow` (0 to 3, how many flakes), `T3FrostSpeed`, `T3FrostDirection` (default -90, down), `FrostColor` (default 0.75, 0.92, 1). Made for the ice look (Textizo3D-02A); also cold chrome.
@@ -229,7 +231,7 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
   - **Shine** (`T3ShineOn` 1): a band of light sweeping across the letters, again and again. `T3ShineAmount` (0 to 3), `T3ShineWidth` (0 to 3), `T3ShineEvery` (seconds from one sweep to the next, default 2.5; the first starts at the clip's start), `T3ShineDirection` (the way the band travels, default -20), `ShineColor`. For gold, chrome and logos.
   - **Sparkles** (`T3SparkleOn` 1): four-point star glints twinkling on the letters. `T3SparkleAmount` (0 to 3), `T3SparkleSize` (0 to 3), `T3SparkleSpeed` (twinkle speed), `SparkleColor` (warm 1, 0.88, 0.55 on gold; icy 0.8, 0.95, 1 on ice). For gold, chrome, diamond, pearl and money.
   - **Glitch** (`T3GlitchOn` 1): now and then slices of the picture jump and its colours split. `T3GlitchAmount` (0 to 3, how far), `T3GlitchFrequency` (0 to 3, how often), `T3GlitchDirection` (the way the slices jump, default 0: sideways).
-  - **Confetti** (`T3ConfettiOn` 1): solid confetti tumbling through the whole frame. `T3ConfettiAmount` (0 to 3), `T3ConfettiSize` (0 to 3), `T3ConfettiSpeed`, `T3ConfettiDirection` (default -90, falling), `T3ConfettiMany` (1, default: party colours; 0: shades of `ConfettiColor`).
+  - **Dust** (`T3DustOn` 1): fine dust drifting slowly through the whole frame, a few motes near the camera big and out of focus; light added over the picture. `T3DustAmount` (0 to 3), `T3DustSize` (0 to 3), `T3DustSpeed`, `T3DustDirection` (default 60: up and to the right), `DustColor` (default warm white 1, 0.93, 0.82). For trailer-style, serious titles.
   - Effects make every frame move, so they are drawn frame by frame (Reuse Still Frames can't hold them). A 1080p frame takes a few milliseconds more; all ten together about 11 ms.
 
 ## 9. Camera
@@ -273,6 +275,8 @@ Out eases (2, 5, 8, 17) suit entrances: fast, then settling. In eases (1, 4) sui
 - `textures/lava-molten.jpg`
 - `textures/lava.jpg`
 - `textures/leopard.jpg`
+- `textures/money-grain.jpg`
+- `textures/money-streaks.jpg`
 - `textures/paisley.jpg`
 - `textures/silver-brushed.jpg`
 <!-- /textures -->
@@ -344,6 +348,7 @@ Textizo3D's **Look** menu has these looks. On the Edit page, or on a node alread
 | Textizo3D-13A | 13 | Leopard: leopard print on the faces, dark brown sides, fire light from below. |
 | Textizo3D-14A | 14 | Fight poster: worn white print, a shallow dark-red extrusion, a red glow from below, a soft shadow behind. |
 | Textizo3D-15A | 15 | Arena chrome: silver letters lit by a ring's red and blue lights, a red edge glow. |
+| Textizo3D-16A | 16 | Money glow: bright green faces with fine light flecks, a deep extrusion with streaks seen from below, a thin light-green edge glow and a green bloom; high in the frame. |
 <!-- /looks -->
 
 ## 14. Control reference
@@ -374,6 +379,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `FrontBevel` | Shape: Front Bevel | checkbox | 1 | 0 or 1 |
 | `BackBevel` | Shape: Back Bevel | checkbox | 1 | 0 or 1 |
 | `SmoothingAngle` | Shape: Smoothing Angle | number | 30 | slider 0 to 90; allowed 0 to 180 |
+| `ViewerKeys` | Viewer Keyframes | string | "" | text |
 
 **In page**
 
@@ -588,13 +594,12 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3GlitchAmount` | Glitch: Glitch Amount | number | 1 | slider 0 to 3; at least 0 |
 | `T3GlitchFrequency` | Glitch: Glitch Frequency | number | 1 | slider 0 to 3; at least 0 |
 | `T3GlitchDirection` | Glitch: Glitch Direction | number | 0 | slider -180 to 180 |
-| `T3ConfettiOn` | Confetti | checkbox | 0 | 0 or 1 |
-| `T3ConfettiAmount` | Confetti: Confetti Amount | number | 1 | slider 0 to 3; at least 0 |
-| `T3ConfettiSize` | Confetti: Confetti Size | number | 1 | slider 0 to 3; at least 0 |
-| `T3ConfettiSpeed` | Confetti: Confetti Speed | number | 1 | slider 0 to 3; at least 0 |
-| `T3ConfettiDirection` | Confetti: Confetti Direction | number | -90 | slider -180 to 180 |
-| `T3ConfettiMany` | Confetti: Many Colors | checkbox | 1 | 0 or 1 |
-| `ConfettiColor` (`ConfettiColorRed`, `ConfettiColorGreen`, `ConfettiColorBlue`) | Confetti: Confetti Color | color | [1, 0.85, 0.2] | red, green, blue from 0 to 1 |
+| `T3DustOn` | Dust | checkbox | 0 | 0 or 1 |
+| `T3DustAmount` | Dust: Dust Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3DustSize` | Dust: Dust Size | number | 1 | slider 0 to 3; at least 0 |
+| `T3DustSpeed` | Dust: Dust Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3DustDirection` | Dust: Dust Direction | number | 60 | slider -180 to 180 |
+| `DustColor` (`DustColorRed`, `DustColorGreen`, `DustColorBlue`) | Dust: Dust Color | color | [1, 0.93, 0.82] | red, green, blue from 0 to 1 |
 
 **Material page**
 

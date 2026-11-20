@@ -69,6 +69,7 @@ The ready looks:
 | Textizo3D-13A | 13 | Leopard: leopard print on the faces, dark brown sides, fire light from below. |
 | Textizo3D-14A | 14 | Fight poster: worn white print, a shallow dark-red extrusion, a red glow from below, a soft shadow behind. |
 | Textizo3D-15A | 15 | Arena chrome: silver letters lit by a ring's red and blue lights, a red edge glow. |
+| Textizo3D-16A | 16 | Money glow: bright green faces with fine light flecks, a deep extrusion with streaks seen from below, a thin light-green edge glow and a green bloom; high in the frame. |
 <!-- /looks -->
 
 New looks get short names like `Textizo3D-07A`: a number for each look and a letter for each variation.

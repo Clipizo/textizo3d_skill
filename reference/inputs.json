@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-20",
- "parameters": "t3_params_gen.h 76d8cb5118e0",
+ "parameters": "t3_params_gen.h 85684fd0a5c9",
  "pages": [
   "Text",
   "In",
@@ -40,7 +40,8 @@
     "Textizo3D-12A",
     "Textizo3D-13A",
     "Textizo3D-14A",
-    "Textizo3D-15A"
+    "Textizo3D-15A",
+    "Textizo3D-16A"
    ],
    "hint": "Applies a ready-made Textizo3D look and keeps your text."
   },
@@ -4196,19 +4197,19 @@
    ],
    "hint": "The way the slices jump, in degrees: 0 sideways, 90 up and down."
   },
-  "T3ConfettiOn": {
-   "label": "Confetti",
+  "T3DustOn": {
+   "label": "Dust",
    "page": "Effects",
-   "section": "Confetti",
+   "section": "Dust",
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "Confetti tumbling through the frame (solid pieces over the picture)."
+   "hint": "Fine dust drifting through the whole frame, some of it out of focus (light added over the picture)."
   },
-  "T3ConfettiAmount": {
-   "label": "Confetti Amount",
+  "T3DustAmount": {
+   "label": "Dust Amount",
    "page": "Effects",
-   "section": "Confetti",
+   "section": "Dust",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -4218,10 +4219,10 @@
     3.0
    ]
   },
-  "T3ConfettiSize": {
-   "label": "Confetti Size",
+  "T3DustSize": {
+   "label": "Dust Size",
    "page": "Effects",
-   "section": "Confetti",
+   "section": "Dust",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -4231,10 +4232,10 @@
     3.0
    ]
   },
-  "T3ConfettiSpeed": {
-   "label": "Confetti Speed",
+  "T3DustSpeed": {
+   "label": "Dust Speed",
    "page": "Effects",
-   "section": "Confetti",
+   "section": "Dust",
    "kind": "number",
    "role": "public",
    "default": 1.0,
@@ -4244,44 +4245,43 @@
     3.0
    ]
   },
-  "T3ConfettiDirection": {
-   "label": "Confetti Direction",
+  "T3DustDirection": {
+   "label": "Dust Direction",
    "page": "Effects",
-   "section": "Confetti",
+   "section": "Dust",
    "kind": "number",
    "role": "public",
-   "default": -90.0,
+   "default": 60.0,
    "slider": [
     -180.0,
     180.0
    ],
-   "hint": "The way the confetti falls, in degrees: -90 down."
+   "hint": "The way the dust drifts, in degrees: 90 up, 0 right."
   },
-  "T3ConfettiMany": {
-   "label": "Many Colors",
+  "DustColor": {
+   "label": "Dust Color",
    "page": "Effects",
-   "section": "Confetti",
-   "kind": "checkbox",
-   "role": "public",
-   "default": 1,
-   "hint": "On: party colours. Off: Confetti Color."
-  },
-  "ConfettiColor": {
-   "label": "Confetti Color",
-   "page": "Effects",
-   "section": "Confetti",
+   "section": "Dust",
    "kind": "color",
    "role": "public",
    "default": [
     1.0,
-    0.85,
-    0.2
+    0.93,
+    0.82
    ],
    "fusion": [
-    "ConfettiColorRed",
-    "ConfettiColorGreen",
-    "ConfettiColorBlue"
+    "DustColorRed",
+    "DustColorGreen",
+    "DustColorBlue"
    ]
+  },
+  "ViewerKeys": {
+   "label": "Viewer Keyframes",
+   "page": "Text",
+   "section": "",
+   "kind": "string",
+   "role": "public",
+   "default": ""
   }
  },
  "looks": [
@@ -4374,6 +4374,12 @@
    "name": "Textizo3D-15A",
    "text": "FIGHT NIGHT",
    "about": "Arena chrome: silver letters lit by a ring's red and blue lights, a red edge glow."
+  },
+  {
+   "index": 16,
+   "name": "Textizo3D-16A",
+   "text": "$1,000",
+   "about": "Money glow: bright green faces with fine light flecks, a deep extrusion with streaks seen from below, a thin light-green edge glow and a green bloom; high in the frame."
   }
  ],
  "fonts": [
@@ -5051,6 +5057,8 @@
   "textures/lava-molten.jpg",
   "textures/lava.jpg",
   "textures/leopard.jpg",
+  "textures/money-grain.jpg",
+  "textures/money-streaks.jpg",
   "textures/paisley.jpg",
   "textures/silver-brushed.jpg"
  ]
