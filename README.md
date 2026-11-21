@@ -54,7 +54,7 @@ The ready looks:
 <!-- looks -->
 | Look | Look menu | What it is |
 |---|---|---|
-| Textizo3D-01A | 1 | Money: glossy green with dents and scratches, a green edge glow and bloom, a soft shadow on a wall behind. |
+| Textizo3D-01A | 1 | Sapphire: deep royal-blue glitter letters, navy sides, sharp highlights from a studio light; blurs in. |
 | Textizo3D-02A | 2 | Ice: chunky letters of clear cyan ice, white caustics inside, a thick rounded bevel, cool bloom. |
 | Textizo3D-03A | 3 | Lava: chunky lumpy letters of marbled molten lava, self-lit, a yellow edge glow, a deep rounded bevel. |
 | Textizo3D-04A | 4 | Sky chrome: white chrome faces, the sky's blue in the chamfer and the sides, deep extrusion, low camera. |

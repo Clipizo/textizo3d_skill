@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-21",
- "parameters": "t3_params_gen.h a92550dd1032",
+ "parameters": "t3_params_gen.h 4b96862e58f5",
  "pages": [
   "Text",
   "In",
@@ -4494,8 +4494,8 @@
   {
    "index": 1,
    "name": "Textizo3D-01A",
-   "text": "$1,000",
-   "about": "Money: glossy green with dents and scratches, a green edge glow and bloom, a soft shadow on a wall behind."
+   "text": "ROYAL",
+   "about": "Sapphire: deep royal-blue glitter letters, navy sides, sharp highlights from a studio light; blurs in."
   },
   {
    "index": 2,
