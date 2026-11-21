@@ -59,11 +59,11 @@ The ready looks:
 | Textizo3D-03A | 3 | Lava: chunky lumpy letters of marbled molten lava, self-lit, a yellow edge glow, a deep rounded bevel. |
 | Textizo3D-04A | 4 | Sky chrome: white chrome faces, the sky's blue in the chamfer and the sides, deep extrusion, low camera. |
 | Textizo3D-05A | 5 | Gold: bright yellow-gold faces, darker brown-gold sides, a hard chamfer catching the light, low camera. |
-| Textizo3D-06A | 6 | Brushed steel: pale blue-grey brushed faces, near-black steel sides, low camera. |
-| Textizo3D-07A | 7 | Game-show names: glossy light-blue plastic, deeper blue sides, deep extrusion, soft light from the top. |
-| Textizo3D-08A | 8 | Money, green: glossy bright green, a dark green extrusion as its outline, a green-lit top, a green bloom. |
+| Textizo3D-06A | 6 | Carbon: woven carbon-fibre faces under a glossy clear coat, near-black sides, a thin red edge glow; blurs in. |
+| Textizo3D-07A | 7 | Bubblegum: glossy hot-pink plastic, deep magenta sides, a soft pink bloom, rounded letters that pop in. |
+| Textizo3D-08A | 8 | Camo: woodland camouflage printed on each letter, dark olive sides, matte, a warm key light; slams in. |
 | Textizo3D-09A | 9 | Money, red: glossy red faces with a crisp white stroke, a red-brown extrusion. |
-| Textizo3D-10A | 10 | Gold numbers: pale-to-deep yellow faces on a deep navy extrusion, star glints. |
+| Textizo3D-10A | 10 | Neon violet: rounded purple letters that glow, deep violet sides, a pink-violet edge glow and a purple bloom; blurs in. |
 | Textizo3D-11A | 11 | Pearl puff: inflated italic letters, pearly white-blue faces, blue rims, white specular streaks. |
 | Textizo3D-12A | 12 | Bandana: black paisley print on each letter, black sides, a fiery rim and fire light from below. |
 | Textizo3D-13A | 13 | Leopard: leopard print on the faces, dark brown sides, fire light from below. |

@@ -3,8 +3,8 @@
  "version": "1.0",
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
- "generated": "2026-11-20",
- "parameters": "t3_params_gen.h 1b7693c64d87",
+ "generated": "2026-11-21",
+ "parameters": "t3_params_gen.h a92550dd1032",
  "pages": [
   "Text",
   "In",
@@ -139,6 +139,15 @@
     "Center",
     "Right"
    ]
+  },
+  "FitToFrame": {
+   "label": "Fit to Frame",
+   "page": "Text",
+   "section": "",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1,
+   "hint": "Shrinks a text too wide or tall for the frame so it stays inside, with a margin (a short text keeps its size)."
   },
   "PositionX": {
    "label": "Position X",
@@ -4515,20 +4524,20 @@
   {
    "index": 6,
    "name": "Textizo3D-06A",
-   "text": "2026",
-   "about": "Brushed steel: pale blue-grey brushed faces, near-black steel sides, low camera."
+   "text": "CARBON",
+   "about": "Carbon: woven carbon-fibre faces under a glossy clear coat, near-black sides, a thin red edge glow; blurs in."
   },
   {
    "index": 7,
    "name": "Textizo3D-07A",
-   "text": "PLAYER 1",
-   "about": "Game-show names: glossy light-blue plastic, deeper blue sides, deep extrusion, soft light from the top."
+   "text": "POP!",
+   "about": "Bubblegum: glossy hot-pink plastic, deep magenta sides, a soft pink bloom, rounded letters that pop in."
   },
   {
    "index": 8,
    "name": "Textizo3D-08A",
-   "text": "$5,000",
-   "about": "Money, green: glossy bright green, a dark green extrusion as its outline, a green-lit top, a green bloom."
+   "text": "ARMY",
+   "about": "Camo: woodland camouflage printed on each letter, dark olive sides, matte, a warm key light; slams in."
   },
   {
    "index": 9,
@@ -4539,8 +4548,8 @@
   {
    "index": 10,
    "name": "Textizo3D-10A",
-   "text": "2026",
-   "about": "Gold numbers: pale-to-deep yellow faces on a deep navy extrusion, star glints."
+   "text": "NEON",
+   "about": "Neon violet: rounded purple letters that glow, deep violet sides, a pink-violet edge glow and a purple bloom; blurs in."
   },
   {
    "index": 11,

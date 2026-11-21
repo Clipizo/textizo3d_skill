@@ -9,6 +9,7 @@
 				Tracking = Input { Value = 0.86, },
 				LineSpacing = Input { Value = 1, },
 				Alignment = Input { Value = 1, },
+				FitToFrame = Input { Value = 1, },
 				PositionX = Input { Value = 0, },
 				PositionY = Input { Value = 0.145, },
 				PositionZ = Input { Value = 0, },

@@ -108,6 +108,7 @@ The order of the inputs does not matter.
 - `Tracking` (default 1): multiplies the space each letter takes. 0.85 to 0.95 tightens heavy fonts.
 - `LineSpacing` (default 1): lines are 0.826 × Size × Line Spacing apart.
 - `Alignment`: 0 left, 1 centre (default), 2 right. The block is centred on the middle of the frame.
+- `FitToFrame` (default 1): shrinks the whole text, never enlarges it, so it stays inside the frame with a small margin as the camera sees it at the clip's start, middle and end. Long words or a large `Size` stay whole on screen. Write 0 only when the text should be bigger than the frame or leave it on purpose.
 - `PositionX`, `PositionY`, `PositionZ`: move the whole text, in units (Y up, Z toward the camera).
 - `RotationX`, `RotationY`, `RotationZ`: turn the whole text, in degrees (X tips it back, Y turns it, Z rolls it).
 
@@ -367,11 +368,11 @@ Textizo3D's **Look** menu has these looks. On the Edit page, or on a node alread
 | Textizo3D-03A | 3 | Lava: chunky lumpy letters of marbled molten lava, self-lit, a yellow edge glow, a deep rounded bevel. |
 | Textizo3D-04A | 4 | Sky chrome: white chrome faces, the sky's blue in the chamfer and the sides, deep extrusion, low camera. |
 | Textizo3D-05A | 5 | Gold: bright yellow-gold faces, darker brown-gold sides, a hard chamfer catching the light, low camera. |
-| Textizo3D-06A | 6 | Brushed steel: pale blue-grey brushed faces, near-black steel sides, low camera. |
-| Textizo3D-07A | 7 | Game-show names: glossy light-blue plastic, deeper blue sides, deep extrusion, soft light from the top. |
-| Textizo3D-08A | 8 | Money, green: glossy bright green, a dark green extrusion as its outline, a green-lit top, a green bloom. |
+| Textizo3D-06A | 6 | Carbon: woven carbon-fibre faces under a glossy clear coat, near-black sides, a thin red edge glow; blurs in. |
+| Textizo3D-07A | 7 | Bubblegum: glossy hot-pink plastic, deep magenta sides, a soft pink bloom, rounded letters that pop in. |
+| Textizo3D-08A | 8 | Camo: woodland camouflage printed on each letter, dark olive sides, matte, a warm key light; slams in. |
 | Textizo3D-09A | 9 | Money, red: glossy red faces with a crisp white stroke, a red-brown extrusion. |
-| Textizo3D-10A | 10 | Gold numbers: pale-to-deep yellow faces on a deep navy extrusion, star glints. |
+| Textizo3D-10A | 10 | Neon violet: rounded purple letters that glow, deep violet sides, a pink-violet edge glow and a purple bloom; blurs in. |
 | Textizo3D-11A | 11 | Pearl puff: inflated italic letters, pearly white-blue faces, blue rims, white specular streaks. |
 | Textizo3D-12A | 12 | Bandana: black paisley print on each letter, black sides, a fiery rim and fire light from below. |
 | Textizo3D-13A | 13 | Leopard: leopard print on the faces, dark brown sides, fire light from below. |
@@ -396,6 +397,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `Tracking` | Tracking | number | 1 | slider 0 to 3; at least 0 |
 | `LineSpacing` | Line Spacing | number | 1 | slider 0 to 3; at least 0 |
 | `Alignment` | Alignment | choice | 1 | 0 Left, 1 Center, 2 Right |
+| `FitToFrame` | Fit to Frame | checkbox | 1 | 0 or 1 |
 | `PositionX` | Position and Rotation: Position X | number | 0 | slider -2 to 2 |
 | `PositionY` | Position and Rotation: Position Y | number | 0 | slider -2 to 2 |
 | `PositionZ` | Position and Rotation: Position Z | number | 0 | slider -2 to 2 |
