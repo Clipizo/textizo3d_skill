@@ -33,6 +33,7 @@
     "BevelDepth": 0.02,
     "BevelWidth": 0.02,
     "SmoothingAngle": 60,
+    "LinkColors": false,
     "FaceColor": [0.45, 0.2, 1.0],
     "SideColor": [0.14, 0.03, 0.32],
     "T3Roughness": 0.25,

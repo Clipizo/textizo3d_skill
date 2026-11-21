@@ -31,6 +31,7 @@
     "RotationY": -6,
     "ExtrusionDepth": 0.16,
     "SmoothingAngle": 60,
+    "LinkColors": false,
     "FaceColor": [0.99, 0.13, 0.01],
     "SideColor": [0.65, 0.15, 0.06],
     "T3Roughness": 0.2,

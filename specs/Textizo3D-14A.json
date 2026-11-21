@@ -30,6 +30,7 @@
     "ExtrusionDepth": 0.12,
     "BevelDepth": 0,
     "BevelWidth": 0,
+    "LinkColors": false,
     "SideColor": [0.22, 0.02, 0.01],
     "T3Roughness": 0.6,
     "T3Coat": 0,

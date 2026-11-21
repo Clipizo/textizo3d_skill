@@ -42,6 +42,7 @@
     "ExtrusionDepth": 0.24,
     "BevelDepth": 0.03,
     "BevelWidth": 0.03,
+    "LinkColors": false,
     "FaceColor": [1.0, 0.8, 0.36],
     "SideColor": [0.62, 0.4, 0.2],
     "T3Roughness": 0.12,

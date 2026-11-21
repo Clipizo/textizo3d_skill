@@ -17,7 +17,7 @@ You can change the text, font and everything else in the Inspector at any time.
 
 **To keep a look for later**, ask the AI for a `.setting` file, or save the code in a plain text file with the short name the AI gave it, for example `Textizo3D-07A.setting`. Drag that file onto the Nodes area to add it again, or put it in Resolve's Settings folder (section 17).
 
-Textizo3D must be installed (version 1.0 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
+Textizo3D must be installed (version 1.0 or later; Sync to Speech, Link Colors and Float need 1.0.1 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
 
 ---
 
@@ -188,6 +188,8 @@ Common rows:
 - **Assemble:** Explosion from 1.5 to 0 with Opacity, Out Cubic; out: Explosion to 1.5 with Opacity to 0, In Cubic.
 - **Exit:** Opacity to 0 with Blur to 0.1, by words, In Cubic, 8 to 12 frames before the clip ends.
 
+**Sync to Speech** (the In page's first section; inputs `T3InSync` and `T3InSyncWords`, Words Shown): with `T3InSync` 1 the words stay hidden until Words Shown reaches their number (1 the first word, 2 the second ...). Each word's In rows then play from the frame it came in, over their own `Start`–`End` window (the earliest row's `Start` lands on that frame, the others keep their distance from it), its letters staggered within the word; the Out rows keep the clip's own timing. The user keys Words Shown in Resolve to the speech, a key on the frame each word is said; a node you write can turn Sync on and give the In rows a short window for one word (6 to 10 frames, Stagger about 30), but leave `T3InSyncWords` at 0 and tell the user to key it: with no keys at all every word stays hidden.
+
 ## 5. Timing
 
 Frames count from the clip's first frame (0). A 5-second clip at 24 fps has frames 0 to 119; at 30 fps, 0 to 149. Work out frames from the clip's length and frame rate; when you don't know them, use 24 fps and 120 frames and say so.
@@ -246,12 +248,14 @@ With the kit's tool, write keys in the spec as a list (fields left out keep the 
 ## 8. Material
 
 - `FaceColor`: the front faces. `SideColor`: the sides and bevels. A darker or more saturated side colour gives depth.
+- `LinkColors` (Link Colors, the Color section's first control, on by default): 1 gives the sides the face's colour and `SideColor` is ignored; 0 lets `SideColor` colour the sides. Every ready look sets it to 0. Whenever you give `SideColor` a colour of its own, set `LinkColors` to 0, or the sides stay the face's colour.
 - `T3Roughness` (0 mirror to 1 matte, default 0.35) and `T3Metal` (0 plastic to 1 metal): metal takes its colour into its reflections (gold, chrome, copper); plastic reflects white highlights over its colour.
 - `T3Coat` (default 0.4) with `T3CoatRough` (0.06): a clear varnish on top that adds a sharp gloss, even on rough or coloured plastic. `T3Specular` (Reflectivity, default 1): the strength of non-metal reflections.
 - `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Bloom).
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
 - **Bloom and Edge Glow** (2D, over the picture): Bloom, `T3Glow` (0 to 3), lights up everything brighter than `T3GlowThreshold` (Bloom Threshold, 0 to 1), spread by `T3GlowSize` (Bloom Size, default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
-- **Effects** (the **Effects** page, the fourth tab: a section each, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
+- **Effects** (the **Effects** page, the fourth tab: a section each, Float, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
+  - **Float** (`T3FloatOn` 1): every letter drifts and sways gently on its own, all through the clip, on top of its In and Out rows (letters that come in, then float). `T3FloatAmount` (0 to 3, default 1: up to about a tenth of a letter's height either way), `T3FloatRotation` (0 to 3, default 1: a few degrees of tilt and turn, so the sides catch the light; 0 only drifts), `T3FloatSpeed` (default 1: a swing about every 3 seconds; 2 is twice as fast). Distances go by the letters' size and the pace by seconds, so any Size and frame rate float alike. For dreamy, playful or "alive" titles; Amount 2 to 3 for a wild float.
   - **Glow** (`T3GlowFxOn` 1): a soft glow round the whole text, behind it. `T3GlowFxAmount` (0 to 3, default 1), `T3GlowFxSize` (0 to 4, default 1: about 30 pixels), `T3GlowFxTextColors` (1, default: the letters' own colours; 0: `GlowFxColor`, default 1, 0.82, 0.35). The plugin is a generator, so Resolve's own Glow can't be put on it on the Edit page: this is the text's glow.
   - **Fire** (`T3FireOn` 1): flames off the letters, drawn behind them, and embers flying. `T3FireFlames` (0 to 2, default 1; 0 leaves only embers), `T3FireHeight` (0 to 3, default 1: about a fifth of the frame's height), `T3FireEmbers` (0 to 3, default 1, how many sparks), `T3FireSpeed` (default 1), `T3FireDirection` (default 90, up), `FireColor` (the flames' main colour, default orange 1, 0.42, 0.06; their cores are hotter, their tips deeper). Made for the lava look (Textizo3D-03A); embers alone (`T3FireFlames` 0) suit the fight-night looks.
   - **Frost** (`T3FrostOn` 1): cold mist off the letters and snowflakes drifting. `T3FrostMist` (0 to 2, 0 leaves only snow), `T3FrostHeight` (how far mist and snow go), `T3FrostSnow` (0 to 3, how many flakes), `T3FrostSpeed`, `T3FrostDirection` (default -90, down), `FrostColor` (default 0.75, 0.92, 1). Made for the ice look (Textizo3D-02A); also cold chrome.
@@ -262,7 +266,7 @@ With the kit's tool, write keys in the spec as a list (fields left out keep the 
   - **Sparkles** (`T3SparkleOn` 1): four-point star glints twinkling on the letters. `T3SparkleAmount` (0 to 3), `T3SparkleSize` (0 to 3), `T3SparkleSpeed` (twinkle speed), `SparkleColor` (warm 1, 0.88, 0.55 on gold; icy 0.8, 0.95, 1 on ice). For gold, chrome, diamond, pearl and money.
   - **Glitch** (`T3GlitchOn` 1): now and then slices of the picture jump and its colours split. `T3GlitchAmount` (0 to 3, how far), `T3GlitchFrequency` (0 to 3, how often), `T3GlitchDirection` (the way the slices jump, default 0: sideways).
   - **Dust** (`T3DustOn` 1): fine dust drifting slowly through the whole frame, a few motes near the camera big and out of focus; light added over the picture. `T3DustAmount` (0 to 3), `T3DustSize` (0 to 3), `T3DustSpeed`, `T3DustDirection` (default 60: up and to the right), `DustColor` (default warm white 1, 0.93, 0.82). For trailer-style, serious titles.
-  - Effects make every frame move, so they are drawn frame by frame (Reuse Still Frames can't hold them). A 1080p frame takes a few milliseconds more; all ten together about 11 ms.
+  - Effects make every frame move, so they are drawn frame by frame (Reuse Still Frames can't hold them). A 1080p frame takes a few milliseconds more; all ten light effects together about 11 ms. Float costs next to nothing.
 
 ## 9. Camera
 
@@ -416,6 +420,8 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
+| `T3InSync` | Sync to Speech: On | checkbox | 0 | 0 or 1 |
+| `T3InSyncWords` | Sync to Speech: Words Shown | number | 0 | slider 0 to 20; at least 0 |
 | `T3InOpacityOn` | Opacity: On | checkbox | 0 | 0 or 1 |
 | `T3InOpacityPieces` | Opacity: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3InOpacityOrder` | Opacity: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -585,6 +591,10 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
+| `T3FloatOn` | Float | checkbox | 0 | 0 or 1 |
+| `T3FloatAmount` | Float: Float Amount | number | 1 | slider 0 to 3; at least 0 |
+| `T3FloatRotation` | Float: Float Rotation | number | 1 | slider 0 to 3; at least 0 |
+| `T3FloatSpeed` | Float: Float Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3GlowFxOn` | Glow | checkbox | 0 | 0 or 1 |
 | `T3GlowFxAmount` | Glow: Glow Amount | number | 1 | slider 0 to 3; at least 0 |
 | `T3GlowFxSize` | Glow: Glow Size | number | 1 | slider 0 to 4; at least 0 |
@@ -650,6 +660,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
+| `LinkColors` | Color: Link Colors | checkbox | 1 | 0 or 1 |
 | `FaceColor` (`FaceColorRed`, `FaceColorGreen`, `FaceColorBlue`) | Color: Face Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
 | `SideColor` (`SideColorRed`, `SideColorGreen`, `SideColorBlue`) | Color: Side Color | color | [0.45, 0.5, 0.6] | red, green, blue from 0 to 1 |
 | `T3Roughness` | Surface: Roughness | number | 0.35 | 0 to 1 |
@@ -770,6 +781,7 @@ The first ready look, `Textizo3D-01A`: deep royal-blue glitter letters with navy
 				ExtrusionDepth = Input { Value = 0.26, },
 				BevelDepth = Input { Value = 0.03, },
 				BevelWidth = Input { Value = 0.03, },
+				LinkColors = Input { Value = 0, },
 				FaceColorRed = Input { Value = 0.22, },
 				FaceColorGreen = Input { Value = 0.38, },
 				FaceColorBlue = Input { Value = 1, },
@@ -847,6 +859,7 @@ The first ready look, `Textizo3D-01A`: deep royal-blue glitter letters with navy
 				ExtrusionDepth = Input { Value = 0.26, },
 				BevelDepth = Input { Value = 0.03, },
 				BevelWidth = Input { Value = 0.03, },
+				LinkColors = Input { Value = 0, },
 				FaceColorRed = Input { Value = 1, },
 				FaceColorGreen = Input { Value = 0.7843, },
 				FaceColorBlue = Input { Value = 0.2392, },

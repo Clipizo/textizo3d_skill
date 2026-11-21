@@ -1,10 +1,10 @@
 {
  "product": "Textizo3D",
- "version": "1.0",
+ "version": "1.0.1",
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-21",
- "parameters": "t3_params_gen.h 4b96862e58f5",
+ "parameters": "t3_params_gen.h ab34e7be7914",
  "pages": [
   "Text",
   "In",
@@ -220,6 +220,29 @@
     -180.0,
     180.0
    ]
+  },
+  "T3InSync": {
+   "label": "On",
+   "page": "In",
+   "section": "Sync to Speech",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Words come in one at a time as Words Shown reaches them; the In rows play for each word from then."
+  },
+  "T3InSyncWords": {
+   "label": "Words Shown",
+   "page": "In",
+   "section": "Sync to Speech",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    20.0
+   ],
+   "hint": "How many words show. Key it to the speech: 1 when the first word is said, 2 for the second ..."
   },
   "T3InOpacityOn": {
    "label": "On",
@@ -2618,6 +2641,23 @@
     90.0
    ]
   },
+  "LinkColors": {
+   "label": "Link Colors",
+   "page": "Material",
+   "section": "Color",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 1,
+   "hint": "On: the sides take the face's color. Off: the sides have a color of their own (Side Color)."
+  },
+  "LinkColorsSet": {
+   "label": "Link Colors Set",
+   "page": "Material",
+   "section": "Color",
+   "kind": "checkbox",
+   "role": "internal",
+   "default": 0
+  },
   "FaceColor": {
    "label": "Face Color",
    "page": "Material",
@@ -3641,6 +3681,56 @@
     3.0
    ],
    "hint": "Multiplies the shaders' iTime."
+  },
+  "T3FloatOn": {
+   "label": "Float",
+   "page": "Effects",
+   "section": "Float",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Each letter drifts and sways gently on its own, all through the clip."
+  },
+  "T3FloatAmount": {
+   "label": "Float Amount",
+   "page": "Effects",
+   "section": "Float",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How far the letters drift."
+  },
+  "T3FloatRotation": {
+   "label": "Float Rotation",
+   "page": "Effects",
+   "section": "Float",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ],
+   "hint": "How much the letters turn as they float (0: they only drift)."
+  },
+  "T3FloatSpeed": {
+   "label": "Float Speed",
+   "page": "Effects",
+   "section": "Float",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    3.0
+   ]
   },
   "T3GlowFxOn": {
    "label": "Glow",
