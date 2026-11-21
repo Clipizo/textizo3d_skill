@@ -255,7 +255,21 @@ With the kit's tool, write keys in the spec as a list (fields left out keep the 
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
 - **Bloom and Edge Glow** (2D, over the picture): Bloom, `T3Glow` (0 to 3), lights up everything brighter than `T3GlowThreshold` (Bloom Threshold, 0 to 1), spread by `T3GlowSize` (Bloom Size, default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
 - **Effects** (the **Effects** page, the fourth tab: a section each, Float, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
-  - **Float** (`T3FloatOn` 1): every letter drifts and sways gently on its own, all through the clip, on top of its In and Out rows (letters that come in, then float). `T3FloatAmount` (0 to 3, default 1: up to about a tenth of a letter's height either way), `T3FloatRotation` (0 to 3, default 1: a few degrees of tilt and turn, so the sides catch the light; 0 only drifts), `T3FloatSpeed` (default 1: a swing about every 3 seconds; 2 is twice as fast). Distances go by the letters' size and the pace by seconds, so any Size and frame rate float alike. For dreamy, playful or "alive" titles; Amount 2 to 3 for a wild float.
+  - **Float** (`T3FloatOn` 1): the letters drift and sway gently all through the clip, on top of their In and Out rows (letters that come in, then float). The section's controls:
+    - `T3FloatPieces` (Float By): 0 letters, 1 words, 2 lines, 3 the whole text. A word, a line or the whole text moves and turns as one piece about its middle.
+    - `T3FloatStyle`: 0 Random (each piece keeps its own time), 1 Wave Left to Right, 2 Wave Right to Left, 3 Wave from the Middle, 4 Together (all in step).
+    - `T3FloatAmount` (0 to 3, default 1: multiplies the three distances; 0 only turns) and `T3FloatRotation` (0 to 3, default 1: multiplies the three turns; 0 only drifts).
+    - `T3FloatSpeed` (default 1: a swing about every 3 seconds; 2 is twice as fast).
+  - **Float Details** (the section right under it):
+    - `T3FloatX`, `T3FloatY`, `T3FloatZ`: sideways, up and down, towards the camera, in % of a letter's height (defaults 4, 9, 8).
+    - `T3FloatRotX`, `T3FloatRotY`, `T3FloatRotZ`: tipping, turning (the sides catch the light), rocking, in degrees (defaults 4.5, 7, 3).
+    - `T3FloatWave` (Wave Length): how many pieces one wave spans (default 6).
+    - `T3FloatPace` (Pace Variation, Random only): 0 all at one pace (default 1).
+    - `T3FloatRipple`: a quicker little wave on top, 0 to 1 (default 0.35; 0 one smooth swing).
+    - `T3FloatEaseIn`: the seconds the float takes to grow from still at the clip's start (default 0).
+    - `T3FloatSeed`: another random pattern.
+    - Distances go by the letters' size and the pace by seconds, so any Size and frame rate float alike.
+  - Float ideas: dreamy or "alive" titles at the defaults; a bobbing wave (`T3FloatStyle` 1, `T3FloatY` 15, `T3FloatRotation` 0); a hanging sign that sways (`T3FloatPieces` 3, `T3FloatRotZ` 6); words bobbing on water (`T3FloatPieces` 1, `T3FloatRotX` 10); Amount 2 to 3 for a wild float.
   - **Glow** (`T3GlowFxOn` 1): a soft glow round the whole text, behind it. `T3GlowFxAmount` (0 to 3, default 1), `T3GlowFxSize` (0 to 4, default 1: about 30 pixels), `T3GlowFxTextColors` (1, default: the letters' own colours; 0: `GlowFxColor`, default 1, 0.82, 0.35). The plugin is a generator, so Resolve's own Glow can't be put on it on the Edit page: this is the text's glow.
   - **Fire** (`T3FireOn` 1): flames off the letters, drawn behind them, and embers flying. `T3FireFlames` (0 to 2, default 1; 0 leaves only embers), `T3FireHeight` (0 to 3, default 1: about a fifth of the frame's height), `T3FireEmbers` (0 to 3, default 1, how many sparks), `T3FireSpeed` (default 1), `T3FireDirection` (default 90, up), `FireColor` (the flames' main colour, default orange 1, 0.42, 0.06; their cores are hotter, their tips deeper). Made for the lava look (Textizo3D-03A); embers alone (`T3FireFlames` 0) suit the fight-night looks.
   - **Frost** (`T3FrostOn` 1): cold mist off the letters and snowflakes drifting. `T3FrostMist` (0 to 2, 0 leaves only snow), `T3FrostHeight` (how far mist and snow go), `T3FrostSnow` (0 to 3, how many flakes), `T3FrostSpeed`, `T3FrostDirection` (default -90, down), `FrostColor` (default 0.75, 0.92, 1). Made for the ice look (Textizo3D-02A); also cold chrome.
@@ -592,9 +606,22 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
 | `T3FloatOn` | Float | checkbox | 0 | 0 or 1 |
+| `T3FloatPieces` | Float: Float By | choice | 0 | 0 Letters, 1 Words, 2 Lines, 3 Whole Text |
+| `T3FloatStyle` | Float: Float Style | choice | 0 | 0 Random, 1 Wave Left to Right, 2 Wave Right to Left, 3 Wave from the Middle, 4 Together |
 | `T3FloatAmount` | Float: Float Amount | number | 1 | slider 0 to 3; at least 0 |
 | `T3FloatRotation` | Float: Float Rotation | number | 1 | slider 0 to 3; at least 0 |
 | `T3FloatSpeed` | Float: Float Speed | number | 1 | slider 0 to 3; at least 0 |
+| `T3FloatX` | Float Details: Float X | number | 4 | slider 0 to 30; at least 0 |
+| `T3FloatY` | Float Details: Float Y | number | 9 | slider 0 to 30; at least 0 |
+| `T3FloatZ` | Float Details: Float Z | number | 8 | slider 0 to 30; at least 0 |
+| `T3FloatRotX` | Float Details: Float Rotation X | number | 4.5 | slider 0 to 45; at least 0 |
+| `T3FloatRotY` | Float Details: Float Rotation Y | number | 7 | slider 0 to 45; at least 0 |
+| `T3FloatRotZ` | Float Details: Float Rotation Z | number | 3 | slider 0 to 45; at least 0 |
+| `T3FloatWave` | Float Details: Wave Length | number | 6 | slider 1 to 20; at least 0 |
+| `T3FloatPace` | Float Details: Pace Variation | number | 1 | slider 0 to 2; at least 0 |
+| `T3FloatRipple` | Float Details: Ripple | number | 0.35 | slider 0 to 1; at least 0 |
+| `T3FloatEaseIn` | Float Details: Ease In (seconds) | number | 0 | slider 0 to 5; at least 0 |
+| `T3FloatSeed` | Float Details: Float Seed | integer | 0 | slider 0 to 100; at least 0 |
 | `T3GlowFxOn` | Glow | checkbox | 0 | 0 or 1 |
 | `T3GlowFxAmount` | Glow: Glow Amount | number | 1 | slider 0 to 3; at least 0 |
 | `T3GlowFxSize` | Glow: Glow Size | number | 1 | slider 0 to 4; at least 0 |

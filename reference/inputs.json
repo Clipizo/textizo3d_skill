@@ -3,8 +3,8 @@
  "version": "1.0.1",
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
- "generated": "2026-11-21",
- "parameters": "t3_params_gen.h ab34e7be7914",
+ "generated": "2026-11-22",
+ "parameters": "t3_params_gen.h 0d2f6d44a7bb",
  "pages": [
   "Text",
   "In",
@@ -3689,7 +3689,38 @@
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "Each letter drifts and sways gently on its own, all through the clip."
+   "hint": "The letters (or words, lines, the whole text) drift and sway gently, all through the clip."
+  },
+  "T3FloatPieces": {
+   "label": "Float By",
+   "page": "Effects",
+   "section": "Float",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines",
+    "Whole Text"
+   ],
+   "hint": "What floats as one piece: each letter, each word, each line, or the whole text."
+  },
+  "T3FloatStyle": {
+   "label": "Float Style",
+   "page": "Effects",
+   "section": "Float",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Random",
+    "Wave Left to Right",
+    "Wave Right to Left",
+    "Wave from the Middle",
+    "Together"
+   ],
+   "hint": "Random: each piece keeps its own time. Wave: a wave runs through the text. Together: all in step."
   },
   "T3FloatAmount": {
    "label": "Float Amount",
@@ -3703,7 +3734,7 @@
     0.0,
     3.0
    ],
-   "hint": "How far the letters drift."
+   "hint": "How far they drift: multiplies Float X, Y and Z (0: they only turn)."
   },
   "T3FloatRotation": {
    "label": "Float Rotation",
@@ -3717,7 +3748,7 @@
     0.0,
     3.0
    ],
-   "hint": "How much the letters turn as they float (0: they only drift)."
+   "hint": "How much they turn: multiplies Float Rotation X, Y and Z (0: they only drift)."
   },
   "T3FloatSpeed": {
    "label": "Float Speed",
@@ -3730,7 +3761,162 @@
    "slider": [
     0.0,
     3.0
-   ]
+   ],
+   "hint": "How fast they float (1: a swing about every 3 seconds)."
+  },
+  "T3FloatX": {
+   "label": "Float X",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 4.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    30.0
+   ],
+   "hint": "Sideways, in % of a letter's height."
+  },
+  "T3FloatY": {
+   "label": "Float Y",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 9.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    30.0
+   ],
+   "hint": "Up and down, in % of a letter's height."
+  },
+  "T3FloatZ": {
+   "label": "Float Z",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 8.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    30.0
+   ],
+   "hint": "Towards the camera and back, in % of a letter's height."
+  },
+  "T3FloatRotX": {
+   "label": "Float Rotation X",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 4.5,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    45.0
+   ],
+   "hint": "Tipping forward and back, in degrees."
+  },
+  "T3FloatRotY": {
+   "label": "Float Rotation Y",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 7.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    45.0
+   ],
+   "hint": "Turning left and right, in degrees (the sides catch the light)."
+  },
+  "T3FloatRotZ": {
+   "label": "Float Rotation Z",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 3.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    45.0
+   ],
+   "hint": "Rocking side to side, in degrees."
+  },
+  "T3FloatWave": {
+   "label": "Wave Length",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 6.0,
+   "min": 0.0,
+   "slider": [
+    1.0,
+    20.0
+   ],
+   "hint": "Wave styles: how many pieces one wave spans."
+  },
+  "T3FloatPace": {
+   "label": "Pace Variation",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    2.0
+   ],
+   "hint": "Random style: how differently the pieces keep time (0: all at one pace)."
+  },
+  "T3FloatRipple": {
+   "label": "Ripple",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.35,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    1.0
+   ],
+   "hint": "A quicker little wave on top of the swing (0: one smooth swing)."
+  },
+  "T3FloatEaseIn": {
+   "label": "Ease In (seconds)",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    5.0
+   ],
+   "hint": "The float grows from still over this time from the clip's start (0: floating from the first frame)."
+  },
+  "T3FloatSeed": {
+   "label": "Float Seed",
+   "page": "Effects",
+   "section": "Float Details",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    100.0
+   ],
+   "hint": "Another random pattern for the same settings."
   },
   "T3GlowFxOn": {
    "label": "Glow",
