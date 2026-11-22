@@ -17,7 +17,7 @@ You can change the text, font and everything else in the Inspector at any time.
 
 **To keep a look for later**, ask the AI for a `.setting` file, or save the code in a plain text file with the short name the AI gave it, for example `Textizo3D-07A.setting`. Drag that file onto the Nodes area to add it again, or put it in Resolve's Settings folder (section 17).
 
-Textizo3D must be installed (version 1.0 or later; Sync to Speech, Link Colors and Float need 1.0.1 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
+Textizo3D must be installed (version 1.0 or later; Sync to Speech, Link Colors, Float, Export 3D Model and right-to-left text need 1.0.1 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
 
 ---
 
@@ -135,7 +135,7 @@ The order of the inputs does not matter.
 - **Vazirmatn**: Thin, ExtraLight, Light, Regular, Medium, SemiBold, Bold, ExtraBold, Black
 <!-- /fonts -->
 
-**Letters are drawn one by one, left to right.** Latin, Cyrillic, Greek and other scripts whose letters stand alone work. Scripts whose letters join or run right to left (Arabic, Persian, Hebrew, Hindi) don't draw correctly. Use a font that has every character in the text.
+**Letters.** Latin, Cyrillic, Greek and other scripts whose letters stand alone work. Since 1.0.1, Arabic, Persian, Kurdish and Hebrew run right to left with their letters joined (numbers and Latin words inside them stay left to right), and a letter the font lacks is borrowed from a font that has it (Segoe UI, Tahoma or Arial on Windows, Geeza Pro on the Mac); Vazirmatn, one of the bundled fonts, has Arabic and Persian itself. Vowel marks sit roughly over their letters. Scripts that need more shaping (Hindi and the other Indic scripts) don't draw correctly. The In and Out rows count letters in reading order, so right-to-left text animates from the right.
 
 **Will it fit?** With the default camera, a 16:9 frame is about 4.6 units wide where the text stands. The text's width is about Size × Tracking × the sum of its letters' widths. A capital takes, at Size 1: Anton or Bebas Neue 0.33, Oswald 0.38, Impact 0.44, Bangers 0.43, Kanit 0.45, Poppins 0.51, Barlow 0.52, Arial Black 0.56, Roboto 0.57, Inter 0.59, Luckiest Guy 0.61, Montserrat or Rubik 0.63, Archivo Black 0.72 (small letters about 15% less). The camera looks from the side (`T3CamOrbit` -18), so the nearer end looks bigger: keep the line under about 85% of the width. In short, at Size 1 with the default camera:
 
@@ -244,6 +244,7 @@ With the kit's tool, write keys in the spec as a list (fields left out keep the 
 - `BevelDepth`, `BevelWidth` (default 0.015): the rounded or chamfered edge around the front face. 0.03 catches more light (chrome, gold); 0 is a sharp edge. Thin fonts take small bevels.
 - `FrontBevel`, `BackBevel`: which edges get the bevel (1 = yes).
 - `SmoothingAngle` (default 30): corners sharper than this stay sharp; corners softer than it are shaded smooth.
+- **Export 3D Model...** (a button at the end of the section, 1.0.1 or later; nothing for a preset to set): saves the letters as an OBJ file with its MTL beside it, for Fusion's FBX Mesh 3D, Blender and other 3D apps: the font, size, extrusion and bevels, without the animation, Position or Rotation. In Fusion the model takes FBX Mesh 3D's own material (white until one is connected); leave its Multi Material option off (it crashed Resolve 21.2 in a test).
 
 ## 8. Material
 
