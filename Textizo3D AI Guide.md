@@ -17,7 +17,7 @@ You can change the text, font and everything else in the Inspector at any time.
 
 **To keep a look for later**, ask the AI for a `.setting` file, or save the code in a plain text file with the short name the AI gave it, for example `Textizo3D-07A.setting`. Drag that file onto the Nodes area to add it again, or put it in Resolve's Settings folder (section 17).
 
-Textizo3D must be installed (version 1.0 or later; Sync to Speech, Link Colors, Float, Export 3D Model and right-to-left text need 1.0.1 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
+Textizo3D must be installed (version 1.0 or later; Sync to Speech, Link Colors, Float, Export 3D Model and right-to-left text need 1.0.1 or later; the Overlap rows and Center Effect need 1.1 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
 
 ---
 
@@ -69,7 +69,7 @@ Under the picture the viewer also shows a **timeline** of the clip. Beside its d
 
 The **Look** menu on the Text page applies a ready look (section 13) and keeps the text. A node you write carries every value itself, so it never uses that menu.
 
-Every animation is per letter, word or line: each page (In, Out) has seven rows (Opacity, Blur, Position, Size, Tracking, Rotation, Explosion) that move the pieces in turn. Textizo3D starts with every row off: a still 3D title. Turn rows on only when the user wants movement.
+Every animation is per letter, word or line: each page (In, Out) has seven rows (Opacity, Blur, Position, Size, Tracking, Rotation, Explosion) that move the pieces in turn, and the In page ends with four Overlap rows, each one more animation of any one property at frames of its own (section 4). Textizo3D starts with every row off: a still 3D title. Turn rows on only when the user wants movement.
 
 ## 2. The preset file
 
@@ -190,6 +190,27 @@ Common rows:
 
 **Sync to Speech** (the In page's first section; inputs `T3InSync` and `T3InSyncWords`, Words Shown): with `T3InSync` 1 the words stay hidden until Words Shown reaches their number (1 the first word, 2 the second ...). Each word's In rows then play from the frame it came in, over their own `Start`–`End` window (the earliest row's `Start` lands on that frame, the others keep their distance from it), its letters staggered within the word; the Out rows keep the clip's own timing. The user keys Words Shown in Resolve to the speech, a key on the frame each word is said; a node you write can turn Sync on and give the In rows a short window for one word (6 to 10 frames, Stagger about 30), but leave `T3InSyncWords` at 0 and tell the user to key it: with no keys at all every word stays hidden.
 
+**Overlap rows** (1.1; the In page's last four sections, Overlap 1 to 4, IDs `T3Ov1` to `T3Ov4`): each plays one property at frames of its own, on top of the In and Out rows: a pop that settles, a bounce after the text lands, a spin while it slides in. A row's inputs (`T3Ov1` + the ending):
+
+| Ending | Meaning |
+|---|---|
+| `On` | 1 plays the row |
+| `Prop` | what it animates: 0 Size, 1 Position, 2 Rotation, 3 Opacity, 4 Blur, 5 Tracking |
+| `Pieces`, `Order`, `Start`, `End`, `Stagger`, `Ease`, `EaseCurve` | as an In row's (section 5); its own frames from the clip's frame 0 (default 0 to 30) |
+| `SizeFrom`, `SizeTo` | Size: multiplies the size the rows above give (1 leaves it, 1.2 is 20% bigger) |
+| `PosFromX`, `PosFromY`, `PosFromZ`, `PosToX`, `PosToY`, `PosToZ` | Position: added to the rows' offsets, in units |
+| `RotFromX`, `RotFromY`, `RotFromZ`, `RotToX`, `RotToY`, `RotToZ` | Rotation: added to the rows' turns, in degrees |
+| `OpacityFrom`, `OpacityTo` | Opacity: multiplies the rows' opacity (1 leaves it) |
+| `BlurFrom`, `BlurTo` | Blur: added to the rows' blur (0 leaves it; 0.1 soft) |
+| `TrackFrom`, `TrackTo` | Tracking: added to the rows' tracking (0 leaves it) |
+
+Only the values of the row's `Prop` play; write the ones it uses. A row holds its Start values before its `Start` frame and its End values after its `End` frame, as AnimizoFX's Overlap layers do, so its Start values show from the clip's first frame: start Size and Opacity rows at 1 and the others at 0 unless the text should begin changed. Overlap rows keep the clip's own timing (with Sync to Speech too). Two rows of the same property stack: Size and Opacity multiply, the rest add. Ideas:
+
+- **Pop and settle:** the In Size row 0 to 1.15 with Out Back over frames 0 to 12, and Overlap 1 Size 1 to 0.87 (`Ease` 6) over frames 12 to 20.
+- **Bounce after landing:** Overlap 1 Position `PosFromY` 0, `PosToY` 0.15 over frames 30 to 36 (Out Quad), and Overlap 2 Position `PosFromY` 0, `PosToY` -0.15 over frames 36 to 44 (Out Bounce): up and back down.
+- **Spin while it slides in:** the In Position row, and Overlap 1 Rotation `RotFromY` -180, `RotToY` 0 by letters over the same frames.
+- **Pulse for a beat:** Overlap 1 Size 1 to 1.12 over frames 48 to 52 (Out Quad), and Overlap 2 Size 1 to 0.893 over frames 52 to 58 (In Out Cubic).
+
 ## 5. Timing
 
 Frames count from the clip's first frame (0). A 5-second clip at 24 fps has frames 0 to 119; at 30 fps, 0 to 149. Work out frames from the clip's length and frame rate; when you don't know them, use 24 fps and 120 frames and say so.
@@ -255,7 +276,7 @@ With the kit's tool, write keys in the spec as a list (fields left out keep the 
 - `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Bloom).
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
 - **Bloom and Edge Glow** (2D, over the picture): Bloom, `T3Glow` (0 to 3), lights up everything brighter than `T3GlowThreshold` (Bloom Threshold, 0 to 1), spread by `T3GlowSize` (Bloom Size, default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
-- **Effects** (the **Effects** page, the fourth tab: a section each, Float, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs).
+- **Effects** (the **Effects** page, the fourth tab: a section each, Float, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs). Fire, Frost, Smoke, Light Rays, Shine and Dust have **Center Effect** (1.1; `T3FireCenter`, `T3FrostCenter`, `T3SmokeCenter`, `T3RaysCenter`, `T3ShineCenter`, `T3DustCenter`, default 0): 1 starts the effect at the middle of the text. Fire, Frost, Smoke and Dust then go out all round from the text's middle line (up from its top, down from its bottom, out past its ends: an aura instead of one way) and their Direction isn't used; Light Rays burst out from the text's middle in every direction (a sunburst behind it); Shine's band starts at the middle and splits, two bands running out to both ends along `T3ShineDirection`.
   - **Float** (`T3FloatOn` 1): the letters drift and sway gently all through the clip, on top of their In and Out rows (letters that come in, then float). The section's controls:
     - `T3FloatPieces` (Float By): 0 letters, 1 words, 2 lines, 3 the whole text. A word, a line or the whole text moves and turns as one piece about its middle.
     - `T3FloatStyle`: 0 Random (each piece keeps its own time), 1 Wave Left to Right, 2 Wave Right to Left, 3 Wave from the Middle, 4 Together (all in step).
@@ -522,6 +543,122 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InExplodeReverse` | Explosion: Reverse | checkbox | 0 | 0 or 1 |
 | `T3InExplodeEase` | Explosion: Ease | choice | 5 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
 | `T3InExplodeEaseCurve` | Explosion: Ease Curve | string | "0.65 0 0.35 1" | text |
+| `T3Ov1On` | Overlap 1: On | checkbox | 0 | 0 or 1 |
+| `T3Ov1Prop` | Overlap 1: Property | choice | 0 | 0 Size, 1 Position, 2 Rotation, 3 Opacity, 4 Blur, 5 Tracking |
+| `T3Ov1Pieces` | Overlap 1: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
+| `T3Ov1Order` | Overlap 1: Order | choice | 0 | 0 to 5: the orders in section 4 |
+| `T3Ov1Start` | Overlap 1: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
+| `T3Ov1End` | Overlap 1: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov1Stagger` | Overlap 1: Stagger % | number | 30 | slider 0 to 200; at least 0 |
+| `T3Ov1SizeFrom` | Overlap 1: Start Size | number | 1 | slider 0 to 4 |
+| `T3Ov1SizeTo` | Overlap 1: End Size | number | 1 | slider 0 to 4 |
+| `T3Ov1PosFromX` | Overlap 1: Start X | number | 0 | slider -2 to 2 |
+| `T3Ov1PosFromY` | Overlap 1: Start Y | number | 0 | slider -2 to 2 |
+| `T3Ov1PosFromZ` | Overlap 1: Start Z | number | 0 | slider -2 to 2 |
+| `T3Ov1PosToX` | Overlap 1: End X | number | 0 | slider -2 to 2 |
+| `T3Ov1PosToY` | Overlap 1: End Y | number | 0 | slider -2 to 2 |
+| `T3Ov1PosToZ` | Overlap 1: End Z | number | 0 | slider -2 to 2 |
+| `T3Ov1RotFromX` | Overlap 1: Start X | number | 0 | slider -360 to 360 |
+| `T3Ov1RotFromY` | Overlap 1: Start Y | number | 0 | slider -360 to 360 |
+| `T3Ov1RotFromZ` | Overlap 1: Start Z | number | 0 | slider -360 to 360 |
+| `T3Ov1RotToX` | Overlap 1: End X | number | 0 | slider -360 to 360 |
+| `T3Ov1RotToY` | Overlap 1: End Y | number | 0 | slider -360 to 360 |
+| `T3Ov1RotToZ` | Overlap 1: End Z | number | 0 | slider -360 to 360 |
+| `T3Ov1OpacityFrom` | Overlap 1: Start Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov1OpacityTo` | Overlap 1: End Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov1BlurFrom` | Overlap 1: Start Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov1BlurTo` | Overlap 1: End Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov1TrackFrom` | Overlap 1: Start Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov1TrackTo` | Overlap 1: End Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov1Ease` | Overlap 1: Ease | choice | 6 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3Ov1EaseCurve` | Overlap 1: Ease Curve | string | "0.65 0 0.35 1" | text |
+| `T3Ov2On` | Overlap 2: On | checkbox | 0 | 0 or 1 |
+| `T3Ov2Prop` | Overlap 2: Property | choice | 0 | 0 Size, 1 Position, 2 Rotation, 3 Opacity, 4 Blur, 5 Tracking |
+| `T3Ov2Pieces` | Overlap 2: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
+| `T3Ov2Order` | Overlap 2: Order | choice | 0 | 0 to 5: the orders in section 4 |
+| `T3Ov2Start` | Overlap 2: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
+| `T3Ov2End` | Overlap 2: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov2Stagger` | Overlap 2: Stagger % | number | 30 | slider 0 to 200; at least 0 |
+| `T3Ov2SizeFrom` | Overlap 2: Start Size | number | 1 | slider 0 to 4 |
+| `T3Ov2SizeTo` | Overlap 2: End Size | number | 1 | slider 0 to 4 |
+| `T3Ov2PosFromX` | Overlap 2: Start X | number | 0 | slider -2 to 2 |
+| `T3Ov2PosFromY` | Overlap 2: Start Y | number | 0 | slider -2 to 2 |
+| `T3Ov2PosFromZ` | Overlap 2: Start Z | number | 0 | slider -2 to 2 |
+| `T3Ov2PosToX` | Overlap 2: End X | number | 0 | slider -2 to 2 |
+| `T3Ov2PosToY` | Overlap 2: End Y | number | 0 | slider -2 to 2 |
+| `T3Ov2PosToZ` | Overlap 2: End Z | number | 0 | slider -2 to 2 |
+| `T3Ov2RotFromX` | Overlap 2: Start X | number | 0 | slider -360 to 360 |
+| `T3Ov2RotFromY` | Overlap 2: Start Y | number | 0 | slider -360 to 360 |
+| `T3Ov2RotFromZ` | Overlap 2: Start Z | number | 0 | slider -360 to 360 |
+| `T3Ov2RotToX` | Overlap 2: End X | number | 0 | slider -360 to 360 |
+| `T3Ov2RotToY` | Overlap 2: End Y | number | 0 | slider -360 to 360 |
+| `T3Ov2RotToZ` | Overlap 2: End Z | number | 0 | slider -360 to 360 |
+| `T3Ov2OpacityFrom` | Overlap 2: Start Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov2OpacityTo` | Overlap 2: End Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov2BlurFrom` | Overlap 2: Start Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov2BlurTo` | Overlap 2: End Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov2TrackFrom` | Overlap 2: Start Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov2TrackTo` | Overlap 2: End Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov2Ease` | Overlap 2: Ease | choice | 6 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3Ov2EaseCurve` | Overlap 2: Ease Curve | string | "0.65 0 0.35 1" | text |
+| `T3Ov3On` | Overlap 3: On | checkbox | 0 | 0 or 1 |
+| `T3Ov3Prop` | Overlap 3: Property | choice | 0 | 0 Size, 1 Position, 2 Rotation, 3 Opacity, 4 Blur, 5 Tracking |
+| `T3Ov3Pieces` | Overlap 3: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
+| `T3Ov3Order` | Overlap 3: Order | choice | 0 | 0 to 5: the orders in section 4 |
+| `T3Ov3Start` | Overlap 3: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
+| `T3Ov3End` | Overlap 3: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov3Stagger` | Overlap 3: Stagger % | number | 30 | slider 0 to 200; at least 0 |
+| `T3Ov3SizeFrom` | Overlap 3: Start Size | number | 1 | slider 0 to 4 |
+| `T3Ov3SizeTo` | Overlap 3: End Size | number | 1 | slider 0 to 4 |
+| `T3Ov3PosFromX` | Overlap 3: Start X | number | 0 | slider -2 to 2 |
+| `T3Ov3PosFromY` | Overlap 3: Start Y | number | 0 | slider -2 to 2 |
+| `T3Ov3PosFromZ` | Overlap 3: Start Z | number | 0 | slider -2 to 2 |
+| `T3Ov3PosToX` | Overlap 3: End X | number | 0 | slider -2 to 2 |
+| `T3Ov3PosToY` | Overlap 3: End Y | number | 0 | slider -2 to 2 |
+| `T3Ov3PosToZ` | Overlap 3: End Z | number | 0 | slider -2 to 2 |
+| `T3Ov3RotFromX` | Overlap 3: Start X | number | 0 | slider -360 to 360 |
+| `T3Ov3RotFromY` | Overlap 3: Start Y | number | 0 | slider -360 to 360 |
+| `T3Ov3RotFromZ` | Overlap 3: Start Z | number | 0 | slider -360 to 360 |
+| `T3Ov3RotToX` | Overlap 3: End X | number | 0 | slider -360 to 360 |
+| `T3Ov3RotToY` | Overlap 3: End Y | number | 0 | slider -360 to 360 |
+| `T3Ov3RotToZ` | Overlap 3: End Z | number | 0 | slider -360 to 360 |
+| `T3Ov3OpacityFrom` | Overlap 3: Start Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov3OpacityTo` | Overlap 3: End Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov3BlurFrom` | Overlap 3: Start Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov3BlurTo` | Overlap 3: End Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov3TrackFrom` | Overlap 3: Start Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov3TrackTo` | Overlap 3: End Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov3Ease` | Overlap 3: Ease | choice | 6 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3Ov3EaseCurve` | Overlap 3: Ease Curve | string | "0.65 0 0.35 1" | text |
+| `T3Ov4On` | Overlap 4: On | checkbox | 0 | 0 or 1 |
+| `T3Ov4Prop` | Overlap 4: Property | choice | 0 | 0 Size, 1 Position, 2 Rotation, 3 Opacity, 4 Blur, 5 Tracking |
+| `T3Ov4Pieces` | Overlap 4: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
+| `T3Ov4Order` | Overlap 4: Order | choice | 0 | 0 to 5: the orders in section 4 |
+| `T3Ov4Start` | Overlap 4: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
+| `T3Ov4End` | Overlap 4: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov4Stagger` | Overlap 4: Stagger % | number | 30 | slider 0 to 200; at least 0 |
+| `T3Ov4SizeFrom` | Overlap 4: Start Size | number | 1 | slider 0 to 4 |
+| `T3Ov4SizeTo` | Overlap 4: End Size | number | 1 | slider 0 to 4 |
+| `T3Ov4PosFromX` | Overlap 4: Start X | number | 0 | slider -2 to 2 |
+| `T3Ov4PosFromY` | Overlap 4: Start Y | number | 0 | slider -2 to 2 |
+| `T3Ov4PosFromZ` | Overlap 4: Start Z | number | 0 | slider -2 to 2 |
+| `T3Ov4PosToX` | Overlap 4: End X | number | 0 | slider -2 to 2 |
+| `T3Ov4PosToY` | Overlap 4: End Y | number | 0 | slider -2 to 2 |
+| `T3Ov4PosToZ` | Overlap 4: End Z | number | 0 | slider -2 to 2 |
+| `T3Ov4RotFromX` | Overlap 4: Start X | number | 0 | slider -360 to 360 |
+| `T3Ov4RotFromY` | Overlap 4: Start Y | number | 0 | slider -360 to 360 |
+| `T3Ov4RotFromZ` | Overlap 4: Start Z | number | 0 | slider -360 to 360 |
+| `T3Ov4RotToX` | Overlap 4: End X | number | 0 | slider -360 to 360 |
+| `T3Ov4RotToY` | Overlap 4: End Y | number | 0 | slider -360 to 360 |
+| `T3Ov4RotToZ` | Overlap 4: End Z | number | 0 | slider -360 to 360 |
+| `T3Ov4OpacityFrom` | Overlap 4: Start Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov4OpacityTo` | Overlap 4: End Opacity | number | 1 | slider 0 to 1 |
+| `T3Ov4BlurFrom` | Overlap 4: Start Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov4BlurTo` | Overlap 4: End Blur | number | 0 | slider 0 to 0.2 |
+| `T3Ov4TrackFrom` | Overlap 4: Start Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov4TrackTo` | Overlap 4: End Tracking | number | 0 | slider -1 to 3 |
+| `T3Ov4Ease` | Overlap 4: Ease | choice | 6 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
+| `T3Ov4EaseCurve` | Overlap 4: Ease Curve | string | "0.65 0 0.35 1" | text |
 
 **Out page**
 
@@ -635,6 +772,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3FireEmbers` | Fire: Embers | number | 1 | slider 0 to 3; at least 0 |
 | `T3FireSpeed` | Fire: Fire Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3FireDirection` | Fire: Fire Direction | number | 90 | slider -180 to 180 |
+| `T3FireCenter` | Fire: Center Effect | checkbox | 0 | 0 or 1 |
 | `FireColor` (`FireColorRed`, `FireColorGreen`, `FireColorBlue`) | Fire: Fire Color | color | [1, 0.42, 0.06] | red, green, blue from 0 to 1 |
 | `T3FrostOn` | Frost | checkbox | 0 | 0 or 1 |
 | `T3FrostInside` | Frost: Inside the Letters | checkbox | 0 | 0 or 1 |
@@ -643,6 +781,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3FrostSnow` | Frost: Snow | number | 1 | slider 0 to 3; at least 0 |
 | `T3FrostSpeed` | Frost: Frost Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3FrostDirection` | Frost: Frost Direction | number | -90 | slider -180 to 180 |
+| `T3FrostCenter` | Frost: Center Effect | checkbox | 0 | 0 or 1 |
 | `FrostColor` (`FrostColorRed`, `FrostColorGreen`, `FrostColorBlue`) | Frost: Frost Color | color | [0.75, 0.92, 1] | red, green, blue from 0 to 1 |
 | `T3SmokeOn` | Smoke | checkbox | 0 | 0 or 1 |
 | `T3SmokeInside` | Smoke: Inside the Letters | checkbox | 0 | 0 or 1 |
@@ -650,6 +789,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3SmokeHeight` | Smoke: Smoke Height | number | 1 | slider 0 to 3; at least 0 |
 | `T3SmokeSpeed` | Smoke: Smoke Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3SmokeDirection` | Smoke: Smoke Direction | number | 90 | slider -180 to 180 |
+| `T3SmokeCenter` | Smoke: Center Effect | checkbox | 0 | 0 or 1 |
 | `SmokeColor` (`SmokeColorRed`, `SmokeColorGreen`, `SmokeColorBlue`) | Smoke: Smoke Color | color | [0.32, 0.32, 0.35] | red, green, blue from 0 to 1 |
 | `T3ElectricOn` | Electric | checkbox | 0 | 0 or 1 |
 | `T3ElectricInside` | Electric: Inside the Letters | checkbox | 0 | 0 or 1 |
@@ -661,12 +801,14 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3RaysAmount` | Light Rays: Ray Amount | number | 1 | slider 0 to 3; at least 0 |
 | `T3RaysLength` | Light Rays: Ray Length | number | 1 | slider 0 to 3; at least 0 |
 | `T3RaysDirection` | Light Rays: Ray Direction | number | 90 | slider -180 to 180 |
+| `T3RaysCenter` | Light Rays: Center Effect | checkbox | 0 | 0 or 1 |
 | `RaysColor` (`RaysColorRed`, `RaysColorGreen`, `RaysColorBlue`) | Light Rays: Ray Color | color | [1, 0.92, 0.75] | red, green, blue from 0 to 1 |
 | `T3ShineOn` | Shine | checkbox | 0 | 0 or 1 |
 | `T3ShineAmount` | Shine: Shine Amount | number | 1 | slider 0 to 3; at least 0 |
 | `T3ShineWidth` | Shine: Shine Width | number | 1 | slider 0 to 3; at least 0 |
 | `T3ShineEvery` | Shine: Shine Every (seconds) | number | 2.5 | slider 0 to 10; at least 0 |
 | `T3ShineDirection` | Shine: Shine Direction | number | -20 | slider -180 to 180 |
+| `T3ShineCenter` | Shine: Center Effect | checkbox | 0 | 0 or 1 |
 | `ShineColor` (`ShineColorRed`, `ShineColorGreen`, `ShineColorBlue`) | Shine: Shine Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
 | `T3SparkleOn` | Sparkles | checkbox | 0 | 0 or 1 |
 | `T3SparkleAmount` | Sparkles: Sparkle Amount | number | 1 | slider 0 to 3; at least 0 |
@@ -682,6 +824,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3DustSize` | Dust: Dust Size | number | 1 | slider 0 to 3; at least 0 |
 | `T3DustSpeed` | Dust: Dust Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3DustDirection` | Dust: Dust Direction | number | 60 | slider -180 to 180 |
+| `T3DustCenter` | Dust: Center Effect | checkbox | 0 | 0 or 1 |
 | `DustColor` (`DustColorRed`, `DustColorGreen`, `DustColorBlue`) | Dust: Dust Color | color | [1, 0.93, 0.82] | red, green, blue from 0 to 1 |
 
 **Material page**
@@ -936,6 +1079,7 @@ The first ready look, `Textizo3D-01A`: deep royal-blue glitter letters with navy
   - Mac: `~/Library/Application Support/Blackmagic Design/DaVinci Resolve/Fusion/Settings`
   - Linux: `~/.local/share/DaVinciResolve/Fusion/Settings`
 - **Your own text:** type it in the Inspector (Text page). The animation follows any length of text.
+- **Keep it as one of My Looks** (1.1): on the Text page's My Looks section, type a Look Name and click **Save as My Look**. The look (everything but the text) then shows in Browse Looks (Windows) and, after Resolve starts again, in the Look menu of every Textizo3D clip, also on the Edit page. A name used before saves over that look.
 - **Play** the clip: an entrance's first frames are empty on purpose.
 
 ## 18. Troubleshooting

@@ -1,10 +1,10 @@
 {
  "product": "Textizo3D",
- "version": "1.0.1",
+ "version": "1.1",
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
- "generated": "2026-11-22",
- "parameters": "t3_params_gen.h 3a905e7c13b1",
+ "generated": "2026-11-23",
+ "parameters": "t3_params_gen.h 8d37859b5a9d",
  "pages": [
   "Text",
   "In",
@@ -148,6 +148,16 @@
    "role": "public",
    "default": 1,
    "hint": "Shrinks a text too wide or tall for the frame so it stays inside, with a margin (a short text keeps its size)."
+  },
+  "MyLookName": {
+   "label": "Look Name",
+   "page": "Text",
+   "section": "My Looks",
+   "kind": "string",
+   "role": "ui",
+   "why": "the name Save as My Look gives a look of the user's own (My Looks, 1.1); not part of a look",
+   "default": "",
+   "hint": "The name your look gets in the Look menu and in Browse Looks."
   },
   "PositionX": {
    "label": "Position X",
@@ -1470,6 +1480,1542 @@
    "label": "Ease Curve",
    "page": "In",
    "section": "Explosion",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
+  },
+  "T3Ov1On": {
+   "label": "On",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Plays this row over the In and Out rows."
+  },
+  "T3Ov1Prop": {
+   "label": "Property",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Size",
+    "Position",
+    "Rotation",
+    "Opacity",
+    "Blur",
+    "Tracking"
+   ],
+   "hint": "What this row animates. Size and Opacity multiply the rows above (1: as they are); Position, Rotation, Blur and Tracking add to them (0: as they are)."
+  },
+  "T3Ov1Pieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3Ov1Order": {
+   "label": "Order",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3Ov1Start": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov1End": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov1Stagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3Ov1SizeFrom": {
+   "label": "Start Size",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov1SizeTo": {
+   "label": "End Size",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov1PosFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov1PosFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov1PosFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov1PosToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov1PosToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov1PosToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov1RotFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov1RotFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov1RotFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov1RotToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov1RotToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov1RotToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov1OpacityFrom": {
+   "label": "Start Opacity",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov1OpacityTo": {
+   "label": "End Opacity",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov1BlurFrom": {
+   "label": "Start Blur",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov1BlurTo": {
+   "label": "End Blur",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov1TrackFrom": {
+   "label": "Start Tracking",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov1TrackTo": {
+   "label": "End Tracking",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov1Ease": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "choice",
+   "role": "public",
+   "default": 6,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce",
+    "Custom"
+   ]
+  },
+  "T3Ov1EaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
+  },
+  "T3Ov2On": {
+   "label": "On",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Plays this row over the In and Out rows."
+  },
+  "T3Ov2Prop": {
+   "label": "Property",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Size",
+    "Position",
+    "Rotation",
+    "Opacity",
+    "Blur",
+    "Tracking"
+   ],
+   "hint": "What this row animates. Size and Opacity multiply the rows above (1: as they are); Position, Rotation, Blur and Tracking add to them (0: as they are)."
+  },
+  "T3Ov2Pieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3Ov2Order": {
+   "label": "Order",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3Ov2Start": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov2End": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov2Stagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3Ov2SizeFrom": {
+   "label": "Start Size",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov2SizeTo": {
+   "label": "End Size",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov2PosFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov2PosFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov2PosFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov2PosToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov2PosToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov2PosToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov2RotFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov2RotFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov2RotFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov2RotToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov2RotToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov2RotToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov2OpacityFrom": {
+   "label": "Start Opacity",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov2OpacityTo": {
+   "label": "End Opacity",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov2BlurFrom": {
+   "label": "Start Blur",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov2BlurTo": {
+   "label": "End Blur",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov2TrackFrom": {
+   "label": "Start Tracking",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov2TrackTo": {
+   "label": "End Tracking",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov2Ease": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "choice",
+   "role": "public",
+   "default": 6,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce",
+    "Custom"
+   ]
+  },
+  "T3Ov2EaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
+  },
+  "T3Ov3On": {
+   "label": "On",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Plays this row over the In and Out rows."
+  },
+  "T3Ov3Prop": {
+   "label": "Property",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Size",
+    "Position",
+    "Rotation",
+    "Opacity",
+    "Blur",
+    "Tracking"
+   ],
+   "hint": "What this row animates. Size and Opacity multiply the rows above (1: as they are); Position, Rotation, Blur and Tracking add to them (0: as they are)."
+  },
+  "T3Ov3Pieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3Ov3Order": {
+   "label": "Order",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3Ov3Start": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov3End": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov3Stagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3Ov3SizeFrom": {
+   "label": "Start Size",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov3SizeTo": {
+   "label": "End Size",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov3PosFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov3PosFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov3PosFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov3PosToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov3PosToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov3PosToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov3RotFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov3RotFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov3RotFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov3RotToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov3RotToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov3RotToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov3OpacityFrom": {
+   "label": "Start Opacity",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov3OpacityTo": {
+   "label": "End Opacity",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov3BlurFrom": {
+   "label": "Start Blur",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov3BlurTo": {
+   "label": "End Blur",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov3TrackFrom": {
+   "label": "Start Tracking",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov3TrackTo": {
+   "label": "End Tracking",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov3Ease": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "choice",
+   "role": "public",
+   "default": 6,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce",
+    "Custom"
+   ]
+  },
+  "T3Ov3EaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "string",
+   "role": "public",
+   "default": "0.65 0 0.35 1"
+  },
+  "T3Ov4On": {
+   "label": "On",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Plays this row over the In and Out rows."
+  },
+  "T3Ov4Prop": {
+   "label": "Property",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Size",
+    "Position",
+    "Rotation",
+    "Opacity",
+    "Blur",
+    "Tracking"
+   ],
+   "hint": "What this row animates. Size and Opacity multiply the rows above (1: as they are); Position, Rotation, Blur and Tracking add to them (0: as they are)."
+  },
+  "T3Ov4Pieces": {
+   "label": "Animate",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Letters",
+    "Words",
+    "Lines"
+   ]
+  },
+  "T3Ov4Order": {
+   "label": "Order",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "choice",
+   "role": "public",
+   "default": 0,
+   "options": [
+    "Left to Right",
+    "Right to Left",
+    "Center Out",
+    "Edges In",
+    "Random One by One",
+    "Random"
+   ]
+  },
+  "T3Ov4Start": {
+   "label": "Start Frame",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov4End": {
+   "label": "End Frame",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "integer",
+   "role": "public",
+   "default": 30,
+   "min": 0,
+   "slider": [
+    0.0,
+    250.0
+   ]
+  },
+  "T3Ov4Stagger": {
+   "label": "Stagger %",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    200.0
+   ]
+  },
+  "T3Ov4SizeFrom": {
+   "label": "Start Size",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov4SizeTo": {
+   "label": "End Size",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    4.0
+   ]
+  },
+  "T3Ov4PosFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov4PosFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov4PosFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov4PosToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov4PosToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov4PosToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -2.0,
+    2.0
+   ]
+  },
+  "T3Ov4RotFromX": {
+   "label": "Start X",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov4RotFromY": {
+   "label": "Start Y",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov4RotFromZ": {
+   "label": "Start Z",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov4RotToX": {
+   "label": "End X",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov4RotToY": {
+   "label": "End Y",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov4RotToZ": {
+   "label": "End Z",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -360.0,
+    360.0
+   ]
+  },
+  "T3Ov4OpacityFrom": {
+   "label": "Start Opacity",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov4OpacityTo": {
+   "label": "End Opacity",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 1.0,
+   "slider": [
+    0.0,
+    1.0
+   ]
+  },
+  "T3Ov4BlurFrom": {
+   "label": "Start Blur",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov4BlurTo": {
+   "label": "End Blur",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    0.0,
+    0.2
+   ]
+  },
+  "T3Ov4TrackFrom": {
+   "label": "Start Tracking",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov4TrackTo": {
+   "label": "End Tracking",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -1.0,
+    3.0
+   ]
+  },
+  "T3Ov4Ease": {
+   "label": "Ease",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "choice",
+   "role": "public",
+   "default": 6,
+   "options": [
+    "Linear",
+    "In Quad",
+    "Out Quad",
+    "In Out Quad",
+    "In Cubic",
+    "Out Cubic",
+    "In Out Cubic",
+    "In Quart",
+    "Out Quart",
+    "In Out Quart",
+    "In Quint",
+    "Out Quint",
+    "In Out Quint",
+    "In Sine",
+    "Out Sine",
+    "In Out Sine",
+    "In Expo",
+    "Out Expo",
+    "In Out Expo",
+    "In Circ",
+    "Out Circ",
+    "In Out Circ",
+    "In Back",
+    "Out Back",
+    "In Out Back",
+    "In Elastic",
+    "Out Elastic",
+    "In Out Elastic",
+    "In Bounce",
+    "Out Bounce",
+    "In Out Bounce",
+    "Custom"
+   ]
+  },
+  "T3Ov4EaseCurve": {
+   "label": "Ease Curve",
+   "page": "In",
+   "section": "Overlap 4",
    "kind": "string",
    "role": "public",
    "default": "0.65 0 0.35 1"
@@ -4066,6 +5612,15 @@
    ],
    "hint": "The way the flames and embers go, in degrees: 90 up, 0 right, -90 down."
   },
+  "T3FireCenter": {
+   "label": "Center Effect",
+   "page": "Effects",
+   "section": "Fire",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Starts the fire at the middle of the text and sends the flames and embers out all round (Fire Direction is not used)."
+  },
   "FireColor": {
    "label": "Fire Color",
    "page": "Effects",
@@ -4170,6 +5725,15 @@
    ],
    "hint": "The way the mist and snow go, in degrees: -90 down, 90 up."
   },
+  "T3FrostCenter": {
+   "label": "Center Effect",
+   "page": "Effects",
+   "section": "Frost",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Starts the mist and snow at the middle of the text and sends them out all round (Frost Direction is not used)."
+  },
   "FrostColor": {
    "label": "Frost Color",
    "page": "Effects",
@@ -4257,6 +5821,15 @@
     180.0
    ],
    "hint": "The way the smoke drifts, in degrees: 90 up, 0 right."
+  },
+  "T3SmokeCenter": {
+   "label": "Center Effect",
+   "page": "Effects",
+   "section": "Smoke",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "Starts the smoke at the middle of the text and sends it out all round (Smoke Direction is not used)."
   },
   "SmokeColor": {
    "label": "Smoke Color",
@@ -4398,6 +5971,15 @@
    ],
    "hint": "The way the rays shine, in degrees: 90 up, 0 right, -90 down."
   },
+  "T3RaysCenter": {
+   "label": "Center Effect",
+   "page": "Effects",
+   "section": "Light Rays",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "The rays burst out from the middle of the text, all round (Ray Direction is not used)."
+  },
   "RaysColor": {
    "label": "Ray Color",
    "page": "Effects",
@@ -4476,6 +6058,15 @@
     180.0
    ],
    "hint": "The way the band travels, in degrees: 0 left to right, 90 up."
+  },
+  "T3ShineCenter": {
+   "label": "Center Effect",
+   "page": "Effects",
+   "section": "Shine",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "The shine starts at the middle of the text and splits in two, the bands running out to both ends along Shine Direction."
   },
   "ShineColor": {
    "label": "Shine Color",
@@ -4668,6 +6259,15 @@
     180.0
    ],
    "hint": "The way the dust drifts, in degrees: 90 up, 0 right."
+  },
+  "T3DustCenter": {
+   "label": "Center Effect",
+   "page": "Effects",
+   "section": "Dust",
+   "kind": "checkbox",
+   "role": "public",
+   "default": 0,
+   "hint": "The dust starts at the middle of the text and drifts out all round (Dust Direction is not used)."
   },
   "DustColor": {
    "label": "Dust Color",
