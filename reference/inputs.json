@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-23",
- "parameters": "t3_params_gen.h a82d25088b70",
+ "parameters": "t3_params_gen.h 69459c02db99",
  "pages": [
   "Text",
   "In",
@@ -230,6 +230,21 @@
     -180.0,
     180.0
    ]
+  },
+  "T3InOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves every animation on this page later (below 0: earlier) by this many frames: its rows and its Overlap rows, without changing their own frames."
   },
   "T3InSync": {
    "label": "On",
@@ -3019,6 +3034,21 @@
    "kind": "string",
    "role": "public",
    "default": "0.65 0 0.35 1"
+  },
+  "T3OutOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves the Out rows later (below 0: earlier) by this many frames, without changing their own frames."
   },
   "T3OutOpacityOn": {
    "label": "On",

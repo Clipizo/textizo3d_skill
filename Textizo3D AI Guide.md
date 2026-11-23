@@ -17,7 +17,7 @@ You can change the text, font and everything else in the Inspector at any time.
 
 **To keep a look for later**, ask the AI for a `.setting` file, or save the code in a plain text file with the short name the AI gave it, for example `Textizo3D-07A.setting`. Drag that file onto the Nodes area to add it again, or put it in Resolve's Settings folder (section 17).
 
-Textizo3D must be installed (version 1.0 or later; Sync to Speech, Link Colors, Float, Export 3D Model and right-to-left text need 1.0.1 or later; the Overlap rows and Center Effect need 1.1 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
+Textizo3D must be installed (version 1.0 or later; Sync to Speech, Link Colors, Float, Export 3D Model and right-to-left text need 1.0.1 or later; the Overlap rows, Center Effect and Animation Offset need 1.1 or later). On the Edit page, Textizo3D also works as a clip of its own (Effects > OpenFX > Generators > Clipizo > Textizo3D) with its **Look** menu; this guide is for the Fusion page node.
 
 ---
 
@@ -69,7 +69,7 @@ Under the picture the viewer also shows a **timeline** of the clip. Beside its d
 
 The **Look** menu on the Text page applies a ready look (section 13) and keeps the text. A node you write carries every value itself, so it never uses that menu.
 
-Every animation is per letter, word or line: each page (In, Out) has seven rows (Opacity, Blur, Position, Size, Tracking, Rotation, Explosion) that move the pieces in turn, and the In page ends with four Overlap rows, each one more animation of any one property at frames of its own (section 4). Textizo3D starts with every row off: a still 3D title. Turn rows on only when the user wants movement.
+Every animation is per letter, word or line: each page (In, Out) has seven rows (Opacity, Blur, Position, Size, Tracking, Rotation, Explosion) that move the pieces in turn, and the In page ends with four Overlap rows, each one more animation of any one property at frames of its own (section 4). Each page's first control, Animation Offset, moves that page's whole animation by a number of frames (section 5). Textizo3D starts with every row off: a still 3D title. Turn rows on only when the user wants movement.
 
 ## 2. The preset file
 
@@ -204,7 +204,7 @@ Common rows:
 | `BlurFrom`, `BlurTo` | Blur: added to the rows' blur (0 leaves it; 0.1 soft) |
 | `TrackFrom`, `TrackTo` | Tracking: added to the rows' tracking (0 leaves it) |
 
-In the viewer each row that is on shows as a lane under the timeline strip (its Start and End frames, dragged to retime it; the strip's `...` menu adds and removes rows), and the In page shows only those rows' sections and the next. Only the values of the row's `Prop` play; write the ones it uses. A row holds its Start values before its `Start` frame and its End values after its `End` frame, as AnimizoFX's Overlap layers do, so its Start values show from the clip's first frame: start Size and Opacity rows at 1 and the others at 0 unless the text should begin changed. Overlap rows keep the clip's own timing (with Sync to Speech too). Two rows of the same property stack: Size and Opacity multiply, the rest add. Ideas:
+In the viewer each row that is on shows as a lane under the timeline strip (its Start and End frames, dragged to retime it; the strip's `...` menu adds and removes rows), and the In page shows only those rows' sections and the next. Only the values of the row's `Prop` play; write the ones it uses. A row holds its Start values before its `Start` frame and its End values after its `End` frame, as AnimizoFX's Overlap layers do, so its Start values show from the clip's first frame: start Size and Opacity rows at 1 and the others at 0 unless the text should begin changed. Overlap rows keep the clip's own timing (with Sync to Speech too); only the In page's Animation Offset moves them (section 5). Two rows of the same property stack: Size and Opacity multiply, the rest add. Ideas:
 
 - **Pop and settle:** the In Size row 0 to 1.15 with Out Back over frames 0 to 12, and Overlap 1 Size 1 to 0.87 (`Ease` 6) over frames 12 to 20.
 - **Bounce after landing:** Overlap 1 Position `PosFromY` 0, `PosToY` 0.15 over frames 30 to 36 (Out Quad), and Overlap 2 Position `PosFromY` 0, `PosToY` -0.15 over frames 36 to 44 (Out Bounce): up and back down.
@@ -221,6 +221,8 @@ How a row spreads over its pieces (N letters, words or lines; spaces and line br
 - With `Stagger` 0 all pieces move together. With `Stagger` 100 each starts when the one before ends. In between they overlap.
 - Each piece moves for **S = (End - Start) / (1 + k × R)** frames, where k = Stagger / 100 and R = N - 1 (for centre out and edges in, R = the whole part of (N - 1) / 2). Piece number r (0, 1, 2, …) starts at **Start + r × k × S**.
 - **To give each piece `span` frames and a `gap` between their starts:** Stagger = 100 × gap / span and End = Start + span + gap × R. For "HELLO" (5 letters, R = 4), span 8 and gap 2: Stagger 25, End = Start + 16.
+
+**Animation Offset** (1.1; `T3InOffset`, the In page's first control, and `T3OutOffset`, the Out page's; whole frames, default 0) moves a page's whole animation later by that many frames (below 0: earlier) without changing any row's own frames: `T3InOffset` moves the In rows, the Overlap rows and Sync to Speech's words, `T3OutOffset` the Out rows. Write the rows' frames as usual and leave both at 0, unless the user asks to shift a whole entrance or exit (`T3InOffset` 12 starts everything half a second later at 24 fps). Once moved, every row must still end before the clip's last frame.
 
 The text holds still between the In rows' last frame and the Out rows' first frame. Textizo3D reuses that still frame instead of drawing it again (`T3HoldStill`, on by default).
 
@@ -456,6 +458,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
+| `T3InOffset` | Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InSync` | Sync to Speech: On | checkbox | 0 | 0 or 1 |
 | `T3InSyncWords` | Sync to Speech: Words Shown | number | 0 | slider 0 to 20; at least 0 |
 | `T3InOpacityOn` | Opacity: On | checkbox | 0 | 0 or 1 |
@@ -664,6 +667,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 
 | ID | Control | Kind | Default | Range or choices |
 |---|---|---|---|---|
+| `T3OutOffset` | Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutOpacityOn` | Opacity: On | checkbox | 0 | 0 or 1 |
 | `T3OutOpacityPieces` | Opacity: Animate | choice | 0 | 0 Letters, 1 Words, 2 Lines |
 | `T3OutOpacityOrder` | Opacity: Order | choice | 0 | 0 to 5: the orders in section 4 |
@@ -1096,7 +1100,7 @@ The first ready look, `Textizo3D-01A`: deep royal-blue glitter letters with navy
   - Windows: `%APPDATA%\Blackmagic Design\DaVinci Resolve\Support\Fusion\Settings`
   - Mac: `~/Library/Application Support/Blackmagic Design/DaVinci Resolve/Fusion/Settings`
   - Linux: `~/.local/share/DaVinciResolve/Fusion/Settings`
-- **Your own text:** type it in the Inspector (Text page). The animation follows any length of text.
+- **Your own text:** type it in the Inspector (Text page). The animation follows any length of text. On the Edit page the Text box applies when you click outside it; **Type Live...** (1.1, under the Look menu) opens a small box where the text shows in the viewer as you type.
 - **Keep it as one of My Looks** (1.1): on the Text page's My Looks section, type a Look Name and click **Save as My Look**. The look (everything but the text) then shows in Browse Looks (Windows) and, after Resolve starts again, in the Look menu of every Textizo3D clip, also on the Edit page. A name used before saves over that look.
 - **Play** the clip: an entrance's first frames are empty on purpose.
 
