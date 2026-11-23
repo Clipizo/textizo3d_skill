@@ -196,7 +196,7 @@ Common rows:
 |---|---|
 | `On` | 1 plays the row |
 | `Prop` | what it animates: 0 Size, 1 Position, 2 Rotation, 3 Opacity, 4 Blur, 5 Tracking |
-| `Pieces`, `Order`, `Start`, `End`, `Stagger`, `Ease`, `EaseCurve` | as an In row's (section 5); its own frames from the clip's frame 0 (default 0 to 30) |
+| `Pieces`, `Order`, `Start`, `End`, `Offset`, `Stagger`, `Ease`, `EaseCurve` | as an In row's (section 5); its own frames from the clip's frame 0 (default 0 to 30) |
 | `SizeFrom`, `SizeTo` | Size: multiplies the size the rows above give (1 leaves it, 1.2 is 20% bigger) |
 | `PosFromX`, `PosFromY`, `PosFromZ`, `PosToX`, `PosToY`, `PosToZ` | Position: added to the rows' offsets, in units |
 | `RotFromX`, `RotFromY`, `RotFromZ`, `RotToX`, `RotToY`, `RotToZ` | Rotation: added to the rows' turns, in degrees |
@@ -222,7 +222,7 @@ How a row spreads over its pieces (N letters, words or lines; spaces and line br
 - Each piece moves for **S = (End - Start) / (1 + k × R)** frames, where k = Stagger / 100 and R = N - 1 (for centre out and edges in, R = the whole part of (N - 1) / 2). Piece number r (0, 1, 2, …) starts at **Start + r × k × S**.
 - **To give each piece `span` frames and a `gap` between their starts:** Stagger = 100 × gap / span and End = Start + span + gap × R. For "HELLO" (5 letters, R = 4), span 8 and gap 2: Stagger 25, End = Start + 16.
 
-**Animation Offset** (1.1; `T3InOffset`, the In page's first control, and `T3OutOffset`, the Out page's; whole frames, default 0) moves a page's whole animation later by that many frames (below 0: earlier) without changing any row's own frames: `T3InOffset` moves the In rows, the Overlap rows and Sync to Speech's words, `T3OutOffset` the Out rows. Write the rows' frames as usual and leave both at 0, unless the user asks to shift a whole entrance or exit (`T3InOffset` 12 starts everything half a second later at 24 fps). Once moved, every row must still end before the clip's last frame.
+**Animation Offset** (1.1; `T3InOffset`, the In page's first control, and `T3OutOffset`, the Out page's; whole frames, default 0) moves a page's whole animation later by that many frames (below 0: earlier) without changing any row's own frames: `T3InOffset` moves the In rows, the Overlap rows and Sync to Speech's words, `T3OutOffset` the Out rows. Write the rows' frames as usual and leave both at 0, unless the user asks to shift a whole entrance or exit (`T3InOffset` 12 starts everything half a second later at 24 fps). Once moved, every row must still end before the clip's last frame. Every row also has its own Animation Offset (1.1; the row's ID + `Offset`, after its End Frame: `T3InSizeOffset`, `T3OutOpacityOffset`, `T3Ov1Offset` ...; whole frames, default 0): it moves that row alone, on top of its page's (a row with `Start` 0, `End` 20 and `Offset` 10 plays from frame 10 to 30). Use it to start one property a little after the others without rewriting its frames; leave it at 0 otherwise.
 
 The text holds still between the In rows' last frame and the Out rows' first frame. Textizo3D reuses that still frame instead of drawing it again (`T3HoldStill`, on by default).
 
@@ -466,6 +466,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InOpacityOrder` | Opacity: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3InOpacityStart` | Opacity: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InOpacityEnd` | Opacity: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3InOpacityOffset` | Opacity: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InOpacityStagger` | Opacity: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InOpacityFrom` | Opacity: Start Value | number | 0 | slider 0 to 1 |
 | `T3InOpacityTo` | Opacity: End Value | number | 1 | slider 0 to 1 |
@@ -476,6 +477,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InBlurOrder` | Blur: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3InBlurStart` | Blur: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InBlurEnd` | Blur: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3InBlurOffset` | Blur: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InBlurStagger` | Blur: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InBlurFrom` | Blur: Start Value | number | 0.1 | slider 0 to 0.2 |
 | `T3InBlurTo` | Blur: End Value | number | 0 | slider 0 to 0.2 |
@@ -486,6 +488,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InPosOrder` | Position: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3InPosStart` | Position: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InPosEnd` | Position: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3InPosOffset` | Position: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InPosStagger` | Position: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InPosFromX` | Position: Start X | number | 0 | slider -2 to 2 |
 | `T3InPosFromY` | Position: Start Y | number | -0.6 | slider -2 to 2 |
@@ -500,6 +503,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InSizeOrder` | Size: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3InSizeStart` | Size: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InSizeEnd` | Size: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3InSizeOffset` | Size: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InSizeStagger` | Size: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InSizeFrom` | Size: Start Value | number | 0 | slider 0 to 4 |
 | `T3InSizeTo` | Size: End Value | number | 1 | slider 0 to 4 |
@@ -510,6 +514,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InTrackOrder` | Tracking: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3InTrackStart` | Tracking: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InTrackEnd` | Tracking: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3InTrackOffset` | Tracking: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InTrackStagger` | Tracking: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InTrackFrom` | Tracking: Start Value | number | 2 | slider -1 to 3 |
 | `T3InTrackTo` | Tracking: End Value | number | 0 | slider -1 to 3 |
@@ -520,6 +525,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InRotOrder` | Rotation: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3InRotStart` | Rotation: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InRotEnd` | Rotation: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3InRotOffset` | Rotation: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InRotStagger` | Rotation: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InRotFromX` | Rotation: Start X | number | 90 | slider -360 to 360 |
 | `T3InRotFromY` | Rotation: Start Y | number | 0 | slider -360 to 360 |
@@ -534,6 +540,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3InExplodeOrder` | Explosion: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3InExplodeStart` | Explosion: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3InExplodeEnd` | Explosion: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3InExplodeOffset` | Explosion: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3InExplodeStagger` | Explosion: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3InExplodeFrom` | Explosion: Start Value | number | 1.5 | slider 0 to 3 |
 | `T3InExplodeTo` | Explosion: End Value | number | 0 | slider 0 to 3 |
@@ -552,6 +559,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3Ov1Order` | Overlap 1: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3Ov1Start` | Overlap 1: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3Ov1End` | Overlap 1: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov1Offset` | Overlap 1: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3Ov1Stagger` | Overlap 1: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3Ov1SizeFrom` | Overlap 1: Start Size | number | 1 | slider 0 to 4 |
 | `T3Ov1SizeTo` | Overlap 1: End Size | number | 1 | slider 0 to 4 |
@@ -581,6 +589,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3Ov2Order` | Overlap 2: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3Ov2Start` | Overlap 2: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3Ov2End` | Overlap 2: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov2Offset` | Overlap 2: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3Ov2Stagger` | Overlap 2: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3Ov2SizeFrom` | Overlap 2: Start Size | number | 1 | slider 0 to 4 |
 | `T3Ov2SizeTo` | Overlap 2: End Size | number | 1 | slider 0 to 4 |
@@ -610,6 +619,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3Ov3Order` | Overlap 3: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3Ov3Start` | Overlap 3: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3Ov3End` | Overlap 3: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov3Offset` | Overlap 3: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3Ov3Stagger` | Overlap 3: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3Ov3SizeFrom` | Overlap 3: Start Size | number | 1 | slider 0 to 4 |
 | `T3Ov3SizeTo` | Overlap 3: End Size | number | 1 | slider 0 to 4 |
@@ -639,6 +649,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3Ov4Order` | Overlap 4: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3Ov4Start` | Overlap 4: Start Frame | integer | 0 | slider 0 to 250; at least 0 |
 | `T3Ov4End` | Overlap 4: End Frame | integer | 30 | slider 0 to 250; at least 0 |
+| `T3Ov4Offset` | Overlap 4: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3Ov4Stagger` | Overlap 4: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3Ov4SizeFrom` | Overlap 4: Start Size | number | 1 | slider 0 to 4 |
 | `T3Ov4SizeTo` | Overlap 4: End Size | number | 1 | slider 0 to 4 |
@@ -673,6 +684,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutOpacityOrder` | Opacity: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3OutOpacityStart` | Opacity: Start Frame | integer | 90 | slider 0 to 250; at least 0 |
 | `T3OutOpacityEnd` | Opacity: End Frame | integer | 115 | slider 0 to 250; at least 0 |
+| `T3OutOpacityOffset` | Opacity: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutOpacityStagger` | Opacity: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutOpacityTo` | Opacity: End Value | number | 0 | slider 0 to 1 |
 | `T3OutOpacityEase` | Opacity: Ease | choice | 1 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
@@ -682,6 +694,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutBlurOrder` | Blur: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3OutBlurStart` | Blur: Start Frame | integer | 90 | slider 0 to 250; at least 0 |
 | `T3OutBlurEnd` | Blur: End Frame | integer | 115 | slider 0 to 250; at least 0 |
+| `T3OutBlurOffset` | Blur: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutBlurStagger` | Blur: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutBlurTo` | Blur: End Value | number | 0.1 | slider 0 to 0.2 |
 | `T3OutBlurEase` | Blur: Ease | choice | 1 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
@@ -691,6 +704,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutPosOrder` | Position: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3OutPosStart` | Position: Start Frame | integer | 90 | slider 0 to 250; at least 0 |
 | `T3OutPosEnd` | Position: End Frame | integer | 115 | slider 0 to 250; at least 0 |
+| `T3OutPosOffset` | Position: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutPosStagger` | Position: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutPosToX` | Position: End X | number | 0 | slider -2 to 2 |
 | `T3OutPosToY` | Position: End Y | number | 0.6 | slider -2 to 2 |
@@ -702,6 +716,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutSizeOrder` | Size: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3OutSizeStart` | Size: Start Frame | integer | 90 | slider 0 to 250; at least 0 |
 | `T3OutSizeEnd` | Size: End Frame | integer | 115 | slider 0 to 250; at least 0 |
+| `T3OutSizeOffset` | Size: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutSizeStagger` | Size: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutSizeTo` | Size: End Value | number | 0 | slider 0 to 4 |
 | `T3OutSizeEase` | Size: Ease | choice | 22 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
@@ -711,6 +726,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutTrackOrder` | Tracking: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3OutTrackStart` | Tracking: Start Frame | integer | 90 | slider 0 to 250; at least 0 |
 | `T3OutTrackEnd` | Tracking: End Frame | integer | 115 | slider 0 to 250; at least 0 |
+| `T3OutTrackOffset` | Tracking: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutTrackStagger` | Tracking: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutTrackTo` | Tracking: End Value | number | 2 | slider -1 to 3 |
 | `T3OutTrackEase` | Tracking: Ease | choice | 4 | 0 Linear, 1 In Quad, 2 Out Quad, 3 In Out Quad, 4 In Cubic, 5 Out Cubic, 6 In Out Cubic, 7 In Quart, 8 Out Quart, 9 In Out Quart, 10 In Quint, 11 Out Quint, 12 In Out Quint, 13 In Sine, 14 Out Sine, 15 In Out Sine, 16 In Expo, 17 Out Expo, 18 In Out Expo, 19 In Circ, 20 Out Circ, 21 In Out Circ, 22 In Back, 23 Out Back, 24 In Out Back, 25 In Elastic, 26 Out Elastic, 27 In Out Elastic, 28 In Bounce, 29 Out Bounce, 30 In Out Bounce, 31 Custom |
@@ -720,6 +736,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutRotOrder` | Rotation: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3OutRotStart` | Rotation: Start Frame | integer | 90 | slider 0 to 250; at least 0 |
 | `T3OutRotEnd` | Rotation: End Frame | integer | 115 | slider 0 to 250; at least 0 |
+| `T3OutRotOffset` | Rotation: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutRotStagger` | Rotation: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutRotToX` | Rotation: End X | number | -90 | slider -360 to 360 |
 | `T3OutRotToY` | Rotation: End Y | number | 0 | slider -360 to 360 |
@@ -731,6 +748,7 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3OutExplodeOrder` | Explosion: Order | choice | 0 | 0 to 5: the orders in section 4 |
 | `T3OutExplodeStart` | Explosion: Start Frame | integer | 90 | slider 0 to 250; at least 0 |
 | `T3OutExplodeEnd` | Explosion: End Frame | integer | 115 | slider 0 to 250; at least 0 |
+| `T3OutExplodeOffset` | Explosion: Animation Offset | integer | 0 | slider -120 to 120; allowed -10000 to 10000 |
 | `T3OutExplodeStagger` | Explosion: Stagger % | number | 30 | slider 0 to 200; at least 0 |
 | `T3OutExplodeTo` | Explosion: End Value | number | 1.5 | slider 0 to 3 |
 | `T3OutExplodeDamping` | Explosion: Damping | number | 0 | slider 0 to 8; at least 0 |

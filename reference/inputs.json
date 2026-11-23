@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-23",
- "parameters": "t3_params_gen.h 69459c02db99",
+ "parameters": "t3_params_gen.h ab3feff67f57",
  "pages": [
   "Text",
   "In",
@@ -332,6 +332,21 @@
     250.0
    ]
   },
+  "T3InOpacityOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Opacity",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3InOpacityStagger": {
    "label": "Stagger %",
    "page": "In",
@@ -482,6 +497,21 @@
     250.0
    ]
   },
+  "T3InBlurOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Blur",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3InBlurStagger": {
    "label": "Stagger %",
    "page": "In",
@@ -631,6 +661,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3InPosOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Position",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3InPosStagger": {
    "label": "Stagger %",
@@ -830,6 +875,21 @@
     250.0
    ]
   },
+  "T3InSizeOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Size",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3InSizeStagger": {
    "label": "Stagger %",
    "page": "In",
@@ -980,6 +1040,21 @@
     250.0
    ]
   },
+  "T3InTrackOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Tracking",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3InTrackStagger": {
    "label": "Stagger %",
    "page": "In",
@@ -1129,6 +1204,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3InRotOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Rotation",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3InRotStagger": {
    "label": "Stagger %",
@@ -1327,6 +1417,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3InExplodeOffset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3InExplodeStagger": {
    "label": "Stagger %",
@@ -1579,6 +1684,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3Ov1Offset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Overlap 1",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3Ov1Stagger": {
    "label": "Stagger %",
@@ -1964,6 +2084,21 @@
     250.0
    ]
   },
+  "T3Ov2Offset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Overlap 2",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3Ov2Stagger": {
    "label": "Stagger %",
    "page": "In",
@@ -2347,6 +2482,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3Ov3Offset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Overlap 3",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3Ov3Stagger": {
    "label": "Stagger %",
@@ -2732,6 +2882,21 @@
     250.0
    ]
   },
+  "T3Ov4Offset": {
+   "label": "Animation Offset",
+   "page": "In",
+   "section": "Overlap 4",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3Ov4Stagger": {
    "label": "Stagger %",
    "page": "In",
@@ -3113,6 +3278,21 @@
     250.0
    ]
   },
+  "T3OutOpacityOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "Opacity",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3OutOpacityStagger": {
    "label": "Stagger %",
    "page": "Out",
@@ -3251,6 +3431,21 @@
     250.0
    ]
   },
+  "T3OutBlurOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "Blur",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3OutBlurStagger": {
    "label": "Stagger %",
    "page": "Out",
@@ -3388,6 +3583,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3OutPosOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "Position",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3OutPosStagger": {
    "label": "Stagger %",
@@ -3551,6 +3761,21 @@
     250.0
    ]
   },
+  "T3OutSizeOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "Size",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3OutSizeStagger": {
    "label": "Stagger %",
    "page": "Out",
@@ -3689,6 +3914,21 @@
     250.0
    ]
   },
+  "T3OutTrackOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "Tracking",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
+  },
   "T3OutTrackStagger": {
    "label": "Stagger %",
    "page": "Out",
@@ -3826,6 +4066,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3OutRotOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "Rotation",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3OutRotStagger": {
    "label": "Stagger %",
@@ -3988,6 +4243,21 @@
     0.0,
     250.0
    ]
+  },
+  "T3OutExplodeOffset": {
+   "label": "Animation Offset",
+   "page": "Out",
+   "section": "Explosion",
+   "kind": "integer",
+   "role": "public",
+   "default": 0,
+   "min": -10000,
+   "max": 10000,
+   "slider": [
+    -120.0,
+    120.0
+   ],
+   "hint": "Moves this row later (below 0: earlier) by this many frames, without changing its own frames. It adds to the page's Animation Offset."
   },
   "T3OutExplodeStagger": {
    "label": "Stagger %",
