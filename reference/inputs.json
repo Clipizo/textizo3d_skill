@@ -4,7 +4,7 @@
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
  "generated": "2026-11-23",
- "parameters": "t3_params_gen.h 8d37859b5a9d",
+ "parameters": "t3_params_gen.h a82d25088b70",
  "pages": [
   "Text",
   "In",
@@ -5619,7 +5619,47 @@
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "Starts the fire at the middle of the text and sends the flames and embers out all round (Fire Direction is not used)."
+   "hint": "The fire starts only from an area in the middle of the text (Center X, Center Y and Center Width move and size it); the flames still go along Fire Direction."
+  },
+  "T3FireCenterX": {
+   "label": "Center X",
+   "page": "Effects",
+   "section": "Fire",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -50.0,
+    50.0
+   ],
+   "hint": "Moves the area along the text, in % of its width: 0 the middle, -50 its left end, 50 its right end."
+  },
+  "T3FireCenterY": {
+   "label": "Center Y",
+   "page": "Effects",
+   "section": "Fire",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -100.0,
+    100.0
+   ],
+   "hint": "Moves the area up or down, in % of the text's height (0: its middle)."
+  },
+  "T3FireCenterWidth": {
+   "label": "Center Width",
+   "page": "Effects",
+   "section": "Fire",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ],
+   "hint": "How wide the area is, in % of the text's width (0: a point)."
   },
   "FireColor": {
    "label": "Fire Color",
@@ -5732,7 +5772,47 @@
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "Starts the mist and snow at the middle of the text and sends them out all round (Frost Direction is not used)."
+   "hint": "The mist and snow start only from an area in the middle of the text (Center X, Center Y and Center Width move and size it); they still go along Frost Direction."
+  },
+  "T3FrostCenterX": {
+   "label": "Center X",
+   "page": "Effects",
+   "section": "Frost",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -50.0,
+    50.0
+   ],
+   "hint": "Moves the area along the text, in % of its width: 0 the middle, -50 its left end, 50 its right end."
+  },
+  "T3FrostCenterY": {
+   "label": "Center Y",
+   "page": "Effects",
+   "section": "Frost",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -100.0,
+    100.0
+   ],
+   "hint": "Moves the area up or down, in % of the text's height (0: its middle)."
+  },
+  "T3FrostCenterWidth": {
+   "label": "Center Width",
+   "page": "Effects",
+   "section": "Frost",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ],
+   "hint": "How wide the area is, in % of the text's width (0: a point)."
   },
   "FrostColor": {
    "label": "Frost Color",
@@ -5829,7 +5909,47 @@
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "Starts the smoke at the middle of the text and sends it out all round (Smoke Direction is not used)."
+   "hint": "The smoke starts only from an area in the middle of the text (Center X, Center Y and Center Width move and size it); it still drifts along Smoke Direction."
+  },
+  "T3SmokeCenterX": {
+   "label": "Center X",
+   "page": "Effects",
+   "section": "Smoke",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -50.0,
+    50.0
+   ],
+   "hint": "Moves the area along the text, in % of its width: 0 the middle, -50 its left end, 50 its right end."
+  },
+  "T3SmokeCenterY": {
+   "label": "Center Y",
+   "page": "Effects",
+   "section": "Smoke",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -100.0,
+    100.0
+   ],
+   "hint": "Moves the area up or down, in % of the text's height (0: its middle)."
+  },
+  "T3SmokeCenterWidth": {
+   "label": "Center Width",
+   "page": "Effects",
+   "section": "Smoke",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ],
+   "hint": "How wide the area is, in % of the text's width (0: a point)."
   },
   "SmokeColor": {
    "label": "Smoke Color",
@@ -5978,7 +6098,47 @@
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "The rays burst out from the middle of the text, all round (Ray Direction is not used)."
+   "hint": "The rays burst out all round from the middle of the text (Center X and Center Y move that point, Center Width stretches it along the text); Ray Direction is not used."
+  },
+  "T3RaysCenterX": {
+   "label": "Center X",
+   "page": "Effects",
+   "section": "Light Rays",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -50.0,
+    50.0
+   ],
+   "hint": "Moves the point along the text, in % of its width: 0 the middle, -50 its left end, 50 its right end."
+  },
+  "T3RaysCenterY": {
+   "label": "Center Y",
+   "page": "Effects",
+   "section": "Light Rays",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -100.0,
+    100.0
+   ],
+   "hint": "Moves the point up or down, in % of the text's height (0: its middle)."
+  },
+  "T3RaysCenterWidth": {
+   "label": "Center Width",
+   "page": "Effects",
+   "section": "Light Rays",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ],
+   "hint": "How wide the light's source is, in % of the text's width (0: a point)."
   },
   "RaysColor": {
    "label": "Ray Color",
@@ -6066,7 +6226,47 @@
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "The shine starts at the middle of the text and splits in two, the bands running out to both ends along Shine Direction."
+   "hint": "The shine sweeps only across an area in the middle of the text (Center X, Center Y and Center Width move and size it), along Shine Direction."
+  },
+  "T3ShineCenterX": {
+   "label": "Center X",
+   "page": "Effects",
+   "section": "Shine",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -50.0,
+    50.0
+   ],
+   "hint": "Moves the area along the text, in % of its width: 0 the middle, -50 its left end, 50 its right end."
+  },
+  "T3ShineCenterY": {
+   "label": "Center Y",
+   "page": "Effects",
+   "section": "Shine",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -100.0,
+    100.0
+   ],
+   "hint": "Moves the area up or down, in % of the text's height (0: its middle)."
+  },
+  "T3ShineCenterWidth": {
+   "label": "Center Width",
+   "page": "Effects",
+   "section": "Shine",
+   "kind": "number",
+   "role": "public",
+   "default": 40.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ],
+   "hint": "How wide the area is, in % of the text's width (0: a point)."
   },
   "ShineColor": {
    "label": "Shine Color",
@@ -6267,7 +6467,47 @@
    "kind": "checkbox",
    "role": "public",
    "default": 0,
-   "hint": "The dust starts at the middle of the text and drifts out all round (Dust Direction is not used)."
+   "hint": "The dust comes out of an area in the middle of the text (Center X, Center Y and Center Width move and size it) and drifts along Dust Direction."
+  },
+  "T3DustCenterX": {
+   "label": "Center X",
+   "page": "Effects",
+   "section": "Dust",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -50.0,
+    50.0
+   ],
+   "hint": "Moves the area along the text, in % of its width: 0 the middle, -50 its left end, 50 its right end."
+  },
+  "T3DustCenterY": {
+   "label": "Center Y",
+   "page": "Effects",
+   "section": "Dust",
+   "kind": "number",
+   "role": "public",
+   "default": 0.0,
+   "slider": [
+    -100.0,
+    100.0
+   ],
+   "hint": "Moves the area up or down, in % of the text's height (0: its middle)."
+  },
+  "T3DustCenterWidth": {
+   "label": "Center Width",
+   "page": "Effects",
+   "section": "Dust",
+   "kind": "number",
+   "role": "public",
+   "default": 30.0,
+   "min": 0.0,
+   "slider": [
+    0.0,
+    100.0
+   ],
+   "hint": "How wide the area is, in % of the text's width (0: a point)."
   },
   "DustColor": {
    "label": "Dust Color",

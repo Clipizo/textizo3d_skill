@@ -204,7 +204,7 @@ Common rows:
 | `BlurFrom`, `BlurTo` | Blur: added to the rows' blur (0 leaves it; 0.1 soft) |
 | `TrackFrom`, `TrackTo` | Tracking: added to the rows' tracking (0 leaves it) |
 
-Only the values of the row's `Prop` play; write the ones it uses. A row holds its Start values before its `Start` frame and its End values after its `End` frame, as AnimizoFX's Overlap layers do, so its Start values show from the clip's first frame: start Size and Opacity rows at 1 and the others at 0 unless the text should begin changed. Overlap rows keep the clip's own timing (with Sync to Speech too). Two rows of the same property stack: Size and Opacity multiply, the rest add. Ideas:
+In the viewer each row that is on shows as a lane under the timeline strip (its Start and End frames, dragged to retime it; the strip's `...` menu adds and removes rows), and the In page shows only those rows' sections and the next. Only the values of the row's `Prop` play; write the ones it uses. A row holds its Start values before its `Start` frame and its End values after its `End` frame, as AnimizoFX's Overlap layers do, so its Start values show from the clip's first frame: start Size and Opacity rows at 1 and the others at 0 unless the text should begin changed. Overlap rows keep the clip's own timing (with Sync to Speech too). Two rows of the same property stack: Size and Opacity multiply, the rest add. Ideas:
 
 - **Pop and settle:** the In Size row 0 to 1.15 with Out Back over frames 0 to 12, and Overlap 1 Size 1 to 0.87 (`Ease` 6) over frames 12 to 20.
 - **Bounce after landing:** Overlap 1 Position `PosFromY` 0, `PosToY` 0.15 over frames 30 to 36 (Out Quad), and Overlap 2 Position `PosFromY` 0, `PosToY` -0.15 over frames 36 to 44 (Out Bounce): up and back down.
@@ -276,7 +276,7 @@ With the kit's tool, write keys in the spec as a list (fields left out keep the 
 - `T3Emission` (0 to 1): the colour glows by itself, without light. Use it for neon (with the Bloom).
 - **Wear:** `T3Bump` (face dents, 0 to 1), `T3Scratches` (fine grooves, 0 to 1), `T3Smudges` (patchy roughness, default 0.15). Details: `T3BumpStyle` (0 hammered dimples, 1 smooth lumps), `T3BumpSize`, `T3BumpDetail`, `T3SideBump`, and the scratches' count, length, width, angle and seed.
 - **Bloom and Edge Glow** (2D, over the picture): Bloom, `T3Glow` (0 to 3), lights up everything brighter than `T3GlowThreshold` (Bloom Threshold, 0 to 1), spread by `T3GlowSize` (Bloom Size, default 20; sizes are for a 1920-wide frame and scale with it). `T3EdgeGlow` (0 to 3) draws a glowing line along every front face's edge in `EdgeColor`, `T3EdgeWidth` thousandths of the frame's width wide, softened by `T3EdgeSoft`. Glows add light; where there are no letters that light carries its own opacity (its brightest channel), so it shows on Resolve's Edit page and over video.
-- **Effects** (the **Effects** page, the fourth tab: a section each, Float, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs). Fire, Frost, Smoke, Light Rays, Shine and Dust have **Center Effect** (1.1; `T3FireCenter`, `T3FrostCenter`, `T3SmokeCenter`, `T3RaysCenter`, `T3ShineCenter`, `T3DustCenter`, default 0): 1 starts the effect at the middle of the text. Fire, Frost, Smoke and Dust then go out all round from the text's middle line (up from its top, down from its bottom, out past its ends: an aura instead of one way) and their Direction isn't used; Light Rays burst out from the text's middle in every direction (a sunburst behind it); Shine's band starts at the middle and splits, two bands running out to both ends along `T3ShineDirection`.
+- **Effects** (the **Effects** page, the fourth tab: a section each, Float, Glow ... Dust; every one off by default and in every look, animated by the clip's time). Directions are angles in degrees: 0 right, 90 up, -90 down, 180 left. Fire, Frost, Smoke and Electric have **Inside the Letters** (`T3FireInside`, `T3FrostInside`, `T3SmokeInside`, `T3ElectricInside`, default 0): 0 the effect spreads round the letters, 1 it stays within their shapes (letters filled with fire, frost, smoke or arcs). Fire, Frost, Smoke, Light Rays, Shine and Dust have **Center Effect** (1.1; `T3FireCenter`, `T3FrostCenter`, `T3SmokeCenter`, `T3RaysCenter`, `T3ShineCenter`, `T3DustCenter`, default 0): 1 makes the effect come only from an area in the middle of the text, which **Center X** (`T3FireCenterX` and so on: % of the text's width along it, 0 its middle, -50 its left end, 50 its right end), **Center Y** (`...CenterY`: % of the text's height, up positive) and **Center Width** (`...CenterWidth`: % of the text's width, 0 a point; default 30, Light Rays 0, Shine 40) move and size; they show in the Inspector only while Center Effect is on. Fire, Frost, Smoke and Dust keep their Direction (flames rising from the middle of the title, mist falling from it); Light Rays burst out all round from the area's point (a sunburst behind the text; Center Width stretches the light along the text, `T3RaysDirection` isn't used); Shine's band sweeps across the area only, along `T3ShineDirection` (a glint in the middle; Center Width 0 a small one).
   - **Float** (`T3FloatOn` 1): the letters drift and sway gently all through the clip, on top of their In and Out rows (letters that come in, then float). The section's controls:
     - `T3FloatPieces` (Float By): 0 letters, 1 words, 2 lines, 3 the whole text. A word, a line or the whole text moves and turns as one piece about its middle.
     - `T3FloatStyle`: 0 Random (each piece keeps its own time), 1 Wave Left to Right, 2 Wave Right to Left, 3 Wave from the Middle, 4 Together (all in step).
@@ -773,6 +773,9 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3FireSpeed` | Fire: Fire Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3FireDirection` | Fire: Fire Direction | number | 90 | slider -180 to 180 |
 | `T3FireCenter` | Fire: Center Effect | checkbox | 0 | 0 or 1 |
+| `T3FireCenterX` | Fire: Center X | number | 0 | slider -50 to 50 |
+| `T3FireCenterY` | Fire: Center Y | number | 0 | slider -100 to 100 |
+| `T3FireCenterWidth` | Fire: Center Width | number | 30 | slider 0 to 100; at least 0 |
 | `FireColor` (`FireColorRed`, `FireColorGreen`, `FireColorBlue`) | Fire: Fire Color | color | [1, 0.42, 0.06] | red, green, blue from 0 to 1 |
 | `T3FrostOn` | Frost | checkbox | 0 | 0 or 1 |
 | `T3FrostInside` | Frost: Inside the Letters | checkbox | 0 | 0 or 1 |
@@ -782,6 +785,9 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3FrostSpeed` | Frost: Frost Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3FrostDirection` | Frost: Frost Direction | number | -90 | slider -180 to 180 |
 | `T3FrostCenter` | Frost: Center Effect | checkbox | 0 | 0 or 1 |
+| `T3FrostCenterX` | Frost: Center X | number | 0 | slider -50 to 50 |
+| `T3FrostCenterY` | Frost: Center Y | number | 0 | slider -100 to 100 |
+| `T3FrostCenterWidth` | Frost: Center Width | number | 30 | slider 0 to 100; at least 0 |
 | `FrostColor` (`FrostColorRed`, `FrostColorGreen`, `FrostColorBlue`) | Frost: Frost Color | color | [0.75, 0.92, 1] | red, green, blue from 0 to 1 |
 | `T3SmokeOn` | Smoke | checkbox | 0 | 0 or 1 |
 | `T3SmokeInside` | Smoke: Inside the Letters | checkbox | 0 | 0 or 1 |
@@ -790,6 +796,9 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3SmokeSpeed` | Smoke: Smoke Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3SmokeDirection` | Smoke: Smoke Direction | number | 90 | slider -180 to 180 |
 | `T3SmokeCenter` | Smoke: Center Effect | checkbox | 0 | 0 or 1 |
+| `T3SmokeCenterX` | Smoke: Center X | number | 0 | slider -50 to 50 |
+| `T3SmokeCenterY` | Smoke: Center Y | number | 0 | slider -100 to 100 |
+| `T3SmokeCenterWidth` | Smoke: Center Width | number | 30 | slider 0 to 100; at least 0 |
 | `SmokeColor` (`SmokeColorRed`, `SmokeColorGreen`, `SmokeColorBlue`) | Smoke: Smoke Color | color | [0.32, 0.32, 0.35] | red, green, blue from 0 to 1 |
 | `T3ElectricOn` | Electric | checkbox | 0 | 0 or 1 |
 | `T3ElectricInside` | Electric: Inside the Letters | checkbox | 0 | 0 or 1 |
@@ -802,6 +811,9 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3RaysLength` | Light Rays: Ray Length | number | 1 | slider 0 to 3; at least 0 |
 | `T3RaysDirection` | Light Rays: Ray Direction | number | 90 | slider -180 to 180 |
 | `T3RaysCenter` | Light Rays: Center Effect | checkbox | 0 | 0 or 1 |
+| `T3RaysCenterX` | Light Rays: Center X | number | 0 | slider -50 to 50 |
+| `T3RaysCenterY` | Light Rays: Center Y | number | 0 | slider -100 to 100 |
+| `T3RaysCenterWidth` | Light Rays: Center Width | number | 0 | slider 0 to 100; at least 0 |
 | `RaysColor` (`RaysColorRed`, `RaysColorGreen`, `RaysColorBlue`) | Light Rays: Ray Color | color | [1, 0.92, 0.75] | red, green, blue from 0 to 1 |
 | `T3ShineOn` | Shine | checkbox | 0 | 0 or 1 |
 | `T3ShineAmount` | Shine: Shine Amount | number | 1 | slider 0 to 3; at least 0 |
@@ -809,6 +821,9 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3ShineEvery` | Shine: Shine Every (seconds) | number | 2.5 | slider 0 to 10; at least 0 |
 | `T3ShineDirection` | Shine: Shine Direction | number | -20 | slider -180 to 180 |
 | `T3ShineCenter` | Shine: Center Effect | checkbox | 0 | 0 or 1 |
+| `T3ShineCenterX` | Shine: Center X | number | 0 | slider -50 to 50 |
+| `T3ShineCenterY` | Shine: Center Y | number | 0 | slider -100 to 100 |
+| `T3ShineCenterWidth` | Shine: Center Width | number | 40 | slider 0 to 100; at least 0 |
 | `ShineColor` (`ShineColorRed`, `ShineColorGreen`, `ShineColorBlue`) | Shine: Shine Color | color | [1, 1, 1] | red, green, blue from 0 to 1 |
 | `T3SparkleOn` | Sparkles | checkbox | 0 | 0 or 1 |
 | `T3SparkleAmount` | Sparkles: Sparkle Amount | number | 1 | slider 0 to 3; at least 0 |
@@ -825,6 +840,9 @@ Every input a node can set, with its default. Dropdowns list their numbers. Inpu
 | `T3DustSpeed` | Dust: Dust Speed | number | 1 | slider 0 to 3; at least 0 |
 | `T3DustDirection` | Dust: Dust Direction | number | 60 | slider -180 to 180 |
 | `T3DustCenter` | Dust: Center Effect | checkbox | 0 | 0 or 1 |
+| `T3DustCenterX` | Dust: Center X | number | 0 | slider -50 to 50 |
+| `T3DustCenterY` | Dust: Center Y | number | 0 | slider -100 to 100 |
+| `T3DustCenterWidth` | Dust: Center Width | number | 30 | slider 0 to 100; at least 0 |
 | `DustColor` (`DustColorRed`, `DustColorGreen`, `DustColorBlue`) | Dust: Dust Color | color | [1, 0.93, 0.82] | red, green, blue from 0 to 1 |
 
 **Material page**
