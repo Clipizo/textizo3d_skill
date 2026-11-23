@@ -1,9 +1,9 @@
 {
  "product": "Textizo3D",
- "version": "1.1",
+ "version": "1.1.1",
  "tool": "ofx.com.clipizo.textizo3dfx",
  "node": "Textizo3D1",
- "generated": "2026-11-23",
+ "generated": "2026-11-24",
  "parameters": "t3_params_gen.h ab3feff67f57",
  "pages": [
   "Text",
